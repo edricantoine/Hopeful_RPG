@@ -155,6 +155,13 @@ public abstract class Char {
         isDead = false;
     }
 
+    public void turnBeginRoutine() {
+        if (currentStatus.equals(StatusEffect.AFRAID)) {
+            atkMod = 0.75;
+            defMod = 1.25;
+        }
+    }
+
     public void turnEndRoutine() {
         if(currentStatus.equals(StatusEffect.BURNED)) {
             hp -= DMG_BURNED;
