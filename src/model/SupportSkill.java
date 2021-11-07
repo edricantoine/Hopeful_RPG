@@ -1,0 +1,25 @@
+package model;
+
+public class SupportSkill extends Skill {
+
+    private int hpEffect;
+    private int apEffect;
+    private int atkEffect;
+    private int defEffect;
+    private Boolean cures;
+
+    public SupportSkill(String name, String flavor, int apCost, int cooldown, String target, int hpEffect,
+                        int apEffect, int atkEffect, int defEffect, Boolean cures) {
+        super(name, flavor, apCost, cooldown, target);
+        this.hpEffect = hpEffect;
+        this.apEffect = apEffect;
+        this.atkEffect = atkEffect;
+        this.defEffect = defEffect;
+        this.cures = cures;
+    }
+
+    @Override
+    public void takeEffect(Char c) {
+
+    }
+}
