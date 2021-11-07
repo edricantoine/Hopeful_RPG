@@ -10,4 +10,12 @@ public class Level {
         this.name = name;
         this.rooms = rooms;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
 }

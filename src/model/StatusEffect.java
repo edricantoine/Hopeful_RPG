@@ -1,5 +1,5 @@
 package model;
 
 public enum StatusEffect {
-    BURNED, FROZEN, POISONED, STUNNED, AFRAID, NONE
+    BURNED, FROZEN, POISONED, AFRAID, NONE
 }

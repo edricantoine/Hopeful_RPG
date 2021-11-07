@@ -17,6 +17,9 @@ public abstract class Char {
     protected int speed;
     protected Boolean isDead;
 
+    protected final static int DMG_BURNED = 5;
+    protected final static int DMG_POISONED = 10;
+
     //constructor
 
     public Char(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor) {
@@ -109,4 +112,60 @@ public abstract class Char {
     }
 
     public abstract void useSkill(Skill s);
+
+    public Boolean canUseSkill(Skill s) {
+        return (this.ap >= s.getApCost() && !s.isOnCooldown()) && (currentStatus != StatusEffect.FROZEN);
+    }
+
+    public void takeDamage(int d) {
+
+        if((hp - (d * defMod)) <= 0) {
+            hp = 0;
+            kill();
+        } else {
+            hp -= (d * defMod);
+        }
+    }
+
+    public void healDamage(int d) {
+        if((hp + d) > maxhp) {
+            hp = maxhp;
+        } else {
+            hp += d;
+        }
+    }
+
+    public void useAp(int d) {
+        ap -= d;
+    }
+
+    public void healAp(int d) {
+        if((ap + d) > maxap) {
+            ap = maxap;
+        } else {
+            ap += d;
+        }
+    }
+
+    public void kill() {
+        isDead = true;
+    }
+
+    public void revive() {
+        isDead = false;
+    }
+
+    public void turnEndRoutine() {
+        if(currentStatus.equals(StatusEffect.BURNED)) {
+            hp -= DMG_BURNED;
+        }
+
+        if(currentStatus.equals(StatusEffect.POISONED)) {
+            hp -= DMG_POISONED;
+        }
+
+        healAp(5);
+    }
+
+
 }
