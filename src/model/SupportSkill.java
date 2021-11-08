@@ -21,5 +21,14 @@ public class SupportSkill extends Skill {
     @Override
     public void takeEffect(Char c) {
 
+        c.healDamage(hpEffect);
+        c.healAp(apEffect);
+        c.setAtkMod(atkEffect);
+        c.setDefMod(defEffect);
+
+        if(cures) {
+            c.setCurrentStatus(StatusEffect.NONE);
+        }
+
     }
 }

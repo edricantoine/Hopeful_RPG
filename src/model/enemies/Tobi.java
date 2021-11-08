@@ -1,5 +1,6 @@
 package model.enemies;
 
+import model.Char;
 import model.Skill;
 
 import java.util.List;
@@ -14,8 +15,14 @@ public class Tobi extends Enemy {
     }
 
     @Override
-    public void useSkill(Skill s) {
-
+    public Boolean useSkill(Skill s, Char c) {
+        if(canUseSkill(s)) {
+            useAp(s.getApCost());
+            s.takeEffect(c);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Boolean getNeedsToReload() {

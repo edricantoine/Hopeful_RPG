@@ -10,14 +10,18 @@ public abstract class Char {
     protected int hp;
     protected int ap;
     protected List<Skill> skills;
-    protected List<Skill> activeSkills;
     protected StatusEffect currentStatus;
     protected double atkMod;
     protected double defMod;
     protected int speed;
     protected Boolean isDead;
+    protected int timeSinceStatusApplied;
 
     protected final static int DMG_BURNED = 5;
+    protected final static int W_BURNED = 3;
+    protected final static int W_POISONED = 3;
+    protected final static int W_FROZEN = 1;
+    protected final static int W_AFRAID = 3;
     protected final static int DMG_POISONED = 10;
 
     //constructor
@@ -27,7 +31,6 @@ public abstract class Char {
         this.maxhp = maxhp;
         this.maxap = maxap;
         this.skills = skills;
-        this.activeSkills = skills;
         this.speed = speed;
         this.hp = maxhp;
         this.ap = maxap;
@@ -36,6 +39,7 @@ public abstract class Char {
         this.defMod = 1.0;
         this.flavor = flavor;
         this.isDead = false;
+        this.timeSinceStatusApplied = 0;
     }
 
     //getters and setters
@@ -45,9 +49,6 @@ public abstract class Char {
         return isDead;
     }
 
-    public List<Skill> getActiveSkills() {
-        return activeSkills;
-    }
 
     public String getFlavor() {
         return flavor;
@@ -99,19 +100,23 @@ public abstract class Char {
 
     public void setCurrentStatus(StatusEffect currentStatus) {
         this.currentStatus = currentStatus;
+        if(currentStatus.equals(StatusEffect.BURNED)) {
+            timeSinceStatusApplied = W_BURNED;
+        } else if(currentStatus.equals(StatusEffect.POISONED)) {
+            timeSinceStatusApplied = W_POISONED;
+        } else if(currentStatus.equals(StatusEffect.FROZEN)) {
+            timeSinceStatusApplied = W_FROZEN;
+        } else if(currentStatus.equals(StatusEffect.AFRAID)) {
+            timeSinceStatusApplied = W_AFRAID;
+        }
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    public void addToActiveSkills(Skill s) {
-        if(skills.contains(s) && !activeSkills.contains(s)) {
-            activeSkills.add(s);
-        }
-    }
 
-    public abstract void useSkill(Skill s);
+    public abstract Boolean useSkill(Skill s, Char c);
 
     public Boolean canUseSkill(Skill s) {
         return (this.ap >= s.getApCost() && !s.isOnCooldown()) && (currentStatus != StatusEffect.FROZEN);
@@ -165,11 +170,36 @@ public abstract class Char {
     public void turnEndRoutine() {
         if(currentStatus.equals(StatusEffect.BURNED)) {
             hp -= DMG_BURNED;
+            timeSinceStatusApplied--;
+            if(timeSinceStatusApplied == 0) {
+                setCurrentStatus(StatusEffect.NONE);
+            }
         }
 
         if(currentStatus.equals(StatusEffect.POISONED)) {
             hp -= DMG_POISONED;
+            timeSinceStatusApplied--;
+            if(timeSinceStatusApplied == 0) {
+                setCurrentStatus(StatusEffect.NONE);
+            }
         }
+
+        if(currentStatus.equals(StatusEffect.FROZEN)) {
+            timeSinceStatusApplied--;
+            if(timeSinceStatusApplied == 0) {
+                setCurrentStatus(StatusEffect.NONE);
+            }
+        }
+
+        if(currentStatus.equals(StatusEffect.AFRAID)) {
+            timeSinceStatusApplied--;
+            if(timeSinceStatusApplied == 0) {
+                setCurrentStatus(StatusEffect.NONE);
+                atkMod = 1;
+                defMod = 1;
+            }
+        }
+
 
         healAp(5);
     }
