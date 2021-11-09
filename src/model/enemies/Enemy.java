@@ -1,6 +1,7 @@
 package model.enemies;
 
 import model.Char;
+import model.Item;
 import model.PlayerCharacter;
 import model.Skill;
 
@@ -43,5 +44,10 @@ public class Enemy extends Char {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void useItem(Item i, Char c) {
+
     }
 }

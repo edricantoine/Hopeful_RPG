@@ -108,6 +108,8 @@ public abstract class Char {
             timeSinceStatusApplied = W_FROZEN;
         } else if(currentStatus.equals(StatusEffect.AFRAID)) {
             timeSinceStatusApplied = W_AFRAID;
+        } else if (currentStatus.equals(StatusEffect.NONE)) {
+            timeSinceStatusApplied = 0;
         }
     }
 
@@ -117,9 +119,10 @@ public abstract class Char {
 
 
     public abstract Boolean useSkill(Skill s, Char c);
+    public abstract void useItem(Item i, Char c);
 
     public Boolean canUseSkill(Skill s) {
-        return (this.ap >= s.getApCost() && !s.isOnCooldown()) && (currentStatus != StatusEffect.FROZEN);
+        return (this.ap >= s.getApCost() && (currentStatus != StatusEffect.FROZEN));
     }
 
     public void takeDamage(int d) {
