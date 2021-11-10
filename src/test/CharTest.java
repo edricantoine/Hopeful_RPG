@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlayerCharacterTest {
+public class CharTest {
 
     private PlayerCharacter p1;
     private PlayerCharacter p2;
@@ -248,6 +248,7 @@ public class PlayerCharacterTest {
 
     @Test
     public void testUseAtkSkill() {
+        assertTrue(p1.canUseSkill(atkS));
         assertTrue(p1.useSkill(atkS, e1));
         assertEquals(p1.getAp(), p1.getMaxap() - atkS.getApCost());
         assertEquals(e1.getHp(), e1.getMaxhp() - atkS.getDamage());
@@ -256,6 +257,7 @@ public class PlayerCharacterTest {
     @Test
     public void testNotEnoughAp() {
         p1.useAp(95);
+        assertFalse(p1.canUseSkill(atkS));
         assertFalse(p1.useSkill(atkS, e1));
         assertEquals(p1.getAp(), p1.getMaxap() - 95);
         assertEquals(e1.getHp(), e1.getMaxhp());
