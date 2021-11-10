@@ -37,7 +37,9 @@ public class PlayerCharacter extends Char {
     public Boolean useSkill(Skill s, Char c) {
         if(canUseSkill(s)) {
             useAp(s.getApCost());
+            s.setAtkMod(atkMod);
             s.takeEffect(c);
+            s.setAtkMod(1.00);
             return true;
         } else {
             return false;

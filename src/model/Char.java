@@ -5,9 +5,9 @@ import java.util.List;
 public abstract class Char {
     protected String name;
     protected String flavor;
-    protected int maxhp;
+    protected double maxhp;
     protected int maxap;
-    protected int hp;
+    protected double hp;
     protected int ap;
     protected List<Skill> skills;
     protected StatusEffect currentStatus;
@@ -26,7 +26,7 @@ public abstract class Char {
 
     //constructor
 
-    public Char(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor) {
+    public Char(String name, double maxhp, int maxap, List<Skill> skills, int speed, String flavor) {
         this.name = name;
         this.maxhp = maxhp;
         this.maxap = maxap;
@@ -61,7 +61,7 @@ public abstract class Char {
         return name;
     }
 
-    public int getMaxhp() {
+    public double getMaxhp() {
         return maxhp;
     }
 
@@ -85,11 +85,11 @@ public abstract class Char {
         this.defMod = defMod;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public int getAp() {
+    public double getAp() {
         return ap;
     }
 
@@ -114,6 +114,10 @@ public abstract class Char {
             atkMod = 0.75;
             defMod = 1.25;
         } else if (currentStatus.equals(StatusEffect.NONE)) {
+
+            atkMod = 1.0;
+            defMod = 1.0;
+
             timeSinceStatusApplied = 0;
         }
     }
@@ -130,7 +134,7 @@ public abstract class Char {
         return (this.ap >= s.getApCost() && (currentStatus != StatusEffect.FROZEN));
     }
 
-    public void takeDamage(int d) {
+    public void takeDamage(double d) {
 
         if((hp - (d * defMod)) <= 0) {
             hp = 0;
@@ -140,7 +144,7 @@ public abstract class Char {
         }
     }
 
-    public void healDamage(int d) {
+    public void healDamage(double d) {
         if((hp + d) >= maxhp) {
             hp = maxhp;
         } else {
@@ -168,6 +172,7 @@ public abstract class Char {
 
     public void kill() {
         isDead = true;
+        setCurrentStatus(StatusEffect.NONE);
     }
 
     public void revive() {

@@ -37,6 +37,10 @@ public abstract class Skill {
 
     public abstract void takeEffect(Char c);
 
+    public abstract void setAtkMod(double atkMod);
+
+    public abstract double getDamage();
+
 
     @Override
     public boolean equals(Object o) {

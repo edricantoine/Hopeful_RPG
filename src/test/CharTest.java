@@ -83,6 +83,29 @@ public class CharTest {
     }
 
     @Test
+    public void testTakeDamageDefMod() {
+        assertEquals(p1.getHp(), 100);
+        p1.setDefMod(1.50);
+        p1.takeDamage(50);
+        assertEquals(p1.getHp(), 25);
+    }
+
+    @Test
+    public void testTakeDamageDieWhileStatusEffect() {
+        p1.setCurrentStatus(StatusEffect.AFRAID);
+        assertEquals(p1.getAtkMod(), 0.75);
+        assertEquals(p1.getDefMod(), 1.25);
+        assertEquals(p1.getHp(), 100);
+        p1.takeDamage(10000);
+
+        assertEquals(p1.getHp(), 0);
+        assertTrue(p1.getDead());
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+        assertEquals(p1.getAtkMod(), 1.0);
+        assertEquals(p1.getDefMod(), 1.0);
+    }
+
+    @Test
     public void testTakeDamageDieOverkill() {
         p1.takeDamage(500000);
         assertEquals(p1.getHp(), 0);
@@ -252,6 +275,29 @@ public class CharTest {
         assertTrue(p1.useSkill(atkS, e1));
         assertEquals(p1.getAp(), p1.getMaxap() - atkS.getApCost());
         assertEquals(e1.getHp(), e1.getMaxhp() - atkS.getDamage());
+    }
+
+    @Test
+    public void testUseAtkSkillAtkMod() {
+        p1.setAtkMod(1.50);
+        assertTrue(p1.canUseSkill(atkS));
+        assertTrue(p1.useSkill(atkS, e1));
+        assertEquals(p1.getAp(), p1.getMaxap() - atkS.getApCost());
+        assertEquals(e1.getHp(), e1.getMaxhp() - (atkS.getDamage() * 1.50));
+    }
+
+    @Test
+    public void testUseAtkSkillAtkModConsecutive() {
+        p1.setAtkMod(1.50);
+        assertTrue(p1.canUseSkill(atkS));
+        assertTrue(p1.useSkill(atkS, e1));
+        assertEquals(p1.getAp(), p1.getMaxap() - atkS.getApCost());
+        assertEquals(e1.getHp(), e1.getMaxhp() - (atkS.getDamage() * 1.50));
+
+        assertTrue(p2.canUseSkill(atkS));
+        assertTrue(p2.useSkill(atkS, e2));
+        assertEquals(p2.getAp(), p2.getMaxap() - atkS.getApCost());
+        assertEquals(e2.getHp(), e2.getMaxhp() - (atkS.getDamage() * 1.00));
     }
 
     @Test
