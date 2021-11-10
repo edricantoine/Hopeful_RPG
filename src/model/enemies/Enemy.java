@@ -12,11 +12,16 @@ public class Enemy extends Char {
 
     private List<Enemy> enemiesWith;
     private List<PlayerCharacter> pcAgainst;
+    private String enterText;
+    private String defeatText;
 
-    public Enemy(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor) {
+    public Enemy(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor,
+                 String enter, String defeat) {
         super(name, maxhp, maxap, skills, speed, flavor);
         this.enemiesWith = new ArrayList<>();
         this.pcAgainst = new ArrayList<>();
+        this.enterText = enter;
+        this.defeatText = defeat;
     }
 
     public List<Enemy> getEnemiesWith() {
@@ -48,6 +53,6 @@ public class Enemy extends Char {
 
     @Override
     public void useItem(Item i, Char c) {
-
+        i.takeEffect(c);
     }
 }

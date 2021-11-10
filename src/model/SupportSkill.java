@@ -8,7 +8,7 @@ public class SupportSkill extends Skill {
     private double defEffect;
     private Boolean cures;
 
-    public SupportSkill(String name, String flavor, int apCost, int cooldown, String target, int hpEffect,
+    public SupportSkill(String name, String flavor, int apCost, String target, int hpEffect,
                         int apEffect, double atkEffect, double defEffect, Boolean cures) {
         super(name, flavor, apCost, target);
         this.hpEffect = hpEffect;

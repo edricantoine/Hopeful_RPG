@@ -17,12 +17,12 @@ public abstract class Char {
     protected Boolean isDead;
     protected int timeSinceStatusApplied;
 
-    protected final static int DMG_BURNED = 5;
-    protected final static int W_BURNED = 3;
-    protected final static int W_POISONED = 3;
-    protected final static int W_FROZEN = 1;
-    protected final static int W_AFRAID = 3;
-    protected final static int DMG_POISONED = 10;
+    public final static int DMG_BURNED = 5;
+    public final static int W_BURNED = 3;
+    public final static int W_POISONED = 3;
+    public final static int W_FROZEN = 1;
+    public final static int W_AFRAID = 3;
+    public final static int DMG_POISONED = 10;
 
     //constructor
 
@@ -49,6 +49,9 @@ public abstract class Char {
         return isDead;
     }
 
+    public int getTimeSinceStatusApplied() {
+        return timeSinceStatusApplied;
+    }
 
     public String getFlavor() {
         return flavor;
@@ -108,6 +111,8 @@ public abstract class Char {
             timeSinceStatusApplied = W_FROZEN;
         } else if(currentStatus.equals(StatusEffect.AFRAID)) {
             timeSinceStatusApplied = W_AFRAID;
+            atkMod = 0.75;
+            defMod = 1.25;
         } else if (currentStatus.equals(StatusEffect.NONE)) {
             timeSinceStatusApplied = 0;
         }
@@ -136,19 +141,25 @@ public abstract class Char {
     }
 
     public void healDamage(int d) {
-        if((hp + d) > maxhp) {
+        if((hp + d) >= maxhp) {
             hp = maxhp;
         } else {
             hp += d;
         }
+        revive();
+
     }
 
     public void useAp(int d) {
-        ap -= d;
+        if(ap - d <= 0) {
+            ap = 0;
+        } else {
+            ap -= d;
+        }
     }
 
     public void healAp(int d) {
-        if((ap + d) > maxap) {
+        if((ap + d) >= maxap) {
             ap = maxap;
         } else {
             ap += d;
@@ -172,7 +183,7 @@ public abstract class Char {
 
     public void turnEndRoutine() {
         if(currentStatus.equals(StatusEffect.BURNED)) {
-            hp -= DMG_BURNED;
+            takeDamage(DMG_BURNED);
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);
@@ -180,7 +191,7 @@ public abstract class Char {
         }
 
         if(currentStatus.equals(StatusEffect.POISONED)) {
-            hp -= DMG_POISONED;
+            takeDamage(DMG_POISONED);
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);

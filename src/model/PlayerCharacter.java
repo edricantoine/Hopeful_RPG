@@ -46,7 +46,7 @@ public class PlayerCharacter extends Char {
 
     @Override
     public void useItem(Item i, Char c) {
-
+        i.takeEffect(c);
     }
 
 

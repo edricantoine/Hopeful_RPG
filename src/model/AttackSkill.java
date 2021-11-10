@@ -21,6 +21,26 @@ public class AttackSkill extends Skill {
         this.defEffect = defEffect;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
+    public double getAtkEffect() {
+        return atkEffect;
+    }
+
+    public double getDefEffect() {
+        return defEffect;
+    }
+
+    public int getStatusApplyChance() {
+        return statusApplyChance;
+    }
+
+    public StatusEffect getStatusToApply() {
+        return statusToApply;
+    }
+
     @Override
     public void takeEffect(Char c) {
 
