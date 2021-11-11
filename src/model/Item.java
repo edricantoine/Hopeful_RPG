@@ -5,8 +5,8 @@ import java.util.Random;
 public class Item {
     private String name;
     private String flavor;
-    private int damage;
-    private int healing;
+    private double damage;
+    private double healing;
     private int apHeal;
     private double atkMod;
     private double defMod;
@@ -16,7 +16,7 @@ public class Item {
     private String target;
 
     public Item(String nm ,String flv,
-                int dmg, int hl, int aph, double atk, double def, Boolean cur, StatusEffect ef, int chc, String tgt) {
+                double dmg, double hl, int aph, double atk, double def, Boolean cur, StatusEffect ef, int chc, String tgt) {
         this.name = nm;
         this.flavor = flv;
         this.damage = dmg;
@@ -51,11 +51,11 @@ public class Item {
     }
 
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
-    public int getHealing() {
+    public double getHealing() {
         return healing;
     }
 
@@ -77,15 +77,20 @@ public class Item {
 
     public void takeEffect(Char c) {
         c.healDamage(healing);
-        c.takeDamage(damage);
         c.healAp(apHeal);
-        if(cures) {
-            c.setCurrentStatus(StatusEffect.NONE);
-        }
-        c.setAtkMod(atkMod);
-        c.setDefMod(defMod);
+        c.takeDamage(damage);
 
-        if(effectInflict != StatusEffect.NONE) {
+        if(defMod != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
+            c.setDefMod((defMod + c.getDefMod()) / 2.0);
+
+        }
+
+        if(atkMod != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
+            c.setAtkMod((atkMod + c.getAtkMod()) / 2.0);
+
+        }
+
+        if(effectInflict != StatusEffect.NONE && !c.getDead()) {
 
             Random rand = new Random();
             int statusApply = rand.nextInt(statusChance);
@@ -93,6 +98,10 @@ public class Item {
                 c.setCurrentStatus(effectInflict);
             }
 
+        }
+
+        if(cures) {
+            c.setCurrentStatus(StatusEffect.NONE);
         }
 
     }
