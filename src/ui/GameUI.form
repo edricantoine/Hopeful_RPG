@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.GameUI">
+  <grid id="27dc6" binding="titlePanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-4988956"/>
+      <font name="Courier New"/>
+    </properties>
+    <border type="none" title=""/>
+    <children>
+      <component id="d752a" class="javax.swing.JLabel" binding="titleLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-6774876"/>
+          <font name="Courier New" size="20" style="0"/>
+          <horizontalAlignment value="0"/>
+          <text value="HOPEFUL: a simple RPG"/>
+        </properties>
+      </component>
+      <component id="312d2" class="javax.swing.JButton" binding="beginButton">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="START"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

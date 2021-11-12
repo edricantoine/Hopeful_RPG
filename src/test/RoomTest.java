@@ -47,7 +47,7 @@ public class RoomTest {
 
     @Test
     public void testAllChars() {
-        r = new Room(ens, party);
+        r = new Room(ens, party, new ArrayList<>());
         List<Char> chars = r.getAllChars();
         assertEquals(chars.size(), 4);
         assertEquals(chars.get(0), e2);

@@ -1,6 +1,7 @@
 package model.levelStuff;
 
 import model.Char;
+import model.Item;
 import model.PlayerCharacter;
 import model.enemies.Enemy;
 
@@ -9,13 +10,15 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Room {
+    private List<Item> inventory;
     private List<Enemy> enemies;
     private List<PlayerCharacter> party;
     private List<Char> allChars;
 
-    public Room(List<Enemy> enemies, List<PlayerCharacter> party) {
+    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory) {
         this.enemies = enemies;
         this.party = party;
+        this.inventory = inventory;
         this.allChars = new ArrayList<>();
         createAllChars();
     }
