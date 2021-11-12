@@ -21,8 +21,12 @@ public class Room {
     }
 
     public void createAllChars() {
-        allChars.addAll(enemies);
-        allChars.addAll(party);
+        for(Char c : enemies) {
+            allChars.add(c);
+        }
+        for(Char c : party) {
+            allChars.add(c);
+        }
         allChars.sort(Comparator.comparing(Char::getSpeed).reversed());
 
     }
