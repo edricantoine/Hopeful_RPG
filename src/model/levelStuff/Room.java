@@ -24,10 +24,12 @@ public class Room {
     }
 
     public void createAllChars() {
-        for(Char c : enemies) {
+        for(Enemy c : enemies) {
             allChars.add(c);
         }
-        for(Char c : party) {
+        for(PlayerCharacter c : party) {
+            c.setPartyWith(party);
+            c.setEnemiesFighting(enemies);
             allChars.add(c);
         }
         allChars.sort(Comparator.comparing(Char::getSpeed).reversed());

@@ -1,23 +1,31 @@
 package ui;
 
-import model.levelStuff.Level;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 
 public class GameUI {
 
-    private List<Level> levels;
-    private Level currentLevel;
 
     private JPanel titlePanel;
     private JLabel titleLabel;
     private JButton beginButton;
+
+    public GameUI() {
+        beginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new LevelSelectUI();
+            }
+        });
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("HOPEFUL");
