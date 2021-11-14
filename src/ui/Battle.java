@@ -148,98 +148,134 @@ public class Battle {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(0));
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(0));
+                checkReadyToTurn();
             }
         });
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(1));
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(1));
+                checkReadyToTurn();
             }
         });
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(2));
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(2));
+                checkReadyToTurn();
             }
         });
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(3));
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(3));
+                checkReadyToTurn();
             }
         });
         button5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(0));
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(0));
+                checkReadyToTurn();
             }
         });
         button6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(1));
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(1));
+                checkReadyToTurn();
             }
         });
         button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(2));
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(2));
+                checkReadyToTurn();
             }
         });
         button8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(3));
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(3));
+                checkReadyToTurn();
             }
         });
         button9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(0));
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(0));
+                checkReadyToTurn();
             }
         });
         button10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(1));
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(1));
+                checkReadyToTurn();
             }
         });
         button11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(2));
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(2));
+                checkReadyToTurn();
             }
         });
         button12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(3));
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(3));
+                checkReadyToTurn();
             }
         });
         button13.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(0));
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(0));
+                checkReadyToTurn();
             }
         });
         button14.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(1));
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(1));
+                checkReadyToTurn();
             }
         });
         button15.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(2));
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(2));
+                checkReadyToTurn();
             }
         });
         button16.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(3));
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(3));
+                checkReadyToTurn();
             }
         });
+
+    }
+
+    public void checkReadyToTurn() {
 
     }
 

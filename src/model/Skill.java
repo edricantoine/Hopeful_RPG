@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Skill {
@@ -7,6 +9,7 @@ public abstract class Skill {
     protected String flavor;
     protected int apCost;
     protected String target;
+    protected List<Char> setTargets;
 
     //Target can be either "one" or "all".
 
@@ -14,8 +17,16 @@ public abstract class Skill {
         this.name = name;
         this.flavor = flavor;
         this.apCost = apCost;
-
+        setTargets = new ArrayList<>();
         this.target = target;
+    }
+
+    public List<Char> getSetTargets() {
+        return setTargets;
+    }
+
+    public void setSetTargets(List<Char> setTargets) {
+        this.setTargets = setTargets;
     }
 
     public String getName() {
