@@ -5,10 +5,13 @@ import model.levelStuff.Level;
 import model.levelStuff.WastelandLevelTool;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class LevelSelectUI {
     private List<Item> inventory;
@@ -22,7 +25,7 @@ public class LevelSelectUI {
     private WastelandLevelTool wlt;
 
     private JPanel lselectpanel;
-    private JLabel testlabel;
+    private JButton wastelandButton;
 
     public LevelSelectUI() {
 
@@ -101,8 +104,6 @@ public class LevelSelectUI {
                         50, StatusEffect.POISONED, 1.0, 1.0, 5)
 
 
-
-
         )), 8,
                 "A half-canine, half-eldritch-abomination hybrid. Despite his appearances, he has a heart of gold. " +
                         "He uses his skills to inflict status on enemies, and attack them in groups.",
@@ -141,14 +142,50 @@ public class LevelSelectUI {
         lselectpanel.setLayout(new GridBagLayout());
         lselectpanel.setBackground(new Color(-4988956));
         lselectpanel.setEnabled(true);
-        testlabel = new JLabel();
-        testlabel.setText("TEST");
+        final JLabel label1 = new JLabel();
+        Font label1Font = this.$$$getFont$$$("Courier New", -1, 16, label1.getFont());
+        if (label1Font != null) label1.setFont(label1Font);
+        label1.setText("Select level.");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        lselectpanel.add(testlabel, gbc);
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        lselectpanel.add(label1, gbc);
+        wastelandButton = new JButton();
+        wastelandButton.setEnabled(true);
+        Font wastelandButtonFont = this.$$$getFont$$$("Courier New", -1, -1, wastelandButton.getFont());
+        if (wastelandButtonFont != null) wastelandButton.setFont(wastelandButtonFont);
+        wastelandButton.setText("Wasteland");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        lselectpanel.add(wastelandButton, gbc);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+        if (currentFont == null) return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        } else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            } else {
+                resultName = currentFont.getName();
+            }
+        }
+        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
+        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
 
     /**

@@ -29,7 +29,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="START"/>
+          <text value="START."/>
         </properties>
       </component>
     </children>

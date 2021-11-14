@@ -70,7 +70,7 @@ public class GameUI {
         beginButton = new JButton();
         Font beginButtonFont = this.$$$getFont$$$("Courier New", -1, -1, beginButton.getFont());
         if (beginButtonFont != null) beginButton.setFont(beginButtonFont);
-        beginButton.setText("START");
+        beginButton.setText("START.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
