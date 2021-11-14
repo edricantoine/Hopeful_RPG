@@ -29,6 +29,12 @@ public abstract class Skill {
         this.setTargets = setTargets;
     }
 
+    public void addToSetTargets(Char c) {
+        if(!setTargets.contains(c)) {
+            setTargets.add(c);
+        }
+    }
+
     public String getName() {
         return name;
     }

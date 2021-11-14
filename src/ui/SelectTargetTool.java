@@ -1,14 +1,18 @@
 package ui;
 
 import model.AttackSkill;
+import model.PlayerCharacter;
 import model.Skill;
 import model.SupportSkill;
+import model.enemies.Enemy;
 import model.levelStuff.Room;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -37,6 +41,7 @@ public class SelectTargetTool {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public void inititalizeButtons() {
@@ -62,6 +67,160 @@ public class SelectTargetTool {
             }
 
         }
+
+        initializeListeners();
+    }
+
+    public void initializeListeners() {
+        e1b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String t = e1b.getText();
+                if (skill instanceof AttackSkill) {
+
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (Enemy n : room.getEnemies()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getEnemies().get(0));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+
+                } else if (skill instanceof SupportSkill) {
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (PlayerCharacter n : room.getParty()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getParty().get(0));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+                }
+            }
+        });
+
+        e2b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String t = e2b.getText();
+                if (skill instanceof AttackSkill) {
+
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (Enemy n : room.getEnemies()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getEnemies().get(1));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+
+                } else if (skill instanceof SupportSkill) {
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (PlayerCharacter n : room.getParty()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getParty().get(1));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+                }
+            }
+        });
+        e3b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String t = e3b.getText();
+                if (skill instanceof AttackSkill) {
+
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (Enemy n : room.getEnemies()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getEnemies().get(2));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+
+                } else if (skill instanceof SupportSkill) {
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (PlayerCharacter n : room.getParty()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getParty().get(2));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+                }
+            }
+        });
+        e4b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String t = e4b.getText();
+                if (skill instanceof AttackSkill) {
+
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (Enemy n : room.getEnemies()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getEnemies().get(3));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+
+                } else if (skill instanceof SupportSkill) {
+                    if (t.equals("N/A")) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else if (t.equals("All")) {
+                        for (PlayerCharacter n : room.getParty()) {
+                            skill.addToSetTargets(n);
+                        }
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    } else {
+                        skill.addToSetTargets(room.getParty().get(3));
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+                }
+            }
+        });
     }
 
     {
@@ -93,23 +252,13 @@ public class SelectTargetTool {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         SelectTargetPanel.add(e1b, gbc);
-        e2b = new JButton();
-        Font e2bFont = this.$$$getFont$$$("Courier New", -1, -1, e2b.getFont());
-        if (e2bFont != null) e2b.setFont(e2bFont);
-        e2b.setText("N/A");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        gbc.weightx = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        SelectTargetPanel.add(e2b, gbc);
         e3b = new JButton();
         Font e3bFont = this.$$$getFont$$$("Courier New", -1, -1, e3b.getFont());
         if (e3bFont != null) e3b.setFont(e3bFont);
         e3b.setText("N/A");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         SelectTargetPanel.add(e3b, gbc);
@@ -119,11 +268,21 @@ public class SelectTargetTool {
         e4b.setText("N/A");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridheight = 4;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         SelectTargetPanel.add(e4b, gbc);
+        e2b = new JButton();
+        Font e2bFont = this.$$$getFont$$$("Courier New", -1, -1, e2b.getFont());
+        if (e2bFont != null) e2b.setFont(e2bFont);
+        e2b.setText("N/A");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        SelectTargetPanel.add(e2b, gbc);
     }
 
     /**
