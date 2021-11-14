@@ -44,7 +44,9 @@ public class LevelSelectUI {
         wastelandButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new Battle(wasteland.getRooms());
             }
         });
     }

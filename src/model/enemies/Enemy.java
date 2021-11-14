@@ -24,6 +24,14 @@ public class Enemy extends Char {
         this.defeatText = defeat;
     }
 
+    public String getEnterText() {
+        return enterText;
+    }
+
+    public String getDefeatText() {
+        return defeatText;
+    }
+
     public List<Enemy> getEnemiesWith() {
         return enemiesWith;
     }

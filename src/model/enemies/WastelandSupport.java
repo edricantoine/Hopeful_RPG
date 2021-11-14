@@ -13,7 +13,7 @@ public class WastelandSupport extends Enemy{
                         new SupportSkill("Roids!", " injected an ally with something strange...", 0, "one",
                                 0, 0, 1.50, 1.0, false)
                 )), 5,
-                "WARNING: Not a licensed doctor.", " is ready to help.",
+                "WARNING: Not a licensed doctor.", " are ready to help.",
                 " fell over in pain.");
     }
 }

@@ -22,7 +22,7 @@ public class WastelandRev extends Enemy{
 
                 )), 8,
                 "Who knew wasteland bandits could be religious? You'll burn if you aren't careful.",
-                " stands strongly!",
+                " stand strongly!",
                 " fell to his knees...");
     }
 }

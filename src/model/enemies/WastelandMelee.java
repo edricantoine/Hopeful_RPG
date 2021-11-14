@@ -14,7 +14,7 @@ public class WastelandMelee extends Enemy{
                         new AttackSkill("Kick", " kicked at you.", 0, "one", 35,
                                 StatusEffect.NONE, 1.0, 1.0, 1)
                 )), 5,
-                "Your typical desert wasteland bandit.", " enters the fray!",
+                "Your typical desert wasteland bandit.", " enter the fray!",
                 " was defeated.");
     }
 }

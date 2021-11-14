@@ -14,7 +14,7 @@ public class WastelandTank extends Enemy{
                         new AttackSkill("Armor Break", " broke your guard!", 0, "one", 0,
                                 StatusEffect.NONE, 1.0, 1.25, 1)
                 )), 2,
-                "This bandit's scrap armor makes him tough to take down.", " is ready to fight!",
+                "This bandit's scrap armor makes him tough to take down.", " are ready to fight!",
                 "'s armor crumbled...");
     }
 }

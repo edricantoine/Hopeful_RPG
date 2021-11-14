@@ -21,7 +21,7 @@ public class WastelandFrankie extends Enemy{
 
                 )), 10,
                 "Is she a machine? A mole? How about both?! Watch out for her high-damage, high-velocity attacks.",
-                " revs her engines!",
+                " are revved up!",
                 " sputtered to a stop...");
     }
 }

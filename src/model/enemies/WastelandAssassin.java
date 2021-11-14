@@ -14,7 +14,7 @@ public class WastelandAssassin extends Enemy{
                         new AttackSkill("Critical Strike", " stabbed at an artery!", 0, "one", 60,
                                 StatusEffect.NONE, 1.0, 1.0, 1)
                 )), 7,
-                "Watch out for this fragile enemy's rusty metal blade! Try not to get poisoned.", " readies his blade.",
+                "Watch out for this fragile enemy's rusty metal blade! Try not to get poisoned.", " ready their blades.",
                 " fell to the ground.");
     }
 }
