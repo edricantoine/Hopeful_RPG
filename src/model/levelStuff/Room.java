@@ -14,13 +14,23 @@ public class Room {
     private List<Enemy> enemies;
     private List<PlayerCharacter> party;
     private List<Char> allChars;
+    private Room nextRoom;
 
-    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory) {
+    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Room nextRoom) {
+        this.nextRoom = nextRoom;
         this.enemies = enemies;
         this.party = party;
         this.inventory = inventory;
         this.allChars = new ArrayList<>();
         createAllChars();
+    }
+
+    public Room getNextRoom() {
+        return nextRoom;
+    }
+
+    public void setNextRoom(Room nextRoom) {
+        this.nextRoom = nextRoom;
     }
 
     public void createAllChars() {

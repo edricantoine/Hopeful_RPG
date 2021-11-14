@@ -10,10 +10,9 @@ import java.util.List;
 public class WastelandLevelTool {
     private List<Item> inventory;
     private List<PlayerCharacter> party;
-    private List<Room> wastelandRooms;
+    private Room wastelandRooms;
 
     public WastelandLevelTool(List<Item> inventory, List<PlayerCharacter> party) {
-        wastelandRooms = new ArrayList<>();
         this.inventory = inventory;
         this.party = party;
         setUpWastelandLevel();
@@ -61,25 +60,32 @@ public class WastelandLevelTool {
                 new WastelandRev(), new WastelandSupport(), new WastelandSupport()
         ));
 
-        wastelandRooms.add(new Room(config1, party, inventory));
-        wastelandRooms.add(new Room(config2, party, inventory));
-        wastelandRooms.add(new Room(config3, party, inventory));
-        wastelandRooms.add(new Room(config4, party, inventory));
-        wastelandRooms.add(new Room(configB1, party, inventory));
-        wastelandRooms.add(new Room(config5, party, inventory));
-        wastelandRooms.add(new Room(config6, party, inventory));
-        wastelandRooms.add(new Room(config7, party, inventory));
-        wastelandRooms.add(new Room(config8, party, inventory));
-        wastelandRooms.add(new Room(configB2, party, inventory));
-        wastelandRooms.add(new Room(config5, party, inventory));
-        wastelandRooms.add(new Room(config1, party, inventory));
-        wastelandRooms.add(new Room(config2, party, inventory));
-        wastelandRooms.add(new Room(config4, party, inventory));
-        wastelandRooms.add(new Room(configB3, party, inventory));
+        wastelandRooms = (new Room(config1, party, inventory,
+                new Room(config2, party, inventory,
+                        new Room(config3, party, inventory,
+                                new Room(config4, party, inventory,
+                                        new Room(configB1, party, inventory,
+                                                new Room(config5, party, inventory,
+                                                        new Room(config6, party, inventory,
+                                                                new Room(config7, party, inventory,
+                                                                        new Room(config8, party, inventory,
+                                                                                new Room(configB2, party, inventory,
+                                                                                        new Room(config5, party, inventory,
+                                                                                                new Room(config1, party, inventory,
+                                                                                                        new Room(config2, party, inventory,
+                                                                                                                new Room(config4, party, inventory,
+                                                                                                                        new Room(configB3, party, inventory, null))))) )))))))))));
+
+
+
+
+
+
+
 
     }
 
-    public List<Room> getWastelandRooms() {
+    public Room getWastelandRooms() {
         return wastelandRooms;
     }
 }

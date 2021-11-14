@@ -1,12 +1,10 @@
 package model.levelStuff;
 
-import java.util.List;
-
 public class Level {
     private String name;
-    private List<Room> rooms;
+    private Room rooms;
 
-    public Level(String name, List<Room> rooms) {
+    public Level(String name, Room rooms) {
         this.name = name;
         this.rooms = rooms;
     }
@@ -15,7 +13,7 @@ public class Level {
         return name;
     }
 
-    public List<Room> getRooms() {
+    public Room getRooms() {
         return rooms;
     }
 }
