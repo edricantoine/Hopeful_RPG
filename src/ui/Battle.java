@@ -388,8 +388,6 @@ public class Battle {
     public void checkReadyToTurn() {
 
 
-
-
         if (isReadyToTakeAction()) {
             for (Char c : room.getAllChars()) {
                 c.turnBeginRoutine();
@@ -402,7 +400,7 @@ public class Battle {
             for (Char c : room.getAllChars()) {
                 if (c instanceof PlayerCharacter) {
                     if (!c.getDead()) {
-                        if(c.getSelectedItem() == null) {
+                        if (c.getSelectedItem() == null) {
                             usePlayerSkill((PlayerCharacter) c);
                         } else if (c.getSelectedSkill() == null) {
                             usePlayerItem((PlayerCharacter) c);
@@ -421,7 +419,7 @@ public class Battle {
                 refresh();
             }
 
-            for(Item i : room.getInventory()) {
+            for (Item i : room.getInventory()) {
                 i.setSetTargets(new ArrayList<>());
             }
 
@@ -441,6 +439,7 @@ public class Battle {
 
                 battleLabel.setText(p.getName() + " used" + i.getName() + "!");
                 i.takeEffect(c);
+                room.removeFromInventory(i);
 
 
             } else {
@@ -508,11 +507,15 @@ public class Battle {
     }
 
     public void addLootToInventory() {
-        if(room.getInventory().size() < 10) {
-            battleLabel.setText("You got " + loot.getName() + "!");
-            room.getInventory().add(loot);
+        if(loot == null) {
+            battleLabel.setText("There was no loot in this room.");
         } else {
-            battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
+            if (room.getInventory().size() < 10) {
+                battleLabel.setText("You got " + loot.getName() + "!");
+                room.getInventory().add(loot);
+            } else {
+                battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
+            }
         }
     }
 
@@ -768,6 +771,42 @@ public class Battle {
         gbc.gridy = 6;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         battlePanel.add(button16, gbc);
+        itemButton = new JButton();
+        Font itemButtonFont = this.$$$getFont$$$("Courier New", -1, -1, itemButton.getFont());
+        if (itemButtonFont != null) itemButton.setFont(itemButtonFont);
+        itemButton.setText("Item");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        battlePanel.add(itemButton, gbc);
+        itemButton1 = new JButton();
+        Font itemButton1Font = this.$$$getFont$$$("Courier New", -1, -1, itemButton1.getFont());
+        if (itemButton1Font != null) itemButton1.setFont(itemButton1Font);
+        itemButton1.setText("Item");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        battlePanel.add(itemButton1, gbc);
+        itemButton2 = new JButton();
+        Font itemButton2Font = this.$$$getFont$$$("Courier New", -1, -1, itemButton2.getFont());
+        if (itemButton2Font != null) itemButton2.setFont(itemButton2Font);
+        itemButton2.setText("Item");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        battlePanel.add(itemButton2, gbc);
+        itemButton3 = new JButton();
+        Font itemButton3Font = this.$$$getFont$$$("Courier New", -1, -1, itemButton3.getFont());
+        if (itemButton3Font != null) itemButton3.setFont(itemButton3Font);
+        itemButton3.setText("Item");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 7;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        battlePanel.add(itemButton3, gbc);
     }
 
     /**

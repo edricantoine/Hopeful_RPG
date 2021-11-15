@@ -243,6 +243,7 @@ public abstract class Char {
 
         healAp(5);
         setSelectedSkill(null);
+        setSelectedItem(null);
     }
 
 
