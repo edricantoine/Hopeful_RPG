@@ -315,7 +315,21 @@ public class Battle {
 
     }
 
+    //Timer timer = new Timer(3000, listener1);
+    //                    timer.setRepeats(false);
+    //                    timer.start();
+
+    //ActionListener listener = new ActionListener(){
+    //        public void actionPerformed(ActionEvent event){
+    //            battleLabel.setText("");
+    //        }
+    //    };
+    //TRY TO FIX???
+
     public void checkReadyToTurn() {
+
+
+
 
         if (isReadyToTakeAction()) {
             for (Char c : room.getAllChars()) {
@@ -331,18 +345,20 @@ public class Battle {
                     if (!c.getDead()) {
                         usePlayerSkill((PlayerCharacter) c);
                     }
-                    refresh();
+
                 } else if (c instanceof Enemy) {
                     if (!c.getDead()) {
                         useEnemySkill((Enemy) c);
                     }
-                    refresh();
+
                 }
             }
             for (Char c : room.getAllChars()) {
                 c.turnEndRoutine();
                 refresh();
             }
+
+            battleLabel.setText("The battle rages on...");
 
         }
 
@@ -351,13 +367,22 @@ public class Battle {
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
 
+
         for (Char c : s.getSetTargets()) {
             if (p.canUseSkill(s) && !p.getDead()) {
+
+                battleLabel.setText(p.getName() + " " + s.getFlavor());
                 p.useAp(s.getApCost());
                 s.takeEffect(c);
 
+
+            } else {
+
+                battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
+
             }
         }
+
     }
 
     private void useEnemySkill(Enemy e) {
