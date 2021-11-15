@@ -17,6 +17,7 @@ public abstract class Char {
     protected Boolean isDead;
     protected int timeSinceStatusApplied;
     protected Skill selectedSkill;
+    protected Item selectedItem;
 
     public final static int DMG_BURNED = 5;
     public final static int W_BURNED = 3;
@@ -42,6 +43,7 @@ public abstract class Char {
         this.isDead = false;
         this.timeSinceStatusApplied = 0;
         this.selectedSkill = null;
+        this.selectedItem = null;
     }
 
     //getters and setters
@@ -51,8 +53,17 @@ public abstract class Char {
         return selectedSkill;
     }
 
+
     public void setSelectedSkill(Skill selectedSkill) {
         this.selectedSkill = selectedSkill;
+    }
+
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
     }
 
     public Boolean getDead() {

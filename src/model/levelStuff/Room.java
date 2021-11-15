@@ -15,7 +15,7 @@ public class Room {
     private List<PlayerCharacter> party;
     private List<Char> allChars;
     private Room nextRoom;
-
+    private Item loot;
     public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Room nextRoom) {
         this.nextRoom = nextRoom;
         this.enemies = enemies;
@@ -23,6 +23,14 @@ public class Room {
         this.inventory = inventory;
         this.allChars = new ArrayList<>();
         createAllChars();
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void removeFromInventory(Item i) {
+        inventory.remove(i);
     }
 
     public Room getNextRoom() {

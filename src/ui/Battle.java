@@ -1,6 +1,7 @@
 package ui;
 
 import model.Char;
+import model.Item;
 import model.PlayerCharacter;
 import model.Skill;
 import model.enemies.Enemy;
@@ -50,9 +51,14 @@ public class Battle {
     private JButton button14;
     private JButton button15;
     private JButton button16;
+    private JButton itemButton;
+    private JButton itemButton1;
+    private JButton itemButton2;
+    private JButton itemButton3;
     private Battle temp;
+    private Item loot;
 
-    public Battle(Room r) {
+    public Battle(Room r, Item loot) {
         temp = this;
         jButtons = new ArrayList<>();
         tButtons = new ArrayList<>();
@@ -61,6 +67,7 @@ public class Battle {
         pLabs = new ArrayList<>();
         eLabs = new ArrayList<>();
         this.room = r;
+        this.loot = loot;
         initializeLabels();
         initializeButtons();
         JFrame frame = new JFrame("Battle");
@@ -68,6 +75,7 @@ public class Battle {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public void initializeLabels() {
@@ -155,6 +163,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(0).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(0).getSkills().get(0), room.getParty().get(0), temp);
 
             }
@@ -165,6 +174,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(0).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(0).getSkills().get(1), room.getParty().get(0), temp);
 
             }
@@ -175,6 +185,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(0).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(0).getSkills().get(2), room.getParty().get(0), temp);
 
             }
@@ -185,6 +196,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(0).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(0).getSkills().get(3), room.getParty().get(0), temp);
 
             }
@@ -195,6 +207,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(1).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(1).getSkills().get(0), room.getParty().get(1), temp);
 
             }
@@ -205,6 +218,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(1).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(1).getSkills().get(1), room.getParty().get(1), temp);
 
             }
@@ -215,6 +229,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(1).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(1).getSkills().get(2), room.getParty().get(1), temp);
 
             }
@@ -225,6 +240,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(1).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(1).getSkills().get(3), room.getParty().get(1), temp);
 
             }
@@ -235,6 +251,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(2).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(2).getSkills().get(0), room.getParty().get(2), temp);
 
             }
@@ -245,6 +262,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(2).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(2).getSkills().get(1), room.getParty().get(2), temp);
 
             }
@@ -255,6 +273,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(2).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(2).getSkills().get(2), room.getParty().get(2), temp);
 
             }
@@ -265,6 +284,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(2).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(2).getSkills().get(3), room.getParty().get(2), temp);
 
             }
@@ -275,6 +295,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(3).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(3).getSkills().get(0), room.getParty().get(3), temp);
 
 
@@ -286,6 +307,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(3).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(3).getSkills().get(1), room.getParty().get(3), temp);
 
 
@@ -297,6 +319,7 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(3).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(3).getSkills().get(2), room.getParty().get(3), temp);
 
             }
@@ -307,8 +330,44 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
+                room.getParty().get(3).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(3).getSkills().get(3), room.getParty().get(3), temp);
 
+
+            }
+        });
+        itemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.getParty().get(0).setSelectedSkill(null);
+                new SelectItemTool(room, room.getInventory(), room.getParty().get(0), temp);
+
+            }
+        });
+
+        itemButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.getParty().get(1).setSelectedSkill(null);
+                new SelectItemTool(room, room.getInventory(), room.getParty().get(1), temp);
+
+            }
+        });
+
+        itemButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.getParty().get(2).setSelectedSkill(null);
+                new SelectItemTool(room, room.getInventory(), room.getParty().get(2), temp);
+
+            }
+        });
+
+        itemButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.getParty().get(3).setSelectedSkill(null);
+                new SelectItemTool(room, room.getInventory(), room.getParty().get(3), temp);
 
             }
         });
@@ -343,7 +402,11 @@ public class Battle {
             for (Char c : room.getAllChars()) {
                 if (c instanceof PlayerCharacter) {
                     if (!c.getDead()) {
-                        usePlayerSkill((PlayerCharacter) c);
+                        if(c.getSelectedItem() == null) {
+                            usePlayerSkill((PlayerCharacter) c);
+                        } else if (c.getSelectedSkill() == null) {
+                            usePlayerItem((PlayerCharacter) c);
+                        }
                     }
 
                 } else if (c instanceof Enemy) {
@@ -358,11 +421,36 @@ public class Battle {
                 refresh();
             }
 
+            for(Item i : room.getInventory()) {
+                i.setSetTargets(new ArrayList<>());
+            }
+
+            checkBattleOver();
+
             battleLabel.setText("The battle rages on...");
+
 
         }
 
     }
+
+    private void usePlayerItem(PlayerCharacter p) {
+        Item i = p.getSelectedItem();
+        for (Char c : i.getSetTargets()) {
+            if (!p.getDead()) {
+
+                battleLabel.setText(p.getName() + " used" + i.getName() + "!");
+                i.takeEffect(c);
+
+
+            } else {
+
+                battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
+
+            }
+        }
+    }
+
 
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
@@ -394,7 +482,7 @@ public class Battle {
 
     public Boolean isReadyToTakeAction() {
         for (PlayerCharacter p : room.getParty()) {
-            if (p.getSelectedSkill() == null) {
+            if (p.getSelectedSkill() == null && p.getSelectedItem() == null) {
                 return false;
             }
         }
@@ -412,6 +500,19 @@ public class Battle {
         for (int i = 0; i < Math.min(eLabs.size(), room.getEnemies().size()); i++) {
             eLabs.get(i).setText("<html>Name: " + room.getEnemies().get(i).getName() + "<br/>" + "HP: " + room.getEnemies().get(i).getHp() + "/" + room.getEnemies().get(i).getMaxhp() + "<br/>" +
                     "Status: " + room.getEnemies().get(i).getCurrentStatus());
+        }
+    }
+
+    public void checkBattleOver() {
+
+    }
+
+    public void addLootToInventory() {
+        if(room.getInventory().size() < 10) {
+            battleLabel.setText("You got " + loot.getName() + "!");
+            room.getInventory().add(loot);
+        } else {
+            battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
         }
     }
 

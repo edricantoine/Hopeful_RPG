@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Item {
@@ -14,6 +16,7 @@ public class Item {
     private StatusEffect effectInflict;
     private int statusChance;
     private String target;
+    private List<Char> setTargets;
 
     public Item(String nm ,String flv,
                 double dmg, double hl, int aph, double atk, double def, Boolean cur, StatusEffect ef, int chc, String tgt) {
@@ -28,6 +31,21 @@ public class Item {
         this.effectInflict = ef;
         this.statusChance = chc;
         this.target = tgt;
+        setTargets = new ArrayList<>();
+    }
+
+    public List<Char> getSetTargets() {
+        return setTargets;
+    }
+
+    public void addToSetTargets(Char c) {
+        if(!setTargets.contains(c)) {
+            setTargets.add(c);
+        }
+    }
+
+    public void setSetTargets(List<Char> setTargets) {
+        this.setTargets = setTargets;
     }
 
     public String getName() {

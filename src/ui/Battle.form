@@ -267,6 +267,46 @@
           <text value="Button"/>
         </properties>
       </component>
+      <component id="57cf1" class="javax.swing.JButton" binding="itemButton" default-binding="true">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="Item"/>
+        </properties>
+      </component>
+      <component id="f7040" class="javax.swing.JButton" binding="itemButton1" default-binding="true">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="Item"/>
+        </properties>
+      </component>
+      <component id="1b8b5" class="javax.swing.JButton" binding="itemButton2" default-binding="true">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="Item"/>
+        </properties>
+      </component>
+      <component id="39f62" class="javax.swing.JButton" binding="itemButton3" default-binding="true">
+        <constraints>
+          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="Item"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
