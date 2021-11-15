@@ -26,11 +26,15 @@ public class SelectTargetTool {
     private JPanel SelectTargetPanel;
     private Room room;
     private Skill skill;
+    private PlayerCharacter user;
+    private Battle bat;
 
-    public SelectTargetTool(Room r, Skill s) {
+    public SelectTargetTool(Room r, Skill s, PlayerCharacter u, Battle bat) {
         buttons = new ArrayList<>();
         room = r;
         skill = s;
+        user = u;
+        this.bat = bat;
         buttons.add(e1b);
         buttons.add(e2b);
         buttons.add(e3b);
@@ -84,10 +88,14 @@ public class SelectTargetTool {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getEnemies().get(0));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -99,10 +107,14 @@ public class SelectTargetTool {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getParty().get(0));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -122,10 +134,14 @@ public class SelectTargetTool {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getEnemies().get(1));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -137,14 +153,19 @@ public class SelectTargetTool {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getParty().get(1));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
                 }
+
             }
         });
         e3b.addActionListener(new ActionListener() {
@@ -159,10 +180,14 @@ public class SelectTargetTool {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getEnemies().get(2));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -174,10 +199,14 @@ public class SelectTargetTool {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getParty().get(2));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -196,10 +225,14 @@ public class SelectTargetTool {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getEnemies().get(3));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
@@ -211,10 +244,14 @@ public class SelectTargetTool {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
                         }
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
                         skill.addToSetTargets(room.getParty().get(3));
+                        user.setSelectedSkill(skill);
+                        bat.checkReadyToTurn();
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }

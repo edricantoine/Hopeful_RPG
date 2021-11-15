@@ -1,7 +1,9 @@
 package ui;
 
+import model.Char;
 import model.PlayerCharacter;
 import model.Skill;
+import model.enemies.Enemy;
 import model.levelStuff.Room;
 
 import javax.swing.*;
@@ -48,8 +50,10 @@ public class Battle {
     private JButton button14;
     private JButton button15;
     private JButton button16;
+    private Battle temp;
 
     public Battle(Room r) {
+        temp = this;
         jButtons = new ArrayList<>();
         tButtons = new ArrayList<>();
         bButtons = new ArrayList<>();
@@ -151,9 +155,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(0));
-                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(0));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(0), room.getParty().get(0), temp);
+
             }
         });
         button2.addActionListener(new ActionListener() {
@@ -162,9 +165,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(1));
-                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(1));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(1), room.getParty().get(0), temp);
+
             }
         });
         button3.addActionListener(new ActionListener() {
@@ -173,9 +175,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(2));
-                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(2));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(2), room.getParty().get(0), temp);
+
             }
         });
         button4.addActionListener(new ActionListener() {
@@ -184,9 +185,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(0).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(0).setSelectedSkill(room.getParty().get(0).getSkills().get(3));
-                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(3));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(0).getSkills().get(3), room.getParty().get(0), temp);
+
             }
         });
         button5.addActionListener(new ActionListener() {
@@ -195,9 +195,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(0));
-                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(0));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(0), room.getParty().get(1), temp);
+
             }
         });
         button6.addActionListener(new ActionListener() {
@@ -206,9 +205,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(1));
-                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(1));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(1), room.getParty().get(1), temp);
+
             }
         });
         button7.addActionListener(new ActionListener() {
@@ -217,9 +215,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(2));
-                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(2));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(2), room.getParty().get(1), temp);
+
             }
         });
         button8.addActionListener(new ActionListener() {
@@ -228,9 +225,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(1).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(1).setSelectedSkill(room.getParty().get(1).getSkills().get(3));
-                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(3));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(1).getSkills().get(3), room.getParty().get(1), temp);
+
             }
         });
         button9.addActionListener(new ActionListener() {
@@ -239,9 +235,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(0));
-                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(0));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(0), room.getParty().get(2), temp);
+
             }
         });
         button10.addActionListener(new ActionListener() {
@@ -250,9 +245,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(1));
-                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(1));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(1), room.getParty().get(2), temp);
+
             }
         });
         button11.addActionListener(new ActionListener() {
@@ -261,9 +255,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(2));
-                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(2));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(2), room.getParty().get(2), temp);
+
             }
         });
         button12.addActionListener(new ActionListener() {
@@ -272,9 +265,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(2).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(2).setSelectedSkill(room.getParty().get(2).getSkills().get(3));
-                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(3));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(2).getSkills().get(3), room.getParty().get(2), temp);
+
             }
         });
         button13.addActionListener(new ActionListener() {
@@ -283,9 +275,9 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(0));
-                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(0));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(0), room.getParty().get(3), temp);
+
+
             }
         });
         button14.addActionListener(new ActionListener() {
@@ -294,9 +286,9 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(1));
-                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(1));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(1), room.getParty().get(3), temp);
+
+
             }
         });
         button15.addActionListener(new ActionListener() {
@@ -305,9 +297,8 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(2));
-                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(2));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(2), room.getParty().get(3), temp);
+
             }
         });
         button16.addActionListener(new ActionListener() {
@@ -316,15 +307,63 @@ public class Battle {
                 for (Skill s : room.getParty().get(3).getSkills()) {
                     s.setSetTargets(new ArrayList<>());
                 }
-                room.getParty().get(3).setSelectedSkill(room.getParty().get(3).getSkills().get(3));
-                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(3));
-                checkReadyToTurn();
+                new SelectTargetTool(room, room.getParty().get(3).getSkills().get(3), room.getParty().get(3), temp);
+
+
             }
         });
 
     }
 
     public void checkReadyToTurn() {
+
+        if (isReadyToTakeAction()) {
+            for (Char c : room.getAllChars()) {
+                c.turnBeginRoutine();
+                refresh();
+            }
+            for (Enemy e : room.getEnemies()) {
+                selectEnemySkill(e);
+            }
+
+            for (Char c : room.getAllChars()) {
+                if (c instanceof PlayerCharacter) {
+                    if (!c.getDead()) {
+                        usePlayerSkill((PlayerCharacter) c);
+                    }
+                    refresh();
+                } else if (c instanceof Enemy) {
+                    if (!c.getDead()) {
+                        useEnemySkill((Enemy) c);
+                    }
+                    refresh();
+                }
+            }
+            for (Char c : room.getAllChars()) {
+                c.turnEndRoutine();
+                refresh();
+            }
+
+        }
+
+    }
+
+    private void usePlayerSkill(PlayerCharacter p) {
+        Skill s = p.getSelectedSkill();
+
+        for (Char c : s.getSetTargets()) {
+            if (p.canUseSkill(s) && !p.getDead()) {
+                p.useAp(s.getApCost());
+                s.takeEffect(c);
+
+            }
+        }
+    }
+
+    private void useEnemySkill(Enemy e) {
+    }
+
+    public void selectEnemySkill(Enemy e) {
 
     }
 
