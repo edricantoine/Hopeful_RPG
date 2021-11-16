@@ -16,13 +16,22 @@ public class Room {
     private List<Char> allChars;
     private Room nextRoom;
     private Item loot;
-    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Room nextRoom) {
+    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item loot, Room nextRoom) {
         this.nextRoom = nextRoom;
         this.enemies = enemies;
         this.party = party;
         this.inventory = inventory;
         this.allChars = new ArrayList<>();
+        this.loot = loot;
         createAllChars();
+    }
+
+    public Item getLoot() {
+        return loot;
+    }
+
+    public void setLoot(Item loot) {
+        this.loot = loot;
     }
 
     public List<Item> getInventory() {
@@ -39,6 +48,24 @@ public class Room {
 
     public void setNextRoom(Room nextRoom) {
         this.nextRoom = nextRoom;
+    }
+
+    public Boolean isBattleWon() {
+        for(Enemy e : enemies) {
+            if(!e.getDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean isBattleLost() {
+        for(PlayerCharacter e : party) {
+            if(!e.getDead()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void createAllChars() {

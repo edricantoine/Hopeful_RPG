@@ -57,6 +57,7 @@ public class Battle {
     private JButton itemButton3;
     private Battle temp;
     private Item loot;
+    private JFrame frame;
 
     public Battle(Room r, Item loot) {
         temp = this;
@@ -70,7 +71,7 @@ public class Battle {
         this.loot = loot;
         initializeLabels();
         initializeButtons();
-        JFrame frame = new JFrame("Battle");
+        frame = new JFrame("Battle");
         frame.setContentPane(battlePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -504,16 +505,35 @@ public class Battle {
 
     public void checkBattleOver() {
 
+        if (room.isBattleWon()) {
+            battleLabel.setText("You win!");
+            if (loot != null) {
+                battleLabel.setText("You got " + loot.getName() + ".");
+                addLootToInventory();
+            }
+            if (room.getNextRoom() != null) {
+                frame.dispose();
+                new Battle(room.getNextRoom(), room.getNextRoom().getLoot());
+            } else {
+                frame.dispose();
+                new YouWinUI();
+            }
+        } else if (room.isBattleLost()) {
+            frame.dispose();
+            new GameOverUI();
+        }
     }
 
     public void addLootToInventory() {
-        if(loot == null) {
+        if (loot == null) {
             battleLabel.setText("There was no loot in this room.");
         } else {
             if (room.getInventory().size() < 10) {
+                System.out.println("You got " + loot.getName() + "!");
                 battleLabel.setText("You got " + loot.getName() + "!");
-                room.getInventory().add(loot);
+                room.getNextRoom().getInventory().add(loot);
             } else {
+                System.out.println("oooo");
                 battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
             }
         }

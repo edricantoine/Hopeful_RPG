@@ -60,21 +60,30 @@ public class WastelandLevelTool {
                 new WastelandRev(), new WastelandSupport(), new WastelandSupport()
         ));
 
-        wastelandRooms = (new Room(config1, party, inventory,
-                new Room(config2, party, inventory,
-                        new Room(config3, party, inventory,
-                                new Room(config4, party, inventory,
-                                        new Room(configB1, party, inventory,
-                                                new Room(config5, party, inventory,
-                                                        new Room(config6, party, inventory,
-                                                                new Room(config7, party, inventory,
-                                                                        new Room(config8, party, inventory,
-                                                                                new Room(configB2, party, inventory,
-                                                                                        new Room(config5, party, inventory,
-                                                                                                new Room(config1, party, inventory,
-                                                                                                        new Room(config2, party, inventory,
-                                                                                                                new Room(config4, party, inventory,
-                                                                                                                        new Room(configB3, party, inventory, null))))) )))))))))));
+        wastelandRooms = (new Room(config1, party, inventory, new Item("Food Rations", "Heals by 20 HP.",
+                20.0, 10.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
+                new Room(config2, party, inventory, new Item("Hot Coals", "Burns the target",
+                10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one"),
+                        new Room(config3, party, inventory, null,
+                                new Room(config4, party, inventory, new Item("AP Potion", "Heals 10 AP",
+                0.0, 0.0, 10, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
+                                        new Room(configB1, party, inventory, new Item("Frankie's Engine", "Increases attack drastically but burns the user",
+                                                0.0, 0.0, 0, 3.00, 1.0, false, StatusEffect.BURNED, 1, "one"),
+                                                new Room(config5, party, inventory, null,
+                                                        new Room(config6, party, inventory, new Item("Remedy", "Heals status effects and resets attack + defense",
+                                                                0.0, 0.0, 0, 1.0, 1.0, true, StatusEffect.NONE, 0, "one"),
+                                                                new Room(config7, party, inventory, new Item("Bomb", "A bomb.", 50.0, 0.0, 0, 1.0, 1.0, false,
+                                                                        StatusEffect.NONE, 0, "all"),
+                                                                        new Room(config8, party, inventory, null,
+                                                                                new Room(configB2, party, inventory, new Item("SEN-3's Shield", "Massive increase to defense but decreases attack",
+                                                                                        0.0, 0.0, 0, 0.30, 0.30, false, StatusEffect.NONE, 0, "one"),
+                                                                                        new Room(config5, party, inventory, null,
+                                                                                                new Room(config1, party, inventory, null,
+                                                                                                        new Room(config2, party, inventory, new Item("Syringe", "Heals 50, but poisons you...",
+                                                                                                                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.POISONED, 1, "one"),
+                                                                                                                new Room(config4, party, inventory, null,
+                                                                                                                        new Room(configB3, party, inventory, new Item("Pastel's Scripture", "Heals and cures status",
+                                                                                                                                0.0, 30.0, 0, 1.0, 1.0, true, StatusEffect.NONE, 0, "one"), null))))) )))))))))));
 
 
 

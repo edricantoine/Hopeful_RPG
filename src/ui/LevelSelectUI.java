@@ -34,8 +34,7 @@ public class LevelSelectUI {
         party = new ArrayList<>();
         setUpParty();
         inventory = new ArrayList<>();
-        inventory.add(new Item("Potion", "A healing potion.",
-                0.0, 10.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"));
+
         levels = new ArrayList<>();
         setUpLevels();
         JFrame frame = new JFrame("LevelSelectUI");
@@ -48,7 +47,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(wasteland.getRooms(), null);
+                new Battle(wasteland.getRooms(), wasteland.getRooms().getLoot());
             }
         });
     }
