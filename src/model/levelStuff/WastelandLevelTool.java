@@ -61,7 +61,7 @@ public class WastelandLevelTool {
         ));
 
         wastelandRooms = (new Room(config1, party, inventory, new Item("Food Rations", "Heals by 20 HP.",
-                20.0, 10.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
+                0.0, 20.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
                 new Room(config2, party, inventory, new Item("Hot Coals", "Burns the target",
                 10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one"),
                         new Room(config3, party, inventory, null,

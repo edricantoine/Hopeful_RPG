@@ -17,6 +17,7 @@ import java.util.Random;
 
 public class Battle {
     private Room room;
+    private Color color;
     private List<JLabel> pLabs;
     private List<JLabel> eLabs;
     private List<JButton> jButtons;
@@ -56,8 +57,11 @@ public class Battle {
     private Battle temp;
     private Item loot;
     private JFrame frame;
+    private Timer timer;
+    private Timer lootTimer;
 
-    public Battle(Room r, Item loot) {
+    public Battle(Room r, Item loot, Color color) {
+
         temp = this;
         jButtons = new ArrayList<>();
         tButtons = new ArrayList<>();
@@ -67,15 +71,19 @@ public class Battle {
         eLabs = new ArrayList<>();
         this.room = r;
         this.loot = loot;
+        this.color = color;
         initializeLabels();
         initializeButtons();
+        battlePanel.setBackground(color);
         frame = new JFrame("Battle");
         frame.setContentPane(battlePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
+
     }
+
 
     public void initializeLabels() {
         pLabs.add(p1);
@@ -374,10 +382,53 @@ public class Battle {
     }
 
 
-
     public void checkReadyToTurn() {
 
+
         if (isReadyToTakeAction()) {
+            timer = new Timer(3000, null);
+            timer.setRepeats(true);
+            timer.setInitialDelay(0);
+            timer.addActionListener(new ActionListener() {
+                int n = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    if (n < room.getAllChars().size()) {
+
+                        if (room.getAllChars().get(n) instanceof PlayerCharacter) {
+                            if (!room.getAllChars().get(n).getDead()) {
+                                if (room.getAllChars().get(n).getSelectedItem() == null) {
+                                    usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
+                                } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
+                                    usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
+                                }
+                            }
+
+                        } else if (room.getAllChars().get(n) instanceof Enemy) {
+                            if (!room.getAllChars().get(n).getDead()) {
+                                useEnemySkill((Enemy) room.getAllChars().get(n));
+                            }
+                        }
+
+                        n++;
+                    } else {
+                        timer.stop();
+                        for (Char c : room.getAllChars()) {
+                            c.turnEndRoutine();
+                            refresh();
+                        }
+                        for (Item i : room.getInventory()) {
+                            i.setSetTargets(new ArrayList<>());
+                        }
+                        checkBattleOver();
+                        battleLabel.setText("The battle rages on...");
+                    }
+
+                    refresh();
+                }
+            });
             for (Char c : room.getAllChars()) {
                 c.turnBeginRoutine();
                 refresh();
@@ -386,32 +437,9 @@ public class Battle {
                 selectEnemySkill(e);
             }
 
-            for (Char c : room.getAllChars()) {
-                if (c instanceof PlayerCharacter) {
-                    if (!c.getDead()) {
-                        if (c.getSelectedItem() == null) {
-                            usePlayerSkill((PlayerCharacter) c);
-                        } else if (c.getSelectedSkill() == null) {
-                            usePlayerItem((PlayerCharacter) c);
-                        }
-                    }
+            timer.start();
 
-                } else if (c instanceof Enemy) {
-                    if (!c.getDead()) {
-                        useEnemySkill((Enemy) c);
-                    }
-                }
-            }
-            for (Char c : room.getAllChars()) {
-                c.turnEndRoutine();
-                refresh();
-            }
 
-            for (Item i : room.getInventory()) {
-                i.setSetTargets(new ArrayList<>());
-            }
-            checkBattleOver();
-            battleLabel.setText("The battle rages on...");
         }
 
     }
@@ -452,8 +480,8 @@ public class Battle {
 
     private void useEnemySkill(Enemy e) {
         Skill s = e.getSelectedSkill();
-        if(e.canUseSkill(s)) {
-            for(Char c : s.getSetTargets()) {
+        if (e.canUseSkill(s)) {
+            for (Char c : s.getSetTargets()) {
                 battleLabel.setText(e.getName() + " " + s.getFlavor());
                 s.takeEffect(c);
             }
@@ -473,8 +501,8 @@ public class Battle {
     }
 
     public void chooseEnemySkillTarget(Enemy e, Skill s) {
-        if(s instanceof AttackSkill) {
-            if(s.getTarget().equals("all")) {
+        if (s instanceof AttackSkill) {
+            if (s.getTarget().equals("all")) {
                 for (PlayerCharacter p : room.getParty()) {
                     s.addToSetTargets(p);
                 }
@@ -485,7 +513,7 @@ public class Battle {
                 s.addToSetTargets(room.getParty().get(targetNum));
             }
         } else if (s instanceof SupportSkill) {
-            if(s.getTarget().equals("all")) {
+            if (s.getTarget().equals("all")) {
                 for (Enemy n : room.getEnemies()) {
                     s.addToSetTargets(n);
                 }
@@ -522,24 +550,45 @@ public class Battle {
     }
 
     public void checkBattleOver() {
+        lootTimer = new Timer(3000, null);
+        lootTimer.setRepeats(true);
+        lootTimer.setInitialDelay(0);
+        lootTimer.addActionListener(new ActionListener() {
+            int count = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (count < 1) {
+                    if (loot != null) {
+                        battleLabel.setText("You got " + loot.getName() + ".");
+                        addLootToInventory();
+                    }
+
+                    count++;
+                } else {
+                    lootTimer.stop();
+                    if (room.getNextRoom() != null) {
+                        frame.dispose();
+                        new Battle(room.getNextRoom(), room.getNextRoom().getLoot(), temp.getColor());
+                    } else {
+                        frame.dispose();
+                        new YouWinUI();
+                    }
+
+                }
+            }
+        });
 
         if (room.isBattleWon()) {
-            battleLabel.setText("You win!");
-            if (loot != null) {
-                battleLabel.setText("You got " + loot.getName() + ".");
-                addLootToInventory();
-            }
-            if (room.getNextRoom() != null) {
-                frame.dispose();
-                new Battle(room.getNextRoom(), room.getNextRoom().getLoot());
-            } else {
-                frame.dispose();
-                new YouWinUI();
-            }
+            lootTimer.start();
         } else if (room.isBattleLost()) {
             frame.dispose();
             new GameOverUI();
         }
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public void addLootToInventory() {

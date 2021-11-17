@@ -47,7 +47,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(wasteland.getRooms(), wasteland.getRooms().getLoot());
+                new Battle(wasteland.getRooms(), wasteland.getRooms().getLoot(), new Color(-2899838));
             }
         });
     }
