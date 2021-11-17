@@ -152,7 +152,7 @@ public abstract class Char {
     public abstract void useItem(Item i, Char c);
 
     public Boolean canUseSkill(Skill s) {
-        return (this.ap >= s.getApCost() && (currentStatus != StatusEffect.FROZEN));
+        return ((this.ap >= s.getApCost() && (currentStatus != StatusEffect.FROZEN)) && !this.getDead());
     }
 
     public void takeDamage(double d) {

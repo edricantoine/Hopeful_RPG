@@ -1,9 +1,6 @@
 package ui;
 
-import model.Char;
-import model.Item;
-import model.PlayerCharacter;
-import model.Skill;
+import model.*;
 import model.enemies.Enemy;
 import model.levelStuff.Room;
 
@@ -16,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class Battle {
     private Room room;
@@ -375,19 +373,9 @@ public class Battle {
 
     }
 
-    //Timer timer = new Timer(3000, listener1);
-    //                    timer.setRepeats(false);
-    //                    timer.start();
 
-    //ActionListener listener = new ActionListener(){
-    //        public void actionPerformed(ActionEvent event){
-    //            battleLabel.setText("");
-    //        }
-    //    };
-    //TRY TO FIX???
 
     public void checkReadyToTurn() {
-
 
         if (isReadyToTakeAction()) {
             for (Char c : room.getAllChars()) {
@@ -412,7 +400,6 @@ public class Battle {
                     if (!c.getDead()) {
                         useEnemySkill((Enemy) c);
                     }
-
                 }
             }
             for (Char c : room.getAllChars()) {
@@ -423,15 +410,12 @@ public class Battle {
             for (Item i : room.getInventory()) {
                 i.setSetTargets(new ArrayList<>());
             }
-
             checkBattleOver();
-
             battleLabel.setText("The battle rages on...");
-
-
         }
 
     }
+
 
     private void usePlayerItem(PlayerCharacter p) {
         Item i = p.getSelectedItem();
@@ -454,30 +438,64 @@ public class Battle {
 
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
-
-
-        for (Char c : s.getSetTargets()) {
-            if (p.canUseSkill(s) && !p.getDead()) {
-
+        if (p.canUseSkill(s)) {
+            for (Char c : s.getSetTargets()) {
                 battleLabel.setText(p.getName() + " " + s.getFlavor());
                 p.useAp(s.getApCost());
                 s.takeEffect(c);
-
-
-            } else {
-
-                battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
-
             }
+        } else {
+            battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
         }
 
     }
 
     private void useEnemySkill(Enemy e) {
+        Skill s = e.getSelectedSkill();
+        if(e.canUseSkill(s)) {
+            for(Char c : s.getSetTargets()) {
+                battleLabel.setText(e.getName() + " " + s.getFlavor());
+                s.takeEffect(c);
+            }
+        } else {
+            battleLabel.setText(e.getName() + " " + "couldn't move this turn...!");
+        }
     }
 
     public void selectEnemySkill(Enemy e) {
+        List<Skill> eSkills = e.getSkills();
+        int chooseNum = eSkills.size();
+        Random rand = new Random();
+        int chosenSkillNum = rand.nextInt(chooseNum);
+        Skill chosenSkill = eSkills.get(chosenSkillNum);
+        e.setSelectedSkill(chosenSkill);
+        chooseEnemySkillTarget(e, chosenSkill);
+    }
 
+    public void chooseEnemySkillTarget(Enemy e, Skill s) {
+        if(s instanceof AttackSkill) {
+            if(s.getTarget().equals("all")) {
+                for (PlayerCharacter p : room.getParty()) {
+                    s.addToSetTargets(p);
+                }
+            } else if (s.getTarget().equals("one")) {
+                Random rand = new Random();
+                int chooseNum = room.getParty().size();
+                int targetNum = rand.nextInt(chooseNum);
+                s.addToSetTargets(room.getParty().get(targetNum));
+            }
+        } else if (s instanceof SupportSkill) {
+            if(s.getTarget().equals("all")) {
+                for (Enemy n : room.getEnemies()) {
+                    s.addToSetTargets(n);
+                }
+            } else if (s.getTarget().equals("one")) {
+                Random rand = new Random();
+                int chooseNum = room.getEnemies().size();
+                int targetNum = rand.nextInt(chooseNum);
+                s.addToSetTargets(room.getEnemies().get(targetNum));
+            }
+        }
     }
 
     public Boolean isReadyToTakeAction() {
