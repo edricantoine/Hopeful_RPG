@@ -72,12 +72,12 @@ public class Battle {
         this.room = r;
         this.loot = loot;
         this.color = color;
-        initializeLabels();
-        initializeButtons();
         battlePanel.setBackground(color);
         frame = new JFrame("Battle");
         frame.setContentPane(battlePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initializeLabels();
+        initializeButtons();
         frame.pack();
         frame.setVisible(true);
 
@@ -398,18 +398,18 @@ public class Battle {
                     if (n < room.getAllChars().size()) {
 
                         if (room.getAllChars().get(n) instanceof PlayerCharacter) {
-                            if (!room.getAllChars().get(n).getDead()) {
+
                                 if (room.getAllChars().get(n).getSelectedItem() == null) {
                                     usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
                                 } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
                                     usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
                                 }
-                            }
+
 
                         } else if (room.getAllChars().get(n) instanceof Enemy) {
-                            if (!room.getAllChars().get(n).getDead()) {
+
                                 useEnemySkill((Enemy) room.getAllChars().get(n));
-                            }
+
                         }
 
                         n++;
@@ -540,13 +540,19 @@ public class Battle {
             pLabs.get(i).setText("<html>Name: " + room.getParty().get(i).getName() + "<br/>" + "HP: " +
                     room.getParty().get(i).getHp() + "/" + room.getParty().get(i).getMaxhp() + "<br/>" +
                     "AP:" + room.getParty().get(i).getAp() + "/" + room.getParty().get(i).getMaxap() + "<br/>" +
-                    "Status: " + room.getParty().get(i).getCurrentStatus());
+                    "Status: " + room.getParty().get(i).getCurrentStatus() + "<br/>" +
+                    "Attack modifier: " + room.getParty().get(i).getAtkMod() + "<br/>" +
+                    "Damage taken modifier: " + room.getParty().get(i).getDefMod());
         }
 
         for (int i = 0; i < Math.min(eLabs.size(), room.getEnemies().size()); i++) {
             eLabs.get(i).setText("<html>Name: " + room.getEnemies().get(i).getName() + "<br/>" + "HP: " + room.getEnemies().get(i).getHp() + "/" + room.getEnemies().get(i).getMaxhp() + "<br/>" +
-                    "Status: " + room.getEnemies().get(i).getCurrentStatus());
+                    "Status: " + room.getEnemies().get(i).getCurrentStatus() + "<br/>" +
+                    "Attack modifier: " + room.getEnemies().get(i).getAtkMod() + "<br/>" +
+                    "Damage taken modifier: " + room.getEnemies().get(i).getDefMod());
         }
+
+        frame.pack();
     }
 
     public void checkBattleOver() {

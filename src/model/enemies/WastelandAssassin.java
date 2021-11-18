@@ -10,7 +10,7 @@ public class WastelandAssassin extends Enemy{
     public WastelandAssassin() {
         super("Blade Bandit", 50, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Shiv", " slashed with rusty scrap metal.", 0, "one",
-                                30, StatusEffect.POISONED, 1.0, 1.0, 4),
+                                30, StatusEffect.POISONED, 1.0, 1.0, 2),
                         new AttackSkill("Critical Strike", " stabbed at an artery!", 0, "one", 60,
                                 StatusEffect.NONE, 1.0, 1.0, 1)
                 )), 7,

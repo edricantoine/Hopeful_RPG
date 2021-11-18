@@ -17,7 +17,7 @@ public class WastelandFrankie extends Enemy{
                         new SupportSkill("Get Mad", " flew into a rage!", 0, "one",
                                 0, 0, 2.00, 1.0, false),
                         new AttackSkill("Burnout", " spewed flames from her exhaust pipes!", 0, "all", 10,
-                                StatusEffect.BURNED, 1.0, 1.0, 3)
+                                StatusEffect.BURNED, 1.0, 1.0, 2)
 
                 )), 10,
                 "Is she a machine? A mole? How about both?! Watch out for her high-damage, high-velocity attacks.",
