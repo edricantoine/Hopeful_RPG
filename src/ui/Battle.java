@@ -564,13 +564,22 @@ public class Battle {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (count < 1) {
+                if (count == 0) {
+
+                    battleLabel.setText("You win!");
+
+                    count++;
+                } else if (count == 1) {
+
                     if (loot != null) {
                         battleLabel.setText("You got " + loot.getName() + ".");
                         addLootToInventory();
+                    } else {
+                        battleLabel.setText("There was no item in this room...");
                     }
 
                     count++;
+
                 } else {
                     lootTimer.stop();
                     if (room.getNextRoom() != null) {
