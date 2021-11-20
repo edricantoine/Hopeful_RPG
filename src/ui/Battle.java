@@ -144,21 +144,21 @@ public class Battle {
 
     public void initializeTooltips() {
         button1.setToolTipText("Deals 50 damage to all enemies with 1/2 chance to freeze.");
-        button2.setToolTipText("Deals 30 damage.");
+        button2.setToolTipText("Deals 20 damage.");
         button3.setToolTipText("Increases defense.");
         button4.setToolTipText("Deals 60 damage to one enemy with 1/3 chance to freeze.");
-        button5.setToolTipText("Deals 25 damage and looks totally badass.");
+        button5.setToolTipText("Deals 20 damage - and looks totally badass.");
         button6.setToolTipText("Heals 50 damage to an ally and increases attack.");
         button7.setToolTipText("Heals 50 damage to an ally and increases defense.");
         button8.setToolTipText("Heals 60 damage to all allies and cures status.");
-        button9.setToolTipText("Deals 40 damage.");
+        button9.setToolTipText("Deals 30 damage.");
         button10.setToolTipText("Deals 30 damage to an enemy with 1/2 chance to burn.");
         button11.setToolTipText("Deals 50 damage to all enemies with 1/3 chance to burn.");
         button12.setToolTipText("Guaranteed to poison an enemy.");
-        button13.setToolTipText("Deals 20 damage to all enemies.");
-        button14.setToolTipText("Makes an enemy afraid.");
-        button15.setToolTipText("Cures status on one ally.");
-        button16.setToolTipText("Deals 50 damage to all enemies with a 1/5 chance to poison.");
+        button13.setToolTipText("Deals 10 damage to all enemies.");
+        button14.setToolTipText("Makes all enemies afraid.");
+        button15.setToolTipText("Gives his life to fully heal an ally's HP and AP and increase damage and defense.");
+        button16.setToolTipText("Deals 25 damage to an enemy and heals Oscar by 25 HP.");
 
         initializeActionListeners();
     }
@@ -340,7 +340,6 @@ public class Battle {
                 room.getParty().get(3).setSelectedItem(null);
                 new SelectTargetTool(room, room.getParty().get(3).getSkills().get(3), room.getParty().get(3), temp);
 
-
             }
         });
         itemButton.addActionListener(new ActionListener() {
@@ -399,16 +398,16 @@ public class Battle {
 
                         if (room.getAllChars().get(n) instanceof PlayerCharacter) {
 
-                                if (room.getAllChars().get(n).getSelectedItem() == null) {
-                                    usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
-                                } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
-                                    usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
-                                }
+                            if (room.getAllChars().get(n).getSelectedItem() == null) {
+                                usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
+                            } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
+                                usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
+                            }
 
 
                         } else if (room.getAllChars().get(n) instanceof Enemy) {
 
-                                useEnemySkill((Enemy) room.getAllChars().get(n));
+                            useEnemySkill((Enemy) room.getAllChars().get(n));
 
                         }
 
@@ -467,10 +466,27 @@ public class Battle {
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
         if (p.canUseSkill(s)) {
+            p.useAp(s.getApCost());
             for (Char c : s.getSetTargets()) {
-                battleLabel.setText(p.getName() + " " + s.getFlavor());
-                p.useAp(s.getApCost());
+                if (s.getTarget().equals("one")) {
+                    battleLabel.setText(p.getName() + " " + s.getFlavor() + " " + s.getSetTargets().get(0).getName() + "!");
+                } else {
+                    battleLabel.setText(p.getName() + " " + s.getFlavor());
+                }
+
                 s.takeEffect(c);
+                if (s.equals(room.getParty().get(3).getSkills().get(3))) {
+                    p.healDamage(25.0);
+                }
+                if (s.equals(room.getParty().get(3).getSkills().get(2))) {
+                    if (!s.getSetTargets().get(0).equals(room.getParty().get(3))) {
+                        p.takeDamage(500);
+                    } else {
+                        battleLabel.setText("Oscar's actions had no effect...");
+                        p.healAp(100);
+                    }
+
+                }
             }
         } else {
             battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
@@ -482,7 +498,11 @@ public class Battle {
         Skill s = e.getSelectedSkill();
         if (e.canUseSkill(s)) {
             for (Char c : s.getSetTargets()) {
-                battleLabel.setText(e.getName() + " " + s.getFlavor());
+                if (s.getTarget().equals("one")) {
+                    battleLabel.setText(e.getName() + " " + s.getFlavor() + " " + s.getSetTargets().get(0).getName() + "!");
+                } else {
+                    battleLabel.setText(e.getName() + " " + s.getFlavor());
+                }
                 s.takeEffect(c);
             }
         } else {
@@ -528,9 +548,11 @@ public class Battle {
 
     public Boolean isReadyToTakeAction() {
         for (PlayerCharacter p : room.getParty()) {
+
             if (p.getSelectedSkill() == null && p.getSelectedItem() == null) {
                 return false;
             }
+
         }
         return true;
     }

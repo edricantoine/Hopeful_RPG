@@ -98,7 +98,7 @@ public class CharTest {
         assertEquals(p1.getHp(), 100);
         p1.takeDamage(10000);
 
-        assertEquals(p1.getHp(), 0);
+        assertEquals(p1.getHp(), -12400.0);
         assertTrue(p1.getDead());
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
         assertEquals(p1.getAtkMod(), 1.0);
@@ -108,7 +108,7 @@ public class CharTest {
     @Test
     public void testTakeDamageDieOverkill() {
         p1.takeDamage(500000);
-        assertEquals(p1.getHp(), 0);
+        assertEquals(p1.getHp(), -499900.0);
         assertTrue(p1.getDead());
     }
 
@@ -128,10 +128,12 @@ public class CharTest {
 
     @Test
     public void testHealDamageFromDead() {
-        p1.takeDamage(p1.getMaxhp());
+        p1.takeDamage(150);
         assertTrue(p1.getDead());
         p1.healDamage(50);
-        assertEquals(p1.getHp(), 50);
+        assertTrue(p1.getDead());
+        p1.healDamage(1);
+        assertEquals(p1.getHp(), 1.0);
         assertFalse(p1.getDead());
     }
 

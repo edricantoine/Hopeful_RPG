@@ -10,13 +10,13 @@ import java.util.Arrays;
 public class WastelandRev extends Enemy{
     public WastelandRev() {
         super("Reverend Pastel", 600, 100, new ArrayList<>(Arrays.asList(
-                        new AttackSkill("Stab for the Light", " stabbed with a cross!", 0, "one",
+                        new AttackSkill("Stab for the Light", "stabbed with a cross, hitting", 0, "one",
                                 50, StatusEffect.NONE, 1.0, 1.0, 1),
-                        new AttackSkill("Smite", " called down burning rays!", 0, "all", 25,
+                        new AttackSkill("Smite", "called down burning rays!", 0, "all", 25,
                                 StatusEffect.BURNED, 1.0, 1.0, 2),
-                        new SupportSkill("Spiritual Healing", " said a prayer...", 0, "one",
+                        new SupportSkill("Spiritual Healing", "said a prayer for", 0, "one",
                                 50, 0, 1.0, 1.0, true),
-                        new SupportSkill("Blessing", " said a blessing!",
+                        new SupportSkill("Blessing", "said a blessing for",
                                 0, "one",
                                 0, 0, 1.25, 0.75, false)
 

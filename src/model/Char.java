@@ -158,7 +158,7 @@ public abstract class Char {
     public void takeDamage(double d) {
 
         if((hp - (d * defMod)) <= 0) {
-            hp = 0;
+            hp -= (d * defMod);
             kill();
         } else {
             hp -= (d * defMod);
@@ -166,12 +166,14 @@ public abstract class Char {
     }
 
     public void healDamage(double d) {
+        if((hp + d) > 0) {
+            revive();
+        }
         if((hp + d) >= maxhp) {
             hp = maxhp;
         } else {
             hp += d;
         }
-        revive();
 
     }
 
@@ -241,7 +243,7 @@ public abstract class Char {
         }
 
 
-        healAp(5);
+        healAp(10);
         setSelectedSkill(null);
         setSelectedItem(null);
     }
