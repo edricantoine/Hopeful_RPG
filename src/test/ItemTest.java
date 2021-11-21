@@ -99,8 +99,8 @@ public class ItemTest {
     public void testItemCure() {
         p1.setAtkMod(2.00);
         p1.setDefMod(2.00);
-        p1.setCurrentStatus(StatusEffect.FROZEN);
-        assertEquals(p1.getCurrentStatus(), StatusEffect.FROZEN);
+        p1.setCurrentStatus(StatusEffect.NUMB);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NUMB);
         itemCure.takeEffect(p1);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
         assertEquals(p1.getAtkMod(), 1.0);

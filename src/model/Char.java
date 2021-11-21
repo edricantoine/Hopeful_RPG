@@ -128,7 +128,7 @@ public abstract class Char {
             timeSinceStatusApplied = W_BURNED;
         } else if(currentStatus.equals(StatusEffect.POISONED)) {
             timeSinceStatusApplied = W_POISONED;
-        } else if(currentStatus.equals(StatusEffect.FROZEN)) {
+        } else if(currentStatus.equals(StatusEffect.NUMB)) {
             timeSinceStatusApplied = W_FROZEN;
         } else if(currentStatus.equals(StatusEffect.AFRAID)) {
             timeSinceStatusApplied = W_AFRAID;
@@ -152,7 +152,7 @@ public abstract class Char {
     public abstract void useItem(Item i, Char c);
 
     public Boolean canUseSkill(Skill s) {
-        return ((this.ap >= s.getApCost() && (currentStatus != StatusEffect.FROZEN)) && !this.getDead());
+        return ((this.ap >= s.getApCost() && (currentStatus != StatusEffect.NUMB)) && !this.getDead());
     }
 
     public void takeDamage(double d) {
@@ -226,7 +226,7 @@ public abstract class Char {
             }
         }
 
-        if(currentStatus.equals(StatusEffect.FROZEN)) {
+        if(currentStatus.equals(StatusEffect.NUMB)) {
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);

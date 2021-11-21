@@ -66,7 +66,7 @@ public class CharTest {
        assertEquals(p1.getTimeSinceStatusApplied(), 0);
        p1.setCurrentStatus(StatusEffect.POISONED);
        assertEquals(p1.getTimeSinceStatusApplied(), Char.W_POISONED);
-       p1.setCurrentStatus(StatusEffect.FROZEN);
+       p1.setCurrentStatus(StatusEffect.NUMB);
        assertEquals(p1.getTimeSinceStatusApplied(), Char.W_FROZEN);
        p1.setCurrentStatus(StatusEffect.AFRAID);
        assertEquals(p1.getTimeSinceStatusApplied(), Char.W_AFRAID);
@@ -217,9 +217,9 @@ public class CharTest {
 
     @Test
     public void testTurnEndRoutineFrz() {
-        p1.setCurrentStatus(StatusEffect.FROZEN);
+        p1.setCurrentStatus(StatusEffect.NUMB);
 
-        assertEquals(p1.getCurrentStatus(), StatusEffect.FROZEN);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NUMB);
         assertEquals(p1.getTimeSinceStatusApplied(), Char.W_FROZEN);
 
         p1.turnEndRoutine();

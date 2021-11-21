@@ -58,12 +58,12 @@ public class LevelSelectUI {
                         StatusEffect.NONE, 1.0, 1.0, 1),
 
                 new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
-                        50, StatusEffect.FROZEN, 1.0, 1.0, 2),
+                        50, StatusEffect.NUMB, 1.0, 1.0, 2),
 
                 new SupportSkill("Ice Shield", "formed a shield of ice, protecting", 25, "one",
                         0.0, 0, 1.0, 0.5, false),
                 new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 40, "one", 60,
-                        StatusEffect.FROZEN, 1.0, 1.0, 3)
+                        StatusEffect.NUMB, 1.0, 1.0, 3)
 
 
         )), 5,

@@ -80,7 +80,7 @@ public class Tobi extends Enemy {
             }
         }
 
-        if(currentStatus.equals(StatusEffect.FROZEN)) {
+        if(currentStatus.equals(StatusEffect.NUMB)) {
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);

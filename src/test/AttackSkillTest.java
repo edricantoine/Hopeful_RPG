@@ -31,7 +31,7 @@ public class AttackSkillTest {
         atkB = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 40,
                 StatusEffect.BURNED, 1.0, 1.0, 1);
         atkF = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 2,
-                StatusEffect.FROZEN, 1.0, 1.0, 1);
+                StatusEffect.NUMB, 1.0, 1.0, 1);
         atkP = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 13,
                 StatusEffect.POISONED, 1.0, 1.0, 1);
         atkA = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 44,
@@ -117,7 +117,7 @@ public class AttackSkillTest {
         assertEquals(p1.getHp(), p1.getMaxhp() - atkF.getDamage());
         assertEquals(p1.getAtkMod(), 1.0);
         assertEquals(p1.getDefMod(), 1.0);
-        assertEquals(p1.getCurrentStatus(), StatusEffect.FROZEN);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NUMB);
     }
 
     @Test
