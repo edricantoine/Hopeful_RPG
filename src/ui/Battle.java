@@ -2,6 +2,7 @@ package ui;
 
 import model.*;
 import model.enemies.Enemy;
+import model.enemies.WastelandFrankie;
 import model.levelStuff.Room;
 
 import javax.swing.*;
@@ -504,6 +505,10 @@ public class Battle {
                     battleLabel.setText(e.getName() + " " + s.getFlavor());
                 }
                 s.takeEffect(c);
+
+                if(e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
+                    e.setAtkMod((e.getAtkMod() + 1.50) / 2.0);
+                }
             }
         } else {
             battleLabel.setText(e.getName() + " " + "couldn't move this turn...!");
