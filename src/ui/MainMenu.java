@@ -1,7 +1,6 @@
 package ui;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
@@ -9,30 +8,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
-public class GameUI {
+public class MainMenu {
+    private JPanel MainMenuPanel;
+    private JButton levelSelectButton;
+    private JButton extrasMenuButton;
 
-
-    private JPanel titlePanel;
-    private JLabel titleLabel;
-    private JButton beginButton;
-
-    public GameUI() {
-        beginButton.addActionListener(new ActionListener() {
+    public MainMenu() {
+        JFrame frame = new JFrame("Main Menu");
+        frame.setContentPane(MainMenuPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        levelSelectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new MainMenu();
+                new LevelSelectUI();
             }
         });
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("HOPEFUL");
-        frame.setContentPane(new GameUI().titlePanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        extrasMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new ExtrasMenu();
+            }
+        });
     }
 
     {
@@ -50,32 +52,27 @@ public class GameUI {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        titlePanel = new JPanel();
-        titlePanel.setLayout(new GridBagLayout());
-        titlePanel.setBackground(new Color(-4988956));
-        Font titlePanelFont = this.$$$getFont$$$("Courier New", -1, -1, titlePanel.getFont());
-        if (titlePanelFont != null) titlePanel.setFont(titlePanelFont);
-        titlePanel.setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-        titleLabel = new JLabel();
-        titleLabel.setBackground(new Color(-6774876));
-        Font titleLabelFont = this.$$$getFont$$$("Courier New", Font.PLAIN, 20, titleLabel.getFont());
-        if (titleLabelFont != null) titleLabel.setFont(titleLabelFont);
-        titleLabel.setHorizontalAlignment(0);
-        titleLabel.setText("HOPEFUL: a simple RPG");
+        MainMenuPanel = new JPanel();
+        MainMenuPanel.setLayout(new GridBagLayout());
+        MainMenuPanel.setBackground(new Color(-4988956));
+        extrasMenuButton = new JButton();
+        Font extrasMenuButtonFont = this.$$$getFont$$$("Courier New", -1, -1, extrasMenuButton.getFont());
+        if (extrasMenuButtonFont != null) extrasMenuButton.setFont(extrasMenuButtonFont);
+        extrasMenuButton.setText("Extras");
         GridBagConstraints gbc;
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        titlePanel.add(titleLabel, gbc);
-        beginButton = new JButton();
-        Font beginButtonFont = this.$$$getFont$$$("Courier New", -1, -1, beginButton.getFont());
-        if (beginButtonFont != null) beginButton.setFont(beginButtonFont);
-        beginButton.setText("START.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        titlePanel.add(beginButton, gbc);
+        MainMenuPanel.add(extrasMenuButton, gbc);
+        levelSelectButton = new JButton();
+        Font levelSelectButtonFont = this.$$$getFont$$$("Courier New", -1, -1, levelSelectButton.getFont());
+        if (levelSelectButtonFont != null) levelSelectButton.setFont(levelSelectButtonFont);
+        levelSelectButton.setText("Level Select");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        MainMenuPanel.add(levelSelectButton, gbc);
     }
 
     /**
@@ -104,7 +101,6 @@ public class GameUI {
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return titlePanel;
+        return MainMenuPanel;
     }
-
 }

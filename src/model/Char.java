@@ -147,6 +147,14 @@ public abstract class Char {
         return speed;
     }
 
+    public String getSkillsAsString() {
+        StringBuilder temp = new StringBuilder();
+        for(int i = 0; i < skills.size(); i++) {
+            temp.append("Skill ").append(i + 1).append(": ").append(skills.get(i).getName()).append(" ");
+        }
+        return temp.toString();
+    }
+
 
     public abstract Boolean useSkill(Skill s, Char c);
     public abstract void useItem(Item i, Char c);
