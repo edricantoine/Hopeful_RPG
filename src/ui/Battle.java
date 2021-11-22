@@ -631,6 +631,7 @@ public class Battle {
     public void addLootToInventory() {
         if (loot == null) {
             battleLabel.setText("There was no loot in this room.");
+            refresh();
         } else {
             if (room.getInventory().size() < 10) {
                 System.out.println("You got " + loot.getName() + "!");
