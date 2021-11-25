@@ -1,5 +1,7 @@
 package model;
 
+import model.enemies.Facility.FacilitySecurity;
+
 import java.util.Random;
 
 public class AttackSkill extends Skill {
@@ -58,9 +60,16 @@ public class AttackSkill extends Skill {
     @Override
     public void takeEffect(Char c) {
 
+        if(c instanceof FacilitySecurity) {
+            if(!((FacilitySecurity) c).isDroneDead()) {
+                c.takeDamage(0);
+            } else {
+                c.takeDamage(damage * atkMod);
+            }
+        } else {
+            c.takeDamage(damage * atkMod);
+        }
 
-
-        c.takeDamage(damage * atkMod);
 
         if(defEffect != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
             c.setDefMod((defEffect + c.getDefMod()) / 2.0);

@@ -1,11 +1,12 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.SupportSkill;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandSupport extends Enemy{
+public class WastelandSupport extends Enemy {
     public WastelandSupport() {
         super("Bandit Doctor", 80, 100, new ArrayList<>(Arrays.asList(
                         new SupportSkill("Unlicensed Medicine", "force-fed a pill to", 0, "one",

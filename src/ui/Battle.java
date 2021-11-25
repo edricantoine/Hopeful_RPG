@@ -2,7 +2,10 @@ package ui;
 
 import model.*;
 import model.enemies.Enemy;
-import model.enemies.WastelandFrankie;
+import model.enemies.Facility.FacilityDrone;
+import model.enemies.Facility.FacilityMelee;
+import model.enemies.Facility.FacilitySecurity;
+import model.enemies.Wasteland.WastelandFrankie;
 import model.levelStuff.Room;
 
 import javax.swing.*;
@@ -434,6 +437,14 @@ public class Battle {
                 refresh();
             }
             for (Enemy e : room.getEnemies()) {
+                if (e instanceof FacilitySecurity) {
+                    for (Enemy f : room.getEnemies()) {
+                        if (f instanceof FacilityDrone && f.getDead()) {
+                            ((FacilitySecurity) e).turnDroneDead();
+                            ((FacilitySecurity) e).switchMoveset();
+                        }
+                    }
+                }
                 selectEnemySkill(e);
             }
 
@@ -468,6 +479,7 @@ public class Battle {
         Skill s = p.getSelectedSkill();
         if (p.canUseSkill(s)) {
             p.useAp(s.getApCost());
+            s.setAtkMod(p.getAtkMod());
             for (Char c : s.getSetTargets()) {
                 if (s.getTarget().equals("one")) {
                     battleLabel.setText(p.getName() + " " + s.getFlavor() + " " + s.getSetTargets().get(0).getName() + "!");
@@ -476,9 +488,14 @@ public class Battle {
                 }
 
                 s.takeEffect(c);
+                if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
+                    p.takeDamage(s.getDamage() / 2);
+                }
+
                 if (s.equals(room.getParty().get(3).getSkills().get(3))) {
                     p.healDamage(25.0);
                 }
+
                 if (s.equals(room.getParty().get(3).getSkills().get(2))) {
                     if (!s.getSetTargets().get(0).equals(room.getParty().get(3))) {
                         p.takeDamage(500);
@@ -488,6 +505,8 @@ public class Battle {
                     }
 
                 }
+
+                s.setAtkMod(1.00);
             }
         } else {
             battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
@@ -498,6 +517,7 @@ public class Battle {
     private void useEnemySkill(Enemy e) {
         Skill s = e.getSelectedSkill();
         if (e.canUseSkill(s)) {
+            s.setAtkMod(e.getAtkMod());
             for (Char c : s.getSetTargets()) {
                 if (s.getTarget().equals("one")) {
                     battleLabel.setText(e.getName() + " " + s.getFlavor() + " " + s.getSetTargets().get(0).getName() + "!");
@@ -506,9 +526,15 @@ public class Battle {
                 }
                 s.takeEffect(c);
 
-                if(e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
+                if (e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
                     e.setAtkMod((e.getAtkMod() + 1.50) / 2.0);
                 }
+
+                if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {
+                    e.setCurrentStatus(StatusEffect.RIPOSTE);
+                }
+
+                s.setAtkMod(1.00);
             }
         } else {
             battleLabel.setText(e.getName() + " " + "couldn't move this turn...!");

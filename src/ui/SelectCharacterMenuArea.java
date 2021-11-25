@@ -4,7 +4,7 @@ import model.AttackSkill;
 import model.PlayerCharacter;
 import model.StatusEffect;
 import model.SupportSkill;
-import model.enemies.*;
+import model.enemies.Wasteland.*;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

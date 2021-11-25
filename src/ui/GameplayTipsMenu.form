@@ -36,7 +36,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="NUMB: Cannot take action for one turn."/>
+          <text value="NUMB: Cannot take action for this turn, and one turn after."/>
         </properties>
       </component>
       <component id="4cd25" class="javax.swing.JLabel">

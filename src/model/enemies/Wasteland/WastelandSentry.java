@@ -1,13 +1,14 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
 import model.SupportSkill;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandSentry extends Enemy{
+public class WastelandSentry extends Enemy {
     public WastelandSentry() {
         super("SEN-3", 500, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Gun Rush", "fired a machine gun!", 0, "all",

@@ -1,12 +1,13 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandTank extends Enemy{
+public class WastelandTank extends Enemy {
     public WastelandTank() {
         super("Armored Bandit", 200, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Armor Bash", "strikes with his armor, hitting", 0, "one",

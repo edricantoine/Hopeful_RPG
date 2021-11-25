@@ -1,13 +1,14 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
 import model.SupportSkill;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandFrankie extends Enemy{
+public class WastelandFrankie extends Enemy {
     public WastelandFrankie() {
         super("Frankie", 350, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("You Know The Drill", "rushed forward, drills pointed at", 0, "one",

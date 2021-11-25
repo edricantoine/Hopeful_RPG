@@ -1,12 +1,13 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandAssassin extends Enemy{
+public class WastelandAssassin extends Enemy {
     public WastelandAssassin() {
         super("Blade Bandit", 50, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Shiv", "slashed with rusty scrap metal, hitting", 0, "one",

@@ -1,12 +1,13 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandMelee extends Enemy{
+public class WastelandMelee extends Enemy {
     public WastelandMelee() {
         super("Desert Bandit", 100, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Sandblast", "launched sand everywhere!", 0, "all",

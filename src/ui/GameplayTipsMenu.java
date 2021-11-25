@@ -71,7 +71,7 @@ public class GameplayTipsMenu {
         final JLabel label2 = new JLabel();
         Font label2Font = this.$$$getFont$$$("Courier New", -1, -1, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
-        label2.setText("NUMB: Cannot take action for one turn.");
+        label2.setText("NUMB: Cannot take action for this turn, and one turn after.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -125,4 +125,5 @@ public class GameplayTipsMenu {
     public JComponent $$$getRootComponent$$$() {
         return tipsPanel;
     }
+
 }

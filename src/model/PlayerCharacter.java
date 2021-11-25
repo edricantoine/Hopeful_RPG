@@ -39,6 +39,9 @@ public class PlayerCharacter extends Char {
             useAp(s.getApCost());
             s.setAtkMod(atkMod);
             s.takeEffect(c);
+            if(c.getCurrentStatus() == StatusEffect.RIPOSTE) {
+                this.takeDamage(s.getDamage() / 2);
+            }
             s.setAtkMod(1.00);
             return true;
         } else {

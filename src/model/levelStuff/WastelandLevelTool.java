@@ -2,6 +2,7 @@ package model.levelStuff;
 
 import model.*;
 import model.enemies.*;
+import model.enemies.Wasteland.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

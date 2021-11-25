@@ -1,13 +1,14 @@
-package model.enemies;
+package model.enemies.Wasteland;
 
 import model.AttackSkill;
 import model.StatusEffect;
 import model.SupportSkill;
+import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WastelandRev extends Enemy{
+public class WastelandRev extends Enemy {
     public WastelandRev() {
         super("Reverend Pastel", 600, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Stab for the Light", "stabbed with a cross, hitting", 0, "one",

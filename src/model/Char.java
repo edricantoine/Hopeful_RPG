@@ -22,7 +22,7 @@ public abstract class Char {
     public final static int DMG_BURNED = 5;
     public final static int W_BURNED = 3;
     public final static int W_POISONED = 3;
-    public final static int W_FROZEN = 1;
+    public final static int W_FROZEN = 2;
     public final static int W_AFRAID = 3;
     public final static int DMG_POISONED = 10;
 
@@ -48,6 +48,10 @@ public abstract class Char {
 
     //getters and setters
 
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
 
     public Skill getSelectedSkill() {
         return selectedSkill;
