@@ -3,8 +3,7 @@ package model.levelStuff;
 import model.Item;
 import model.PlayerCharacter;
 import model.enemies.Enemy;
-import model.enemies.Facility.FacilityGuard;
-import model.enemies.Facility.FacilityMelee;
+import model.enemies.Facility.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +24,14 @@ public class FacilityLevelTool {
         List<Enemy> configB1 = new ArrayList<>(Arrays.asList(
                 new FacilityGuard(), new FacilityMelee(), new FacilityMelee(), new FacilityMelee()
         ));
+        List<Enemy> configB2 = new ArrayList<>(Arrays.asList(
+                new FacilitySecurity(), new FacilityDrone()
+        ));
+        List<Enemy> configB3 = new ArrayList<>(Arrays.asList(
+                new FacilityDrone(), new FacilityGuard(), new FacilityTank(), new FacilitySecurity()
+        ));
 
-        facilityRooms = new Room(configB1, party ,inventory, null, null);
+        facilityRooms = new Room(configB2, party ,inventory, null, null);
     }
 
     public Room getFacilityRooms() {

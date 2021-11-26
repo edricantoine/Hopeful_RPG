@@ -4,6 +4,7 @@ import model.AttackSkill;
 import model.PlayerCharacter;
 import model.StatusEffect;
 import model.SupportSkill;
+import model.enemies.Facility.*;
 import model.enemies.Wasteland.*;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class SelectCharacterMenuArea {
     private JPanel selectAreaPanel;
     private JButton partyButton;
     private JButton backButton;
+    private JButton facilityButton;
 
     public SelectCharacterMenuArea() {
         JFrame frame = new JFrame("Character Profiles");
@@ -118,6 +120,16 @@ public class SelectCharacterMenuArea {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
                 new ExtrasMenu();
+            }
+        });
+        facilityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new CharacterMenu(Arrays.asList(new FacilityMelee(), new FacilityDebuffer(), new FacilityBomber(),
+                        new FacilityBulwark(), new FacilityMedic(), new FacilityGuard(), new FacilityDrone(),
+                        new FacilitySecurity(), new FacilityTank()));
             }
         });
     }

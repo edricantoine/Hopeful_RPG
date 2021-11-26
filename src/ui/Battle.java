@@ -387,6 +387,26 @@ public class Battle {
 
 
         if (isReadyToTakeAction()) {
+            for (int i = 0; i < jButtons.size(); i++) {
+                jButtons.get(i).setEnabled(false);
+
+            }
+            for (int i = 0; i < tButtons.size(); i++) {
+                tButtons.get(i).setEnabled(false);
+
+            }
+            for (int i = 0; i < bButtons.size(); i++) {
+                bButtons.get(i).setEnabled(false);
+
+            }
+            for (int i = 0; i < oButtons.size(); i++) {
+                oButtons.get(i).setEnabled(false);
+
+            }
+            itemButton.setEnabled(false);
+            itemButton1.setEnabled(false);
+            itemButton2.setEnabled(false);
+            itemButton3.setEnabled(false);
             timer = new Timer(3000, null);
             timer.setRepeats(true);
             timer.setInitialDelay(0);
@@ -428,6 +448,26 @@ public class Battle {
                         }
                         checkBattleOver();
                         battleLabel.setText("The battle rages on...");
+                        for (int i = 0; i < jButtons.size(); i++) {
+                            jButtons.get(i).setEnabled(true);
+
+                        }
+                        for (int i = 0; i < tButtons.size(); i++) {
+                            tButtons.get(i).setEnabled(true);
+
+                        }
+                        for (int i = 0; i < bButtons.size(); i++) {
+                            bButtons.get(i).setEnabled(true);
+
+                        }
+                        for (int i = 0; i < oButtons.size(); i++) {
+                            oButtons.get(i).setEnabled(true);
+
+                        }
+                        itemButton.setEnabled(true);
+                        itemButton1.setEnabled(true);
+                        itemButton2.setEnabled(true);
+                        itemButton3.setEnabled(true);
                     }
 
                     refresh();
