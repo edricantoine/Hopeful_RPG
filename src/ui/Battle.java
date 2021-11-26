@@ -2,9 +2,7 @@ package ui;
 
 import model.*;
 import model.enemies.Enemy;
-import model.enemies.Facility.FacilityDrone;
-import model.enemies.Facility.FacilityMelee;
-import model.enemies.Facility.FacilitySecurity;
+import model.enemies.Facility.*;
 import model.enemies.Wasteland.WastelandFrankie;
 import model.levelStuff.Room;
 
@@ -419,6 +417,9 @@ public class Battle {
                     } else {
                         timer.stop();
                         for (Char c : room.getAllChars()) {
+                            if (c instanceof FacilityTank) {
+                                ((FacilityTank) c).checkandRevive();
+                            }
                             c.turnEndRoutine();
                             refresh();
                         }
@@ -445,6 +446,7 @@ public class Battle {
                         }
                     }
                 }
+
                 selectEnemySkill(e);
             }
 
@@ -532,6 +534,12 @@ public class Battle {
 
                 if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {
                     e.setCurrentStatus(StatusEffect.RIPOSTE);
+                }
+
+                if (e instanceof FacilityGuard && s.getName().equals("Group Counter")) {
+                    for (Enemy n : room.getEnemies()) {
+                        n.setCurrentStatus(StatusEffect.RIPOSTE);
+                    }
                 }
 
                 s.setAtkMod(1.00);
@@ -692,7 +700,6 @@ public class Battle {
     private void $$$setupUI$$$() {
         battlePanel = new JPanel();
         battlePanel.setLayout(new GridBagLayout());
-        battlePanel.setBackground(new Color(-2899838));
         p1 = new JLabel();
         p1.setEnabled(true);
         Font p1Font = this.$$$getFont$$$("Courier New", -1, -1, p1.getFont());

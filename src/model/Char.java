@@ -49,6 +49,10 @@ public abstract class Char {
     //getters and setters
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
@@ -127,23 +131,25 @@ public abstract class Char {
     }
 
     public void setCurrentStatus(StatusEffect currentStatus) {
-        this.currentStatus = currentStatus;
-        if(currentStatus.equals(StatusEffect.BURNED)) {
-            timeSinceStatusApplied = W_BURNED;
-        } else if(currentStatus.equals(StatusEffect.POISONED)) {
-            timeSinceStatusApplied = W_POISONED;
-        } else if(currentStatus.equals(StatusEffect.NUMB)) {
-            timeSinceStatusApplied = W_FROZEN;
-        } else if(currentStatus.equals(StatusEffect.AFRAID)) {
-            timeSinceStatusApplied = W_AFRAID;
-            atkMod = 0.75;
-            defMod = 1.25;
-        } else if (currentStatus.equals(StatusEffect.NONE)) {
+        if(!this.getDead()) {
+            this.currentStatus = currentStatus;
+            if (currentStatus.equals(StatusEffect.BURNED)) {
+                timeSinceStatusApplied = W_BURNED;
+            } else if (currentStatus.equals(StatusEffect.POISONED)) {
+                timeSinceStatusApplied = W_POISONED;
+            } else if (currentStatus.equals(StatusEffect.NUMB)) {
+                timeSinceStatusApplied = W_FROZEN;
+            } else if (currentStatus.equals(StatusEffect.AFRAID)) {
+                timeSinceStatusApplied = W_AFRAID;
+                atkMod = 0.75;
+                defMod = 1.25;
+            } else if (currentStatus.equals(StatusEffect.NONE)) {
 
-            atkMod = 1.0;
-            defMod = 1.0;
+                atkMod = 1.0;
+                defMod = 1.0;
 
-            timeSinceStatusApplied = 0;
+                timeSinceStatusApplied = 0;
+            }
         }
     }
 

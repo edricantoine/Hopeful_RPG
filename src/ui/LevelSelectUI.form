@@ -20,6 +20,12 @@
           <text value="Select level."/>
         </properties>
       </component>
+      <hspacer id="1926">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
       <component id="ee5c9" class="javax.swing.JButton" binding="wastelandButton" default-binding="true">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -29,6 +35,16 @@
           <enabled value="true"/>
           <font name="Courier New"/>
           <text value="Wasteland"/>
+        </properties>
+      </component>
+      <component id="6c82e" class="javax.swing.JButton" binding="facilityButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Courier New"/>
+          <text value="Facility"/>
         </properties>
       </component>
     </children>

@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FacilitySecurity extends Enemy {
     private boolean isDroneDead;
     public FacilitySecurity() {
-        super("Dealer, Head of Security", 10, 100, new ArrayList<>(Arrays.asList(
+        super("Agent Dealer, Head of Security", 10, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Taunt", "said something nasty!", 0, "all",
                                 0, StatusEffect.NONE, 1.0, 1.0, 1),
                         new AttackSkill("Laugh", "laughed... annoyingly.", 0, "all", 0,

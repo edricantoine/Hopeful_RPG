@@ -4,11 +4,14 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 
 public class YouWinUI {
     private JPanel WinPanel;
     private JLabel Winlabel;
+    private JButton backToTitleScreenButton;
 
     public YouWinUI() {
         JFrame frame = new JFrame("A winner is you");
@@ -16,6 +19,14 @@ public class YouWinUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        backToTitleScreenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new MainMenu();
+            }
+        });
     }
 
     {
@@ -34,13 +45,30 @@ public class YouWinUI {
      */
     private void $$$setupUI$$$() {
         WinPanel = new JPanel();
-        WinPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        WinPanel.setLayout(new GridBagLayout());
         WinPanel.setBackground(new Color(-4988956));
         Winlabel = new JLabel();
         Font WinlabelFont = this.$$$getFont$$$("Courier New", -1, 20, Winlabel.getFont());
         if (WinlabelFont != null) Winlabel.setFont(WinlabelFont);
         Winlabel.setText("You Win! Try the next level!");
-        WinPanel.add(Winlabel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        WinPanel.add(Winlabel, gbc);
+        backToTitleScreenButton = new JButton();
+        Font backToTitleScreenButtonFont = this.$$$getFont$$$("Courier New", -1, -1, backToTitleScreenButton.getFont());
+        if (backToTitleScreenButtonFont != null) backToTitleScreenButton.setFont(backToTitleScreenButtonFont);
+        backToTitleScreenButton.setText("Back to Title Screen");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        WinPanel.add(backToTitleScreenButton, gbc);
     }
 
     /**
@@ -71,4 +99,5 @@ public class YouWinUI {
     public JComponent $$$getRootComponent$$$() {
         return WinPanel;
     }
+
 }

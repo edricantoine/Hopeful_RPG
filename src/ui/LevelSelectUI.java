@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.levelStuff.FacilityLevelTool;
 import model.levelStuff.Level;
 import model.levelStuff.WastelandLevelTool;
 
@@ -24,10 +25,13 @@ public class LevelSelectUI {
     private List<PlayerCharacter> party;
     private List<Level> levels;
     private Level wasteland;
+    private Level facility;
+    private FacilityLevelTool flt;
     private WastelandLevelTool wlt;
 
     private JPanel lselectpanel;
     private JButton wastelandButton;
+    private JButton facilityButton;
 
     public LevelSelectUI() {
 
@@ -48,6 +52,14 @@ public class LevelSelectUI {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
                 new Battle(wasteland.getRooms(), wasteland.getRooms().getLoot(), new Color(-2899838));
+            }
+        });
+        facilityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new Battle(facility.getRooms(), facility.getRooms().getLoot(), Color.GRAY);
             }
         });
     }
@@ -132,6 +144,9 @@ public class LevelSelectUI {
         wlt = new WastelandLevelTool(inventory, party);
         wasteland = new Level("The Wasteland", wlt.getWastelandRooms());
         levels.add(wasteland);
+        flt = new FacilityLevelTool(inventory, party);
+        facility = new Level("The Facility", flt.getFacilityRooms());
+        levels.add(facility);
     }
 
 
@@ -165,6 +180,12 @@ public class LevelSelectUI {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         lselectpanel.add(label1, gbc);
+        final JPanel spacer1 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        lselectpanel.add(spacer1, gbc);
         wastelandButton = new JButton();
         wastelandButton.setEnabled(true);
         Font wastelandButtonFont = this.$$$getFont$$$("Courier New", -1, -1, wastelandButton.getFont());
@@ -176,6 +197,15 @@ public class LevelSelectUI {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         lselectpanel.add(wastelandButton, gbc);
+        facilityButton = new JButton();
+        Font facilityButtonFont = this.$$$getFont$$$("Courier New", -1, -1, facilityButton.getFont());
+        if (facilityButtonFont != null) facilityButton.setFont(facilityButtonFont);
+        facilityButton.setText("Facility");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        lselectpanel.add(facilityButton, gbc);
     }
 
     /**
