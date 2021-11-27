@@ -1,21 +1,25 @@
 package model.levelStuff;
 
-import model.*;
-import model.enemies.*;
+import model.Item;
+import model.PlayerCharacter;
+import model.enemies.Enemy;
 import model.enemies.Wasteland.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class WastelandLevelTool {
     private List<Item> inventory;
     private List<PlayerCharacter> party;
+    private List<List<Enemy>> configs;
     private Room wastelandRooms;
 
     public WastelandLevelTool(List<Item> inventory, List<PlayerCharacter> party) {
         this.inventory = inventory;
         this.party = party;
+        configs = new ArrayList<>();
         setUpWastelandLevel();
     }
 
@@ -61,32 +65,35 @@ public class WastelandLevelTool {
                 new WastelandRev(), new WastelandSupport(), new WastelandSupport()
         ));
 
-        wastelandRooms = (new Room(config1, party, inventory, new Item("Food Rations", "Heals by 20 HP.",
-                0.0, 20.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
-                new Room(config2, party, inventory, new Item("Hot Coals", "Burns the target",
-                10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one"),
-                        new Room(configB1, party, inventory, new Item("Frankie's Engine", "Increases attack drastically but burns the user",
-                                0.0, 0.0, 0, 3.00, 1.0, false, StatusEffect.BURNED, 1, "one"),
-                                new Room(config5, party, inventory, new Item("AP Potion", "Heals 10 AP",
-                0.0, 0.0, 10, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
-                                        new Room(config6, party, inventory, new Item("Food Rations", "Heals by 20 HP.",
-                                                0.0, 20.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"),
-                                                new Room(configB2, party, inventory, null,
-                                                        new Room(config7, party, inventory, new Item("SEN-3's Shield", "Massive increase to defense but decreases attack",
-                                                                0.0, 0.0, 0, 0.30, 0.30, false, StatusEffect.NONE, 0, "one"),
-                                                                new Room(config8, party, inventory, new Item("Bomb", "A bomb.", 50.0, 0.0, 0, 1.0, 1.0, false,
-                                                                        StatusEffect.NONE, 0, "all"),
-                                                                        new Room(config9, party, inventory, null,
-                                                                                new Room(configB3, party, inventory, null, null)))))))))));
+        configs.add(config1);
+        configs.add(config2);
+        configs.add(config3);
+        configs.add(config4);
+        configs.add(config5);
+        configs.add(config6);
+        configs.add(config7);
+        configs.add(config8);
+        configs.add(config9);
+        configs.add(config10);
 
 
+        wastelandRooms = (new Room(selectConfig(), party, inventory,
+                new Room(selectConfig(), party, inventory,
+                        new Room(configB1, party, inventory,
+                                new Room(selectConfig(), party, inventory,
+                                        new Room(selectConfig(), party, inventory,
+                                                        new Room(selectConfig(), party, inventory,
+                                                                new Room(selectConfig(), party, inventory,
+                                                                        new Room(selectConfig(), party, inventory,
+                                                                                new Room(configB3, party, inventory, null))))))))));
 
 
+    }
 
-
-
-
-
+    public List<Enemy> selectConfig() {
+        Random rand = new Random();
+        int chosenconfig = rand.nextInt(configs.size());
+        return configs.get(chosenconfig);
     }
 
     public Room getWastelandRooms() {

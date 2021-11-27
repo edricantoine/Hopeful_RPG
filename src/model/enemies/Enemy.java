@@ -10,10 +10,12 @@ import java.util.List;
 
 public class Enemy extends Char {
 
-    private List<Enemy> enemiesWith;
-    private List<PlayerCharacter> pcAgainst;
-    private String enterText;
-    private String defeatText;
+
+    protected List<Enemy> enemiesWith;
+    protected List<PlayerCharacter> pcAgainst;
+    protected String enterText;
+    protected String defeatText;
+    protected Item loot;
 
     public Enemy(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor,
                  String enter, String defeat) {
@@ -22,6 +24,14 @@ public class Enemy extends Char {
         this.pcAgainst = new ArrayList<>();
         this.enterText = enter;
         this.defeatText = defeat;
+    }
+
+    public Item getLoot() {
+        return loot;
+    }
+
+    public void setLoot(Item loot) {
+        this.loot = loot;
     }
 
     public String getEnterText() {

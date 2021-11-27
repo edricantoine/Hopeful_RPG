@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -17,5 +18,8 @@ public class WastelandMelee extends Enemy {
                 )), 5,
                 "Your typical desert wasteland bandit.", " enter the fray!",
                 " was defeated.");
+
+        loot = new Item("Bomb", "A bomb. Deals 100 damage.", 100, 0.0, 0, 1.0, 1.0, false,
+                StatusEffect.NONE, 0, "all");
     }
 }

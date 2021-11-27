@@ -56,6 +56,8 @@ public class CharacterMenu {
         labs.add(e7l);
         labs.add(e8l);
         labs.add(e9l);
+        Font e9lFont = this.$$$getFont$$$("Courier New", -1, -1, e9l.getFont());
+        if (e9lFont != null) e9l.setFont(e9lFont);
         for (int i = 0; i < Math.min(chars.size(), labs.size()); i++) {
             labs.get(i).setText("<html>" + chars.get(i).getName() + " HP: " + chars.get(i).getMaxhp() + " AP: " +
                     chars.get(i).getMaxap() + " Speed: " + chars.get(i).getSpeed() + "<br/>"
@@ -161,7 +163,7 @@ public class CharacterMenu {
         backButton.setText("Back");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 16;
+        gbc.gridy = 17;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         cmPanel.add(backButton, gbc);
         final JPanel spacer1 = new JPanel();
@@ -210,9 +212,15 @@ public class CharacterMenu {
         e9l.setText("");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 15;
+        gbc.gridy = 16;
         gbc.anchor = GridBagConstraints.WEST;
         cmPanel.add(e9l, gbc);
+        final JPanel spacer8 = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 15;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        cmPanel.add(spacer8, gbc);
     }
 
     /**

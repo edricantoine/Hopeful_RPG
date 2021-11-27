@@ -15,24 +15,18 @@ public class Room {
     private List<PlayerCharacter> party;
     private List<Char> allChars;
     private Room nextRoom;
-    private Item loot;
-    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item loot, Room nextRoom) {
+
+    public Room(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Room nextRoom) {
         this.nextRoom = nextRoom;
         this.enemies = enemies;
         this.party = party;
         this.inventory = inventory;
         this.allChars = new ArrayList<>();
-        this.loot = loot;
+
         createAllChars();
     }
 
-    public Item getLoot() {
-        return loot;
-    }
 
-    public void setLoot(Item loot) {
-        this.loot = loot;
-    }
 
     public List<Item> getInventory() {
         return inventory;

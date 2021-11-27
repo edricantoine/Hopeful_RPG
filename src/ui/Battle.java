@@ -26,6 +26,7 @@ public class Battle {
     private List<JButton> tButtons;
     private List<JButton> bButtons;
     private List<JButton> oButtons;
+    private List<Item> possibleLoot;
     private JLabel p1;
     private JLabel p2;
     private JLabel p3;
@@ -62,7 +63,7 @@ public class Battle {
     private Timer timer;
     private Timer lootTimer;
 
-    public Battle(Room r, Item loot, Color color) {
+    public Battle(Room r, Color color) {
 
         temp = this;
         jButtons = new ArrayList<>();
@@ -71,19 +72,39 @@ public class Battle {
         oButtons = new ArrayList<>();
         pLabs = new ArrayList<>();
         eLabs = new ArrayList<>();
+        possibleLoot = new ArrayList<>();
         this.room = r;
-        this.loot = loot;
         this.color = color;
+        this.loot = null;
         battlePanel.setBackground(color);
         frame = new JFrame("Battle");
         frame.setContentPane(battlePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initializeLabels();
         initializeButtons();
+        if (decideLoot()) {
+            chooseLoot();
+        }
         frame.pack();
         frame.setVisible(true);
 
 
+    }
+
+    public Boolean decideLoot() {
+        Random rand = new Random();
+        int lootchance = rand.nextInt(2);
+        return lootchance == 0;
+    }
+
+    public void chooseLoot() {
+        for (Enemy e : room.getEnemies()) {
+            possibleLoot.add(e.getLoot());
+        }
+
+        Random rand = new Random();
+        int index = rand.nextInt(possibleLoot.size());
+        this.loot = possibleLoot.get(index);
     }
 
 
@@ -145,8 +166,8 @@ public class Battle {
     }
 
     public void initializeTooltips() {
-        button1.setToolTipText("Deals 50 damage to all enemies with 1/2 chance to freeze.");
-        button2.setToolTipText("Deals 20 damage.");
+        button2.setToolTipText("Deals 50 damage to all enemies with 1/2 chance to freeze.");
+        button1.setToolTipText("Deals 20 damage.");
         button3.setToolTipText("Increases defense.");
         button4.setToolTipText("Deals 60 damage to one enemy with 1/3 chance to freeze.");
         button5.setToolTipText("Deals 20 damage - and looks totally badass.");
@@ -685,7 +706,7 @@ public class Battle {
                     lootTimer.stop();
                     if (room.getNextRoom() != null) {
                         frame.dispose();
-                        new Battle(room.getNextRoom(), room.getNextRoom().getLoot(), temp.getColor());
+                        new Battle(room.getNextRoom(), temp.getColor());
                     } else {
                         frame.dispose();
                         new YouWinUI();

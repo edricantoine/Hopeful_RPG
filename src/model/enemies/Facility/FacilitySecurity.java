@@ -41,4 +41,28 @@ public class FacilitySecurity extends Enemy {
                 new AttackSkill("Weak Slap", "weakly slapped at", 0, "one", 1,
                         StatusEffect.NONE, 1.0, 1.0, 1))));
     }
+
+    @Override
+    public void setCurrentStatus(StatusEffect currentStatus) {
+        if(!this.getDead() && !this.isDroneDead) {
+            this.currentStatus = currentStatus;
+            if (currentStatus.equals(StatusEffect.BURNED)) {
+                timeSinceStatusApplied = W_BURNED;
+            } else if (currentStatus.equals(StatusEffect.POISONED)) {
+                timeSinceStatusApplied = W_POISONED;
+            } else if (currentStatus.equals(StatusEffect.NUMB)) {
+                timeSinceStatusApplied = W_FROZEN;
+            } else if (currentStatus.equals(StatusEffect.AFRAID)) {
+                timeSinceStatusApplied = W_AFRAID;
+                atkMod = 0.75;
+                defMod = 1.25;
+            } else if (currentStatus.equals(StatusEffect.NONE)) {
+
+                atkMod = 1.0;
+                defMod = 1.0;
+
+                timeSinceStatusApplied = 0;
+            }
+        }
+    }
 }

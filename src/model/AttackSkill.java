@@ -83,10 +83,15 @@ public class AttackSkill extends Skill {
 
         if(statusToApply != StatusEffect.NONE && !c.getDead()) {
 
-            Random rand = new Random();
-            int statusApply = rand.nextInt(statusApplyChance);
-            if(statusApply == 0) {
-                c.setCurrentStatus(statusToApply);
+            if(c instanceof FacilitySecurity && !((FacilitySecurity) c).isDroneDead()) {
+                c.setCurrentStatus(StatusEffect.NONE);
+            } else {
+
+                Random rand = new Random();
+                int statusApply = rand.nextInt(statusApplyChance);
+                if (statusApply == 0) {
+                    c.setCurrentStatus(statusToApply);
+                }
             }
 
         }

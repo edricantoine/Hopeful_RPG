@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -25,5 +26,8 @@ public class WastelandRev extends Enemy {
                 "Who knew wasteland bandits could be religious? You'll burn if you aren't careful.",
                 " stand strongly!",
                 " fell to his knees...");
+
+        loot = new Item("Reverend's Scripture", "Fully heals HP and AP, and cures status.",
+                0.0, 1000, 101, 1.0, 1.0, true, StatusEffect.NONE, 0, "one");
     }
 }

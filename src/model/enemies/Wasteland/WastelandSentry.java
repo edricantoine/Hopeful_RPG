@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -25,5 +26,8 @@ public class WastelandSentry extends Enemy {
                 "This surveillance robot has gone rogue and now attacks everything in sight.",
                 " booted up!",
                 " crashed and burned.");
+
+        loot = new Item("SEN-3's Shield", "Massive increase to defense but decreases attack",
+                0.0, 0.0, 0, 0.30, 0.30, false, StatusEffect.NONE, 0, "one");
     }
 }

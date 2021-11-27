@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -17,5 +18,7 @@ public class WastelandAssassin extends Enemy {
                 )), 7,
                 "Watch out for this fragile enemy's rusty metal blade! Try not to get poisoned.", " ready their blades.",
                 " fell to the ground.");
+        loot = new Item("Hot Coals", "Burns the target",
+                10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one");
     }
 }

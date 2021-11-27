@@ -51,7 +51,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(wasteland.getRooms(), wasteland.getRooms().getLoot(), new Color(-2899838));
+                new Battle(wasteland.getRooms(), new Color(-2899838));
             }
         });
         facilityButton.addActionListener(new ActionListener() {
@@ -59,7 +59,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(facility.getRooms(), facility.getRooms().getLoot(), Color.GRAY);
+                new Battle(facility.getRooms(), Color.GRAY);
             }
         });
     }

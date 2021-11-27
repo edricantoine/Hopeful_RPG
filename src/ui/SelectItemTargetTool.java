@@ -58,6 +58,11 @@ public class SelectItemTargetTool {
         for (int i = 0; i < Math.min(enemyButtons.size(), room.getEnemies().size()); i++) {
             enemyButtons.get(i).setText(room.getEnemies().get(i).getName());
         }
+        for (int i = 0; i < enemyButtons.size(); i++) {
+            if (enemyButtons.get(i).getText().equals("Button")) {
+                enemyButtons.get(i).setText("N/A");
+            }
+        }
         initializeListeners();
     }
 
@@ -98,9 +103,7 @@ public class SelectItemTargetTool {
                 enemyButtons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        user.setSelectedItem(item);
-                        item.addToSetTargets(room.getEnemies().get(finalI));
-                        battle.checkReadyToTurn();
+
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
 
@@ -194,4 +197,5 @@ public class SelectItemTargetTool {
     public JComponent $$$getRootComponent$$$() {
         return SelectItemTargetPanel;
     }
+
 }

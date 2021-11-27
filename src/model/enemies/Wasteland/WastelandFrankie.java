@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -24,5 +25,8 @@ public class WastelandFrankie extends Enemy {
                 "Is she a machine? A mole? How about both?! Watch out for her high-damage, high-velocity attacks.",
                 " are revved up!",
                 " sputtered to a stop...");
+
+        loot = new Item("Frankie's Engine", "Increases attack drastically but burns the user",
+                0.0, 0.0, 0, 3.00, 1.0, false, StatusEffect.BURNED, 1, "one");
     }
 }

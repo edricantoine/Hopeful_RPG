@@ -1,6 +1,7 @@
 package model.enemies.Wasteland;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -17,5 +18,9 @@ public class WastelandTank extends Enemy {
                 )), 2,
                 "This bandit's scrap armor makes him tough to take down.", " are ready to fight!",
                 "'s armor crumbled...");
+
+        loot = new Item("Food Rations", "Heals by 50 HP.",
+                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
+
     }
 }

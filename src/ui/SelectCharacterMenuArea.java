@@ -188,15 +188,24 @@ public class SelectCharacterMenuArea {
         backButton.setText("Back");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         selectAreaPanel.add(backButton, gbc);
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         selectAreaPanel.add(spacer1, gbc);
+        facilityButton = new JButton();
+        Font facilityButtonFont = this.$$$getFont$$$("Courier New", -1, -1, facilityButton.getFont());
+        if (facilityButtonFont != null) facilityButton.setFont(facilityButtonFont);
+        facilityButton.setText("Facility");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        selectAreaPanel.add(facilityButton, gbc);
     }
 
     /**
