@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -22,6 +23,8 @@ public class FacilitySecurity extends Enemy {
                 )), 11, "You can't take out the commander until you take out the drone!",
                 " block the way!", " was destroyed.");
         isDroneDead = false;
+        loot = new Item("Dealer's Shield Cell", "Maximizes defense until the target is Cured or made Afraid.", 0.0,
+                0.0, 0, 1.0, 0.0, false, StatusEffect.NONE, 1, "one");
     }
 
     public void turnDroneDead() {

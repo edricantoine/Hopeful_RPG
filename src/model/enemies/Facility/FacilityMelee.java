@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -21,5 +22,8 @@ public class FacilityMelee extends Enemy {
 
                 )), 5, "Don't attack him when he's countering, or you'll feel the pain too!",
                 " enter the fray!", " crumpled to his knees!");
+
+        loot = new Item("Food Rations", "Heals by 50 HP.",
+                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
     }
 }

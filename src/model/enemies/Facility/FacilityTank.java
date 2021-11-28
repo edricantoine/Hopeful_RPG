@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -19,6 +20,8 @@ public class FacilityTank extends Enemy {
 
                 )), 2, "Just when you think you've beaten him...",
                 " make their last stand.", " was defeated for good.");
+        loot = new Item("Ball of Light", "Instantly kills the target.", 1000.0,
+                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
     }
 
     public void checkandRevive() {

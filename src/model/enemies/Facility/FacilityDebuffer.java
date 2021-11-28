@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -21,5 +22,8 @@ public class FacilityDebuffer extends Enemy {
                         StatusEffect.AFRAID, 1.0, 1.0, 1)
         )), 5, "This enemy will inflict status effects on the party, generally making life really annoying.",
                 " ready their equipment.", " ran away!");
+
+        loot = new Item("Pot of Coffee", "Permanently increases Speed this level.", 0.0,
+                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
     }
 }

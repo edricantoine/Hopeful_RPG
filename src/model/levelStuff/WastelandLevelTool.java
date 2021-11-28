@@ -82,7 +82,7 @@ public class WastelandLevelTool {
                         new Room(configB1, party, inventory,
                                 new Room(selectConfig(), party, inventory,
                                         new Room(selectConfig(), party, inventory,
-                                                        new Room(selectConfig(), party, inventory,
+                                                        new Room(configB2, party, inventory,
                                                                 new Room(selectConfig(), party, inventory,
                                                                         new Room(selectConfig(), party, inventory,
                                                                                 new Room(configB3, party, inventory, null))))))))));

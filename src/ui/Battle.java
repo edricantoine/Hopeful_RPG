@@ -521,6 +521,25 @@ public class Battle {
 
     private void usePlayerItem(PlayerCharacter p) {
         Item i = p.getSelectedItem();
+        if (i.getName().equals("Pot of Coffee")) {
+            p.setSpeed(p.getSpeed() + 2);
+        }
+        if (i.getName().equals("COBRA Battery")) {
+            for (Enemy e : room.getEnemies()) {
+                e.takeDamage(50);
+                e.setCurrentStatus(StatusEffect.NUMB);
+            }
+        }
+        if (i.getName().equals("Ace's Counter Device")) {
+            for (PlayerCharacter c : room.getParty()) {
+                p.setCurrentStatus(StatusEffect.RIPOSTE);
+            }
+        }
+        if (i.getName().equals("Biofield")) {
+            for (PlayerCharacter c : room.getParty()) {
+                p.healDamage(50);
+            }
+        }
         for (Char c : i.getSetTargets()) {
             if (!p.getDead()) {
 
@@ -552,7 +571,7 @@ public class Battle {
 
                 s.takeEffect(c);
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
-                    p.takeDamage(s.getDamage() / 2);
+                    p.takeDamage(s.getDamage());
                 }
 
                 if (s.equals(room.getParty().get(3).getSkills().get(3))) {
@@ -589,22 +608,24 @@ public class Battle {
                 }
                 s.takeEffect(c);
 
-                if (e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
-                    e.setAtkMod((e.getAtkMod() + 1.50) / 2.0);
+                if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
+                    e.takeDamage(s.getDamage());
                 }
-
-                if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {
-                    e.setCurrentStatus(StatusEffect.RIPOSTE);
-                }
-
-                if (e instanceof FacilityGuard && s.getName().equals("Group Counter")) {
-                    for (Enemy n : room.getEnemies()) {
-                        n.setCurrentStatus(StatusEffect.RIPOSTE);
-                    }
-                }
-
-                s.setAtkMod(1.00);
             }
+            if (e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
+                e.setAtkMod((e.getAtkMod() + 1.50) / 2.0);
+            }
+
+            if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {
+                e.setCurrentStatus(StatusEffect.RIPOSTE);
+            }
+
+            if (e instanceof FacilityGuard && s.getName().equals("Group Counter")) {
+                for (Enemy n : room.getEnemies()) {
+                    n.setCurrentStatus(StatusEffect.RIPOSTE);
+                }
+            }
+            s.setAtkMod(1.00);
         } else {
             battleLabel.setText(e.getName() + " " + "couldn't move this turn...!");
         }

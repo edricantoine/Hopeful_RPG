@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -21,6 +22,9 @@ public class FacilityBulwark extends Enemy {
 
                 )), 5, "This enemy will increase all his allies' defense, so take him out quickly.",
                 " stand strong!", " crumpled to his knees!");
+
+        loot = new Item("Riot Shield", "Increases defense and activates Riposte.", 0.0,
+                0.0, 0, 1.0, 0.80, false, StatusEffect.RIPOSTE, 1, "one");
     }
 
 }

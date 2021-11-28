@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.enemies.Enemy;
 
@@ -18,5 +19,8 @@ public class FacilityBomber extends Enemy {
                                 StatusEffect.NONE, 0.80, 1.20, 1)
                 )), 5, "Watch out for this enemy's AOE attacks! Make sure you have healing items ready.",
                 " are locked and loaded.", " was defeated!");
+
+        loot = new Item("Flashbang Grenade", "Target's attack and defense are lowered, with chance to numb target", 10.0,
+                0.0, 0, 0.80, 1.20, false, StatusEffect.NUMB, 2, "one");
     }
 }

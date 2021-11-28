@@ -1,6 +1,7 @@
 package model.enemies.Facility;
 
 import model.AttackSkill;
+import model.Item;
 import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
@@ -22,6 +23,9 @@ public class FacilityGuard extends Enemy {
 
                 )), 5, "This enemy relies on her guards to help her in battle. Taking them out will make this easier!",
                 " are prepared.", " was defeated.");
+
+        loot = new Item("Ace's Counter Device", "Activates Riposte on the party.", 0.0,
+                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
     }
 
 }

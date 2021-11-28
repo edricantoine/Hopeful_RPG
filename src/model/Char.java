@@ -62,6 +62,10 @@ public abstract class Char {
     }
 
 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     public void setSelectedSkill(Skill selectedSkill) {
         this.selectedSkill = selectedSkill;
     }

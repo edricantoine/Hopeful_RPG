@@ -1,5 +1,7 @@
 package model.enemies.Facility;
 
+import model.Item;
+import model.StatusEffect;
 import model.SupportSkill;
 import model.enemies.Enemy;
 
@@ -18,5 +20,7 @@ public class FacilityMedic extends Enemy {
 
                 )), 5, "Take him out first, or he'll just keep on healing his allies!",
                 " are prepared to fight", " crumpled to his knees!");
+        loot = new Item("Biofield", "Heals all allies by 50.", 0.0,
+                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
     }
 }
