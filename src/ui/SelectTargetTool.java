@@ -83,7 +83,8 @@ public class SelectTargetTool {
                 if (skill instanceof AttackSkill) {
 
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
@@ -102,7 +103,8 @@ public class SelectTargetTool {
 
                 } else if (skill instanceof SupportSkill) {
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
@@ -129,7 +131,8 @@ public class SelectTargetTool {
                 if (skill instanceof AttackSkill) {
 
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
@@ -148,7 +151,8 @@ public class SelectTargetTool {
 
                 } else if (skill instanceof SupportSkill) {
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
@@ -175,7 +179,8 @@ public class SelectTargetTool {
                 if (skill instanceof AttackSkill) {
 
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
@@ -194,7 +199,8 @@ public class SelectTargetTool {
 
                 } else if (skill instanceof SupportSkill) {
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);
@@ -220,7 +226,8 @@ public class SelectTargetTool {
                 if (skill instanceof AttackSkill) {
 
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
@@ -239,7 +246,8 @@ public class SelectTargetTool {
 
                 } else if (skill instanceof SupportSkill) {
                     if (t.equals("N/A")) {
-                        Toolkit.getDefaultToolkit().beep();
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
                         for (PlayerCharacter n : room.getParty()) {
                             skill.addToSetTargets(n);

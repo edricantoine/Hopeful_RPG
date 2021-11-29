@@ -428,7 +428,7 @@ public class Battle {
             itemButton1.setEnabled(false);
             itemButton2.setEnabled(false);
             itemButton3.setEnabled(false);
-            timer = new Timer(3000, null);
+            timer = new Timer(2000, null);
             timer.setRepeats(true);
             timer.setInitialDelay(0);
             timer.addActionListener(new ActionListener() {
@@ -540,7 +540,7 @@ public class Battle {
         for (Char c : i.getSetTargets()) {
             if (!p.getDead()) {
 
-                battleLabel.setText(p.getName() + " used" + i.getName() + "!");
+                battleLabel.setText(p.getName() + " used " + i.getName() + "!");
                 i.takeEffect(c);
                 room.removeFromInventory(i);
 
