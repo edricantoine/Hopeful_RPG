@@ -11,13 +11,11 @@ import java.util.Arrays;
 
 public class FacilityDrone extends Enemy {
     public FacilityDrone() {
-        super("COBRA Drone", 500, 100, new ArrayList<>(Arrays.asList(
+        super("COBRA Drone", 350, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Discharge", "discharged electricity!", 0, "all",
-                                20, StatusEffect.NUMB, 1.0, 1.0, 2),
-                        new AttackSkill("Flamethrower", "shot flames out!", 0, "all", 30,
+                                50, StatusEffect.NUMB, 1.0, 1.0, 2),
+                        new AttackSkill("Flamethrower", "shot flames out!", 0, "all", 50,
                                 StatusEffect.BURNED, 1.0, 1.0, 2),
-                        new AttackSkill("Laser Shot", "shot a beam at", 0, "one", 50,
-                                StatusEffect.NONE, 1.0, 1.0, 1),
                         new SupportSkill("Repair Subroutine", "entered repair mode, healing", 0, "one", 50,
                                 0, 1.0, 1.0, true)
 

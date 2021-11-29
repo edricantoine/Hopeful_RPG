@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class FacilityMelee extends Enemy {
 
     public FacilityMelee() {
-        super("Watcher Striker", 125, 100, new ArrayList<>(Arrays.asList(
+        super("Watcher Striker", 100, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Baton Strike", "swung a baton at", 0, "one",
                                 40, StatusEffect.NONE, 1.0, 1.0, 1),
                         new SupportSkill("Battlecry", "riled up the enemies!", 0, "all", 0,

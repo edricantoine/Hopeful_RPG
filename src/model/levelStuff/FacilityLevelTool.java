@@ -33,7 +33,9 @@ public class FacilityLevelTool {
                 new FacilitySecurity(), new FacilityDrone()
         ));
         List<Enemy> configB3 = new ArrayList<>(Arrays.asList(
-                new FacilityDrone(), new FacilityGuard(), new FacilityTank(), new FacilitySecurity()));
+                new FacilityTank(), new FacilityGuard(), new FacilityDrone(), new FacilitySecurity()));
+        List<Enemy> configBTest = new ArrayList<>(Arrays.asList(
+                 new FacilityTank()));
 
 
 
@@ -56,7 +58,7 @@ public class FacilityLevelTool {
 
         for(int i = 1; i <= chosenconfig; i++) {
             Random rand2 = new Random();
-            int chosenenemy = rand.nextInt(enemies.size());
+            int chosenenemy = rand2.nextInt(enemies.size());
             if(enemies.get(chosenenemy).equals("bom")) {
                 toReturn.add(new FacilityBomber());
             } else if(enemies.get(chosenenemy).equals("bul")) {

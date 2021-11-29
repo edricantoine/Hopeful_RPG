@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class FacilityTank extends Enemy {
     private Boolean hasRevived;
     public FacilityTank() {
-        super("Agent Jackpot", 500, 100, new ArrayList<>(Arrays.asList(
+        super("Agent Jackpot", 250, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Shield Gauntlets", "struck with a massive shield, hitting", 0, "one",
                                 15, StatusEffect.NONE, 1.0, 1.10, 1),
                         new SupportSkill("Shrug It Off", "held up a shield!", 0, "one", 0,
@@ -22,12 +22,15 @@ public class FacilityTank extends Enemy {
                 " make their last stand.", " was defeated for good.");
         loot = new Item("Ball of Light", "Instantly kills the target.", 1000.0,
                 0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
+        hasRevived = false;
     }
 
     public void checkandRevive() {
         if(getHp() <= 1 && !hasRevived) {
             ascend();
             hasRevived = true;
+        } else if (getHp() < 1 && hasRevived) {
+            kill();
         }
     }
 
@@ -41,6 +44,17 @@ public class FacilityTank extends Enemy {
                         StatusEffect.NONE, 1.0, 1.0, 2),
                 new AttackSkill("Be Not Afraid", "focused many eyes on the party...", 0, "all", 0,
                         StatusEffect.AFRAID, 1.0, 1.0, 1))));
+
+    }
+
+    @Override
+    public void takeDamage(double d) {
+        if((hp - (d * defMod)) <= 0) {
+            hp -= (d * defMod);
+            checkandRevive();
+        } else {
+            hp -= (d * defMod);
+        }
 
     }
 }

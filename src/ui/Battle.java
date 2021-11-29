@@ -458,9 +458,6 @@ public class Battle {
                     } else {
                         timer.stop();
                         for (Char c : room.getAllChars()) {
-                            if (c instanceof FacilityTank) {
-                                ((FacilityTank) c).checkandRevive();
-                            }
                             c.turnEndRoutine();
                             refresh();
                         }

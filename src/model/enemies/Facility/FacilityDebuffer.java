@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class FacilityDebuffer extends Enemy {
 
     public FacilityDebuffer() {
-        super("Watcher Scientist", 120, 100, new ArrayList<>(Arrays.asList(
+        super("Watcher Scientist", 110, 100, new ArrayList<>(Arrays.asList(
                 new AttackSkill("Acid Bomb", "threw a beaker of acid at", 0, "one",
                         40, StatusEffect.BURNED, 1.0, 1.0, 1),
                 new AttackSkill("Stun Gun", "wielded a taser at", 0, "one", 50,

@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class FacilityGuard extends Enemy {
     public FacilityGuard() {
-        super("Agent Ace, Elite Guard", 400, 100, new ArrayList<>(Arrays.asList(
+        super("Agent Ace, Elite Guard", 350, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Shock Batons", "struck with electrified batons, hitting", 0, "one",
                                 40, StatusEffect.NUMB, 1.0, 1.0, 1),
                         new AttackSkill("Group Counter", "commanded the enemies to counter!", 0, "all", 0,
