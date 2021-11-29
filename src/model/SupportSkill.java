@@ -23,13 +23,25 @@ public class SupportSkill extends Skill {
 
         c.healDamage(hpEffect);
         c.healAp(apEffect);
-        if(defEffect != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
-            c.setDefMod((c.getDefMod() + defEffect) / 2.0);
+        if(defEffect != 1.0) {
+            if(c.getDefMod() + defEffect <= 0.25) {
+                c.setDefMod(0.25);
+            } else if (c.getDefMod() + defEffect >= 4.00) {
+                c.setDefMod(4.00);
+            } else {
+                    c.setDefMod((c.getDefMod() + defEffect));
+            }
 
         }
 
-        if(atkEffect != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
-            c.setAtkMod((c.getAtkMod() + atkEffect) / 2.0);
+        if(atkEffect != 1.0) {
+            if(c.getAtkMod() + atkEffect <= 0.25) {
+                c.setAtkMod(0.25);
+            } else if (c.getAtkMod() + atkEffect >= 4.00) {
+                c.setAtkMod(4.00);
+            } else {
+                c.setAtkMod((c.getAtkMod() + atkEffect));
+            }
 
         }
 

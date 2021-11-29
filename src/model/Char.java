@@ -145,8 +145,7 @@ public abstract class Char {
                 timeSinceStatusApplied = W_FROZEN;
             } else if (currentStatus.equals(StatusEffect.AFRAID)) {
                 timeSinceStatusApplied = W_AFRAID;
-                atkMod = 0.75;
-                defMod = 1.25;
+
             } else if (currentStatus.equals(StatusEffect.NONE)) {
                 timeSinceStatusApplied = 0;
             }
@@ -222,9 +221,22 @@ public abstract class Char {
 
     public void turnBeginRoutine() {
         if (currentStatus.equals(StatusEffect.AFRAID)) {
-            atkMod -= 0.25;
-            defMod += 0.25;
+            if(this.getAtkMod() -0.15 <= 0.25) {
+                this.setAtkMod(0.25);
+            } else if (this.getAtkMod() - 0.15 >= 4.00) {
+                this.setAtkMod(4.00);
+            } else {
+                this.setAtkMod((this.getAtkMod() - 0.15));
+            }
+            if(this.getDefMod() + 0.25 <= 0.25) {
+                this.setDefMod(0.25);
+            } else if (this.getDefMod() + 0.25 >= 4.00) {
+                this.setDefMod(4.00);
+            } else {
+                this.setDefMod((this.getDefMod() + 0.25));
+            }
         }
+        healAp(10);
     }
 
     public void turnEndRoutine() {
@@ -237,7 +249,7 @@ public abstract class Char {
         }
 
         if(currentStatus.equals(StatusEffect.POISONED)) {
-            takeDamage(DMG_POISONED * (W_POISONED * timeSinceStatusApplied));
+            takeDamage(DMG_POISONED * timeSinceStatusApplied);
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);
@@ -259,7 +271,7 @@ public abstract class Char {
         }
 
 
-        healAp(10);
+
         setSelectedSkill(null);
         setSelectedItem(null);
     }

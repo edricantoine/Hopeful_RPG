@@ -98,13 +98,25 @@ public class Item {
         c.healAp(apHeal);
         c.takeDamage(damage);
 
-        if(defMod != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
-            c.setDefMod((defMod + c.getDefMod()) / 2.0);
+        if(defMod != 1.0) {
+            if(c.getDefMod() + defMod <= 0.25) {
+                c.setDefMod(0.25);
+            } else if (c.getDefMod() + defMod >= 4.00) {
+                c.setDefMod(4.00);
+            } else {
+                c.setDefMod((c.getDefMod() + defMod));
+            }
 
         }
 
-        if(atkMod != 1.0 && c.getCurrentStatus() != StatusEffect.AFRAID) {
-            c.setAtkMod((atkMod + c.getAtkMod()) / 2.0);
+        if(defMod != 1.0) {
+            if(c.getAtkMod() + defMod <= 0.25) {
+                c.setAtkMod(0.25);
+            } else if (c.getAtkMod() + defMod >= 4.00) {
+                c.setAtkMod(4.00);
+            } else {
+                c.setAtkMod((c.getAtkMod() + defMod));
+            }
 
         }
 

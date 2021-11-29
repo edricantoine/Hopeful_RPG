@@ -21,6 +21,6 @@ public class FacilityBomber extends Enemy {
                 " are locked and loaded.", " was defeated!");
 
         loot = new Item("Flashbang Grenade", "Target's attack and defense are lowered, with chance to numb target", 10.0,
-                0.0, 0, 0.80, 1.20, false, StatusEffect.NUMB, 2, "one");
+                0.0, 0, -0.10, 1.20, false, StatusEffect.NUMB, 2, "one");
     }
 }

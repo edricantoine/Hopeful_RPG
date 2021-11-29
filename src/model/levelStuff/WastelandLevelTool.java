@@ -15,11 +15,15 @@ public class WastelandLevelTool {
     private List<PlayerCharacter> party;
     private List<List<Enemy>> configs;
     private Room wastelandRooms;
+    private List<String> enemies;
 
     public WastelandLevelTool(List<Item> inventory, List<PlayerCharacter> party) {
         this.inventory = inventory;
         this.party = party;
         configs = new ArrayList<>();
+        enemies = new ArrayList<>(Arrays.asList(
+                "as", "mel", "sup", "tan"
+        ));
         setUpWastelandLevel();
     }
 
@@ -91,9 +95,27 @@ public class WastelandLevelTool {
     }
 
     public List<Enemy> selectConfig() {
+        List<Enemy> toReturn = new ArrayList<>();
         Random rand = new Random();
-        int chosenconfig = rand.nextInt(configs.size());
-        return configs.get(chosenconfig);
+        int chosenconfig = rand.nextInt(3) + 2;
+
+        for(int i = 1; i <= chosenconfig; i++) {
+            Random rand2 = new Random();
+            int chosenenemy = rand2.nextInt(enemies.size());
+            if(enemies.get(chosenenemy).equals("as")) {
+                toReturn.add(new WastelandAssassin());
+            } else if(enemies.get(chosenenemy).equals("mel")) {
+                toReturn.add(new WastelandMelee());
+            } else if(enemies.get(chosenenemy).equals("sup")) {
+                toReturn.add(new WastelandSupport());
+            } else if(enemies.get(chosenenemy).equals("tan")) {
+                toReturn.add(new WastelandTank());
+            }
+        }
+
+        return toReturn;
+
+
     }
 
     public Room getWastelandRooms() {

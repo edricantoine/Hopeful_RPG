@@ -87,9 +87,9 @@ public class LevelSelectUI {
                 new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
                         20, StatusEffect.NONE, 1.0, 1.0, 1),
                 new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
-                        50.0, 0, 1.50, 1.0, false),
+                        50.0, 0, 0.25, 1.0, false),
                 new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
-                        50.0, 0, 1.0, 0.5, false),
+                        50.0, 0, 1.0, -0.15, false),
                 new SupportSkill("Toast", "and the party drank together!", 40, "all",
                         70.0, 0, 1.0, 1.0, true)
 
@@ -106,7 +106,7 @@ public class LevelSelectUI {
                         50, StatusEffect.BURNED, 1.0, 1.0, 2),
                 new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
                         75, StatusEffect.BURNED, 1.0, 1.0, 3),
-                new AttackSkill("Fumes", "sprayed toxic gas at", 50, "one",
+                new AttackSkill("Fumes", "sprayed toxic gas at", 20, "one",
                         0, StatusEffect.POISONED, 1.0, 1.0, 1)
 
 

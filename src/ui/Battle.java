@@ -147,20 +147,53 @@ public class Battle {
         for (int i = 0; i < jButtons.size(); i++) {
             jButtons.get(i).setText("<html>" + room.getParty().get(0).getSkills().get(i).getName() + "<br/>" +
                     room.getParty().get(0).getSkills().get(i).getApCost() + " AP</html>");
+            jButtons.get(i).setEnabled(false);
 
         }
         for (int i = 0; i < tButtons.size(); i++) {
             tButtons.get(i).setText("<html>" + room.getParty().get(1).getSkills().get(i).getName() + "<br/>" +
                     room.getParty().get(1).getSkills().get(i).getApCost() + " AP</html>");
+            tButtons.get(i).setEnabled(false);
         }
         for (int i = 0; i < bButtons.size(); i++) {
             bButtons.get(i).setText("<html>" + room.getParty().get(2).getSkills().get(i).getName() + "<br/>" +
                     room.getParty().get(2).getSkills().get(i).getApCost() + " AP</html>");
+            bButtons.get(i).setEnabled(false);
         }
         for (int i = 0; i < oButtons.size(); i++) {
             oButtons.get(i).setText("<html>" + room.getParty().get(3).getSkills().get(i).getName() + "<br/>" +
                     room.getParty().get(3).getSkills().get(i).getApCost() + " AP</html>");
+            oButtons.get(i).setEnabled(false);
         }
+
+        for (int i = 0; i < jButtons.size(); i++) {
+            if (room.getParty().get(0).getDead() || room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
+                jButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < tButtons.size(); i++) {
+            if (room.getParty().get(1).getDead() || room.getParty().get(1).canUseSkill(room.getParty().get(1).getSkills().get(i))) {
+                tButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < bButtons.size(); i++) {
+            if (room.getParty().get(2).getDead() || room.getParty().get(2).canUseSkill(room.getParty().get(2).getSkills().get(i))) {
+                bButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < oButtons.size(); i++) {
+            if (room.getParty().get(3).getDead() || room.getParty().get(3).canUseSkill(room.getParty().get(3).getSkills().get(i))) {
+                oButtons.get(i).setEnabled(true);
+            }
+
+        }
+        itemButton.setEnabled(true);
+        itemButton1.setEnabled(true);
+        itemButton2.setEnabled(true);
+        itemButton3.setEnabled(true);
 
         initializeTooltips();
     }
@@ -467,25 +500,25 @@ public class Battle {
                         checkBattleOver();
                         battleLabel.setText("The battle rages on...");
                         for (int i = 0; i < jButtons.size(); i++) {
-                            if (room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
+                            if (room.getParty().get(0).getDead() || room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
                                 jButtons.get(i).setEnabled(true);
                             }
 
                         }
                         for (int i = 0; i < tButtons.size(); i++) {
-                            if (room.getParty().get(1).canUseSkill(room.getParty().get(1).getSkills().get(i))) {
+                            if (room.getParty().get(1).getDead() || room.getParty().get(1).canUseSkill(room.getParty().get(1).getSkills().get(i))) {
                                 tButtons.get(i).setEnabled(true);
                             }
 
                         }
                         for (int i = 0; i < bButtons.size(); i++) {
-                            if (room.getParty().get(2).canUseSkill(room.getParty().get(2).getSkills().get(i))) {
+                            if (room.getParty().get(2).getDead() || room.getParty().get(2).canUseSkill(room.getParty().get(2).getSkills().get(i))) {
                                 bButtons.get(i).setEnabled(true);
                             }
 
                         }
                         for (int i = 0; i < oButtons.size(); i++) {
-                            if (room.getParty().get(3).canUseSkill(room.getParty().get(3).getSkills().get(i))) {
+                            if (room.getParty().get(3).getDead() || room.getParty().get(3).canUseSkill(room.getParty().get(3).getSkills().get(i))) {
                                 oButtons.get(i).setEnabled(true);
                             }
 
@@ -546,7 +579,9 @@ public class Battle {
             }
         }
         for (Char c : i.getSetTargets()) {
-            if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
+            if (!room.getInventory().contains(i)) {
+                battleLabel.setText(p.getName() + " used " + i.getName() + "! But the item was gone...");
+            } else if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
 
                 battleLabel.setText(p.getName() + " used " + i.getName() + "!");
                 i.takeEffect(c);
@@ -554,7 +589,6 @@ public class Battle {
 
 
             } else {
-
                 battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
 
             }
@@ -579,7 +613,7 @@ public class Battle {
                     p.takeDamage(s.getDamage());
                 }
 
-                if(s.equals(room.getParty().get(0).getSkills().get(2)) && c.getCurrentStatus().equals(StatusEffect.NUMB)) {
+                if (s.equals(room.getParty().get(0).getSkills().get(2)) && c.getCurrentStatus().equals(StatusEffect.NUMB)) {
                     c.takeDamage(25);
                 }
 
@@ -607,7 +641,7 @@ public class Battle {
 
     private void useEnemySkill(Enemy e) {
         Skill s = e.getSelectedSkill();
-        if (e.canUseSkill(s)) {
+        if (e.canUseSkill(s) && !e.getCurrentStatus().equals(StatusEffect.NUMB)) {
             s.setAtkMod(e.getAtkMod());
             for (Char c : s.getSetTargets()) {
                 if (s.getTarget().equals("one")) {
@@ -622,7 +656,7 @@ public class Battle {
                 }
             }
             if (e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
-                e.setAtkMod((e.getAtkMod() + 1.50) / 2.0);
+                e.setAtkMod((e.getAtkMod() + 0.50));
             }
 
             if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {

@@ -15,11 +15,11 @@ public class WastelandFrankie extends Enemy {
                         new AttackSkill("You Know The Drill", "rushed forward, drills pointed at", 0, "one",
                                 60, StatusEffect.NONE, 1.0, 1.0, 1),
                         new AttackSkill("Hack Up A Lung", "coughed up toxic fumes at", 0, "one", 10,
-                                StatusEffect.POISONED, 1.0, 1.0, 2),
+                                StatusEffect.POISONED, 1.0, 1.0, 1),
                         new SupportSkill("Get Mad", "flew into a rage!", 0, "one",
-                                0, 0, 2.00, 1.0, false),
+                                0, 0, 1.01, 1.0, false),
                         new AttackSkill("Burnout", "spewed flames from her exhaust pipes!", 0, "all", 10,
-                                StatusEffect.BURNED, 1.0, 1.0, 2)
+                                StatusEffect.BURNED, 1.0, 1.0, 1)
 
                 )), 10,
                 "Is she a machine? A mole? How about both?! Watch out for her high-damage, high-velocity attacks.",
@@ -27,6 +27,6 @@ public class WastelandFrankie extends Enemy {
                 " sputtered to a stop...");
 
         loot = new Item("Frankie's Engine", "Increases attack drastically but burns the user",
-                0.0, 0.0, 0, 3.00, 1.0, false, StatusEffect.BURNED, 1, "one");
+                0.0, 0.0, 0, 1.75, 1.0, false, StatusEffect.BURNED, 1, "one");
     }
 }

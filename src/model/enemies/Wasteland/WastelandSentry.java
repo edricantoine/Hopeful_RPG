@@ -17,7 +17,7 @@ public class WastelandSentry extends Enemy {
                         new AttackSkill("Bayonet Stab", "stabbed with a sharp edge, hitting", 0, "one", 40,
                                 StatusEffect.NONE, 1.0, 1.0, 1),
                         new SupportSkill("Shields Up", "held up a metal shield, protecting", 0, "one",
-                                0, 0, 1.0, 2.00, false),
+                                0, 0, 1.0, -0.15, false),
                         new SupportSkill("Robotic Immunity", "ran an antivirus program, somehow curing",
                                 0, "one",
                                 0, 0, 1.0, 1.00, true)
@@ -28,6 +28,6 @@ public class WastelandSentry extends Enemy {
                 " crashed and burned.");
 
         loot = new Item("SEN-3's Shield", "Massive increase to defense but decreases attack",
-                0.0, 0.0, 0, 0.30, 0.30, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, -1.00, -0.50, false, StatusEffect.NONE, 0, "one");
     }
 }

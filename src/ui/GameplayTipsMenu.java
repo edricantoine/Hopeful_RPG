@@ -52,7 +52,7 @@ public class GameplayTipsMenu {
         burnLabel = new JLabel();
         Font burnLabelFont = this.$$$getFont$$$("Courier New", -1, -1, burnLabel.getFont());
         if (burnLabelFont != null) burnLabel.setFont(burnLabelFont);
-        burnLabel.setText("BURNED: Take 5 damage every turn for 3 turns.");
+        burnLabel.setText("BURNED: Take 10 damage every turn for 3 turns.");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -62,7 +62,7 @@ public class GameplayTipsMenu {
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$("Courier New", -1, -1, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("POISONED: Take 10 damage every turn for 3 turns.");
+        label1.setText("POISONED: Take decreasing damage starting at 30 for 3 turns.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -80,7 +80,7 @@ public class GameplayTipsMenu {
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$("Courier New", -1, -1, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
-        label3.setText("AFRAID: Damage taken increased by 1.25x, attack decreased by 0.75x");
+        label3.setText("AFRAID: Every turn for 3 turns, attack and defense decrease.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;

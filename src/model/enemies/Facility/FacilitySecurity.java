@@ -23,8 +23,8 @@ public class FacilitySecurity extends Enemy {
                 )), 11, "You can't take out the commander until you take out the drone!",
                 " block the way!", " was destroyed.");
         isDroneDead = false;
-        loot = new Item("Dealer's Shield Cell", "Maximizes defense until the target is Cured or made Afraid.", 0.0,
-                0.0, 0, 1.0, 0.0, false, StatusEffect.NONE, 1, "one");
+        loot = new Item("Dealer's Shield Cell", "Heavily increases defense of one character.", 0.0,
+                0.0, 0, 1.0, -0.38, false, StatusEffect.NONE, 1, "one");
     }
 
     public void turnDroneDead() {
@@ -40,9 +40,7 @@ public class FacilitySecurity extends Enemy {
                 new AttackSkill("Cower", "cowered in fear!", 0, "all",
                         0, StatusEffect.NONE, 1.0, 1.0, 1),
                 new AttackSkill("Beg", "begged for mercy!", 0, "all", 0,
-                        StatusEffect.NONE, 1.0, 1.0, 2),
-                new AttackSkill("Weak Slap", "weakly slapped at", 0, "one", 1,
-                        StatusEffect.NONE, 1.0, 1.0, 1))));
+                        StatusEffect.NONE, 1.0, 1.0, 2))));
     }
 
     @Override
@@ -57,12 +55,8 @@ public class FacilitySecurity extends Enemy {
                 timeSinceStatusApplied = W_FROZEN;
             } else if (currentStatus.equals(StatusEffect.AFRAID)) {
                 timeSinceStatusApplied = W_AFRAID;
-                atkMod = 0.75;
-                defMod = 1.25;
-            } else if (currentStatus.equals(StatusEffect.NONE)) {
 
-                atkMod = 1.0;
-                defMod = 1.0;
+            } else if (currentStatus.equals(StatusEffect.NONE)) {
 
                 timeSinceStatusApplied = 0;
             }

@@ -20,7 +20,7 @@ public class WastelandRev extends Enemy {
                                 50, 0, 1.0, 1.0, true),
                         new SupportSkill("Blessing", "said a blessing for",
                                 0, "one",
-                                0, 0, 1.25, 0.75, false)
+                                0, 0, 0.25, -0.10, false)
 
                 )), 8,
                 "Who knew wasteland bandits could be religious? You'll burn if you aren't careful.",
