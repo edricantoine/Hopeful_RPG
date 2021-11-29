@@ -66,15 +66,15 @@ public class LevelSelectUI {
 
     public void setUpParty() {
         jack = new PlayerCharacter("Jack", 150, 100, new ArrayList<>(Arrays.asList(
-                new AttackSkill("Icicle Throw", "threw an icicle at", 0, "one", 20,
+                new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
                         StatusEffect.NONE, 1.0, 1.0, 1),
 
                 new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
                         50, StatusEffect.NUMB, 1.0, 1.0, 2),
+                new AttackSkill("Shatter", "punched with a fist of ice, hitting", 40, "one",
+                        50, StatusEffect.NONE, 1.0, 1.0, 2),
 
-                new SupportSkill("Ice Shield", "formed a shield of ice, protecting", 25, "one",
-                        0.0, 0, 1.0, 0.5, false),
-                new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 40, "one", 60,
+                new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 30, "one", 30,
                         StatusEffect.NUMB, 1.0, 1.0, 3)
 
 
@@ -100,13 +100,13 @@ public class LevelSelectUI {
 
         boyle = new PlayerCharacter("Boyle", 100, 150, new ArrayList<>(Arrays.asList(
 
-                new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one",
-                        30, StatusEffect.NONE, 1.0, 1.0, 1),
+                new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one", 40
+                        , StatusEffect.NONE, 1.0, 1.0, 1),
                 new AttackSkill("Torch", "launched flames from her flamethrower, scorching", 30, "one",
-                        30, StatusEffect.BURNED, 1.0, 1.0, 2),
+                        50, StatusEffect.BURNED, 1.0, 1.0, 2),
                 new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
-                        50, StatusEffect.BURNED, 1.0, 1.0, 3),
-                new AttackSkill("Fumes", "sprayed toxic gas.", 50, "all",
+                        75, StatusEffect.BURNED, 1.0, 1.0, 3),
+                new AttackSkill("Fumes", "sprayed toxic gas at", 50, "one",
                         0, StatusEffect.POISONED, 1.0, 1.0, 1)
 
 
@@ -118,14 +118,14 @@ public class LevelSelectUI {
         oscar = new PlayerCharacter("Oscar", 110, 100, new ArrayList<>(Arrays.asList(
 
                 new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
-                        10, StatusEffect.NONE, 1.0, 1.0, 1),
+                        15, StatusEffect.NONE, 1.0, 1.0, 1),
                 new AttackSkill("Primal Fear", "induced fear in the enemies...", 60, "all",
                         0, StatusEffect.AFRAID, 1.0, 1.0, 1),
                 new SupportSkill("Devotion", "gave his life for", 100, "one",
-                        300.0, 200, 1.50, 0.50, false),
+                        300.0, 200, 3.00, 0.0, false),
                 new AttackSkill("Bloodlust",
                         "acted on his cravings, biting into", 30, "one",
-                        25.0, StatusEffect.NONE, 1.0, 1.0, 0)
+                        50, StatusEffect.NONE, 1.0, 1.0, 0)
 
 
         )), 8,

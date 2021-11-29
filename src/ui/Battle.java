@@ -167,21 +167,21 @@ public class Battle {
 
     public void initializeTooltips() {
         button2.setToolTipText("Deals 50 damage to all enemies with 1/2 chance to freeze.");
-        button1.setToolTipText("Deals 20 damage.");
-        button3.setToolTipText("Increases defense.");
+        button1.setToolTipText("Deals 25 damage.");
+        button3.setToolTipText("Deals 50 damage, 75 to a Numbed enemy.");
         button4.setToolTipText("Deals 60 damage to one enemy with 1/3 chance to freeze.");
         button5.setToolTipText("Deals 20 damage - and looks totally badass.");
         button6.setToolTipText("Heals 50 damage to an ally and increases attack.");
         button7.setToolTipText("Heals 50 damage to an ally and increases defense.");
-        button8.setToolTipText("Heals 60 damage to all allies and cures status.");
-        button9.setToolTipText("Deals 30 damage.");
-        button10.setToolTipText("Deals 30 damage to an enemy with 1/2 chance to burn.");
-        button11.setToolTipText("Deals 50 damage to all enemies with 1/3 chance to burn.");
+        button8.setToolTipText("Heals 70 damage to all allies and cures status.");
+        button9.setToolTipText("Deals 40 damage.");
+        button10.setToolTipText("Deals 50 damage to an enemy with 1/2 chance to burn.");
+        button11.setToolTipText("Deals 75 damage to all enemies with 1/3 chance to burn.");
         button12.setToolTipText("Guaranteed to poison an enemy.");
-        button13.setToolTipText("Deals 10 damage to all enemies.");
+        button13.setToolTipText("Deals 15 damage to all enemies.");
         button14.setToolTipText("Makes all enemies afraid.");
         button15.setToolTipText("Gives his life to fully heal an ally's HP and AP and increase damage and defense.");
-        button16.setToolTipText("Deals 25 damage to an enemy and heals Oscar by 25 HP.");
+        button16.setToolTipText("Deals 50 damage to an enemy and heals Oscar by 25 HP.");
 
         initializeActionListeners();
     }
@@ -467,19 +467,27 @@ public class Battle {
                         checkBattleOver();
                         battleLabel.setText("The battle rages on...");
                         for (int i = 0; i < jButtons.size(); i++) {
-                            jButtons.get(i).setEnabled(true);
+                            if (room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
+                                jButtons.get(i).setEnabled(true);
+                            }
 
                         }
                         for (int i = 0; i < tButtons.size(); i++) {
-                            tButtons.get(i).setEnabled(true);
+                            if (room.getParty().get(1).canUseSkill(room.getParty().get(1).getSkills().get(i))) {
+                                tButtons.get(i).setEnabled(true);
+                            }
 
                         }
                         for (int i = 0; i < bButtons.size(); i++) {
-                            bButtons.get(i).setEnabled(true);
+                            if (room.getParty().get(2).canUseSkill(room.getParty().get(2).getSkills().get(i))) {
+                                bButtons.get(i).setEnabled(true);
+                            }
 
                         }
                         for (int i = 0; i < oButtons.size(); i++) {
-                            oButtons.get(i).setEnabled(true);
+                            if (room.getParty().get(3).canUseSkill(room.getParty().get(3).getSkills().get(i))) {
+                                oButtons.get(i).setEnabled(true);
+                            }
 
                         }
                         itemButton.setEnabled(true);
@@ -519,7 +527,7 @@ public class Battle {
     private void usePlayerItem(PlayerCharacter p) {
         Item i = p.getSelectedItem();
         if (i.getName().equals("Pot of Coffee")) {
-            p.setSpeed(p.getSpeed() + 2);
+            p.setSpeed(p.getSpeed() + 3);
         }
         if (i.getName().equals("COBRA Battery")) {
             for (Enemy e : room.getEnemies()) {
@@ -538,7 +546,7 @@ public class Battle {
             }
         }
         for (Char c : i.getSetTargets()) {
-            if (!p.getDead()) {
+            if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
 
                 battleLabel.setText(p.getName() + " used " + i.getName() + "!");
                 i.takeEffect(c);
@@ -556,7 +564,7 @@ public class Battle {
 
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
-        if (p.canUseSkill(s)) {
+        if (p.canUseSkill(s) && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
             p.useAp(s.getApCost());
             s.setAtkMod(p.getAtkMod());
             for (Char c : s.getSetTargets()) {
@@ -569,6 +577,10 @@ public class Battle {
                 s.takeEffect(c);
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     p.takeDamage(s.getDamage());
+                }
+
+                if(s.equals(room.getParty().get(0).getSkills().get(2)) && c.getCurrentStatus().equals(StatusEffect.NUMB)) {
+                    c.takeDamage(25);
                 }
 
                 if (s.equals(room.getParty().get(3).getSkills().get(3))) {

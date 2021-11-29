@@ -19,7 +19,7 @@ public abstract class Char {
     protected Skill selectedSkill;
     protected Item selectedItem;
 
-    public final static int DMG_BURNED = 5;
+    public final static int DMG_BURNED = 10;
     public final static int W_BURNED = 3;
     public final static int W_POISONED = 3;
     public final static int W_FROZEN = 2;
@@ -148,10 +148,6 @@ public abstract class Char {
                 atkMod = 0.75;
                 defMod = 1.25;
             } else if (currentStatus.equals(StatusEffect.NONE)) {
-
-                atkMod = 1.0;
-                defMod = 1.0;
-
                 timeSinceStatusApplied = 0;
             }
         }
@@ -174,7 +170,7 @@ public abstract class Char {
     public abstract void useItem(Item i, Char c);
 
     public Boolean canUseSkill(Skill s) {
-        return ((this.ap >= s.getApCost() && (currentStatus != StatusEffect.NUMB)) && !this.getDead());
+        return ((this.ap >= s.getApCost() && !this.getDead()));
     }
 
     public void takeDamage(double d) {
@@ -226,8 +222,8 @@ public abstract class Char {
 
     public void turnBeginRoutine() {
         if (currentStatus.equals(StatusEffect.AFRAID)) {
-            atkMod = 0.75;
-            defMod = 1.25;
+            atkMod -= 0.25;
+            defMod += 0.25;
         }
     }
 
@@ -241,7 +237,7 @@ public abstract class Char {
         }
 
         if(currentStatus.equals(StatusEffect.POISONED)) {
-            takeDamage(DMG_POISONED);
+            takeDamage(DMG_POISONED * (W_POISONED * timeSinceStatusApplied));
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);
@@ -259,13 +255,11 @@ public abstract class Char {
             timeSinceStatusApplied--;
             if(timeSinceStatusApplied == 0) {
                 setCurrentStatus(StatusEffect.NONE);
-                atkMod = 1;
-                defMod = 1;
             }
         }
 
 
-        healAp(15);
+        healAp(10);
         setSelectedSkill(null);
         setSelectedItem(null);
     }
