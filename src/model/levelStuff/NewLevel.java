@@ -1,16 +1,20 @@
 package model.levelStuff;
 
+import java.awt.*;
+
 public class NewLevel {
     private String name;
-    NewRoom[][] rooms;
-    int rs;
-    int cs;
+    private NewRoom[][] rooms;
+    private int rs;
+    private int cs;
+    private Color color;
 
-    public NewLevel(String name, NewRoom[][] rooms) {
+    public NewLevel(String name, NewRoom[][] rooms, Color c) {
         this.name = name;
         this.rooms = rooms;
         this.rs = rooms.length;
         this.cs = rooms[0].length;
+        this.color = c;
     }
 
     public String getName() {
