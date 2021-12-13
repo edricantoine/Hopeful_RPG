@@ -9,6 +9,7 @@ import model.enemies.Facility.FacilitySecurity;
 import model.enemies.Wasteland.WastelandFrankie;
 import model.levelStuff.Room;
 
+import javax.swing.Timer;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
@@ -17,10 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 public class Battle {
     private Room room;
@@ -32,6 +31,8 @@ public class Battle {
     private List<JButton> bButtons;
     private List<JButton> oButtons;
     private List<Item> possibleLoot;
+    private List<JLabel> allLabs;
+    private Map<Char, Integer> turnOrder;
     private JLabel p1;
     private JLabel p2;
     private JLabel p3;
@@ -77,6 +78,9 @@ public class Battle {
         oButtons = new ArrayList<>();
         pLabs = new ArrayList<>();
         eLabs = new ArrayList<>();
+        turnOrder = new HashMap<>();
+
+        allLabs = new ArrayList<>();
         possibleLoot = new ArrayList<>();
         this.room = r;
         this.color = color;
@@ -87,6 +91,8 @@ public class Battle {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initializeLabels();
         initializeButtons();
+        initializeTurnOrder();
+        initializeAllLabs();
         if (decideLoot()) {
             chooseLoot();
         }
@@ -94,6 +100,31 @@ public class Battle {
         frame.setVisible(true);
 
 
+    }
+
+    public void initializeTurnOrder() {
+        for (int i = 0; i < room.getAllChars().size(); i++) {
+            turnOrder.put(room.getAllChars().get(i), i);
+        }
+    }
+
+    public void initializeAllLabs() {
+        for (int i = 0; i < room.getAllChars().size(); i++) {
+            for (int j = 0; j < room.getParty().size(); j++) {
+                if (turnOrder.containsKey(room.getParty().get(j))) {
+                    if (turnOrder.get(room.getParty().get(j)) == i) {
+                        allLabs.add(pLabs.get(j));
+                    }
+                }
+            }
+            for (int k = 0; k < room.getEnemies().size(); k++) {
+                if (turnOrder.containsKey(room.getEnemies().get(k))) {
+                    if (turnOrder.get(room.getEnemies().get(k)) == i) {
+                        allLabs.add(eLabs.get(k));
+                    }
+                }
+            }
+        }
     }
 
     public Boolean decideLoot() {
@@ -122,6 +153,7 @@ public class Battle {
         eLabs.add(e2);
         eLabs.add(e3);
         eLabs.add(e4);
+
 
         refresh();
         battleLabel.setText(room.getEnemies().get(0).getName() + " and its cohorts" + room.getEnemies().get(0).getEnterText());
@@ -494,8 +526,9 @@ public class Battle {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-
+                    if (n > 0) {
+                        allLabs.get(n - 1).setFont(allLabs.get(n - 1).getFont().deriveFont(allLabs.get(n - 1).getFont().getStyle() & ~Font.BOLD));
+                    }
                     timer.setDelay(3000);
 
                     if (n < room.getAllChars().size()) {
@@ -503,19 +536,28 @@ public class Battle {
                         if (room.getAllChars().get(n) instanceof PlayerCharacter) {
 
                             if (room.getAllChars().get(n).getSelectedItem() == null) {
+
                                 usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
+
                             } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
+
                                 usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
+
                             }
 
 
                         } else if (room.getAllChars().get(n) instanceof Enemy) {
 
+
                             useEnemySkill((Enemy) room.getAllChars().get(n));
+
 
                         }
 
+
                         n++;
+                        allLabs.get(n - 1).setFont(allLabs.get(n - 1).getFont().deriveFont(allLabs.get(n - 1).getFont().getStyle() | Font.BOLD));
+
                     } else {
                         timer.stop();
                         for (Char c : room.getAllChars()) {

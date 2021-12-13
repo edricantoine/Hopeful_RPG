@@ -75,4 +75,12 @@ public class Enemy extends Char {
     public void useItem(Item i, Char c) {
         i.takeEffect(c);
     }
+
+    @Override
+    public String toLabel() {
+        return "<html>Name: " + this.getName() + "<br/>" + "HP: " + this.getHp() + "/" + this.getMaxhp() + "<br/>" +
+                "Status: " + this.getCurrentStatus() + "<br/>" +
+                "Attack modifier: " + this.getAtkMod() + "<br/>" +
+                "Damage taken modifier: " + this.getDefMod();
+    }
 }

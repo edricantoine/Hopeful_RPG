@@ -276,5 +276,8 @@ public abstract class Char {
         setSelectedItem(null);
     }
 
+   public abstract String toLabel();
+
+
 
 }
