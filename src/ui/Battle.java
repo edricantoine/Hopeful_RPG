@@ -2,7 +2,10 @@ package ui;
 
 import model.*;
 import model.enemies.Enemy;
-import model.enemies.Facility.*;
+import model.enemies.Facility.FacilityDrone;
+import model.enemies.Facility.FacilityGuard;
+import model.enemies.Facility.FacilityMelee;
+import model.enemies.Facility.FacilitySecurity;
 import model.enemies.Wasteland.WastelandFrankie;
 import model.levelStuff.Room;
 
@@ -12,6 +15,8 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -441,6 +446,8 @@ public class Battle {
 
 
         if (isReadyToTakeAction()) {
+
+
             for (int i = 0; i < jButtons.size(); i++) {
                 jButtons.get(i).setEnabled(false);
 
@@ -461,7 +468,25 @@ public class Battle {
             itemButton1.setEnabled(false);
             itemButton2.setEnabled(false);
             itemButton3.setEnabled(false);
-            timer = new Timer(2000, null);
+
+            frame.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    timer.restart();
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    timer.setDelay(0);
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+
+                }
+            });
+
+            timer = new Timer(3000, null);
             timer.setRepeats(true);
             timer.setInitialDelay(0);
             timer.addActionListener(new ActionListener() {
@@ -469,6 +494,9 @@ public class Battle {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+
+                    timer.setDelay(3000);
 
                     if (n < room.getAllChars().size()) {
 
@@ -527,6 +555,7 @@ public class Battle {
                         itemButton1.setEnabled(true);
                         itemButton2.setEnabled(true);
                         itemButton3.setEnabled(true);
+                        frame.removeKeyListener(frame.getKeyListeners()[0]);
                     }
 
                     refresh();

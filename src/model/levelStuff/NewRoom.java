@@ -31,6 +31,18 @@ public class NewRoom {
         createAllChars();
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public Boolean getHasBattle() {
+        return hasBattle;
+    }
+
+    public Boolean getFinalRoom() {
+        return isFinalRoom;
+    }
+
     public Boolean canPickUpItem() {
         return inventory.size() == 10;
     }

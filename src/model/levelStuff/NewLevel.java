@@ -17,6 +17,10 @@ public class NewLevel {
         this.color = c;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public String getName() {
         return name;
     }
