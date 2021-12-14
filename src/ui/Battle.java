@@ -526,6 +526,9 @@ public class Battle {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    for (JLabel l : allLabs) {
+                        l.setForeground(Color.BLACK);
+                    }
                     if (n > 0) {
                         allLabs.get(n - 1).setFont(allLabs.get(n - 1).getFont().deriveFont(allLabs.get(n - 1).getFont().getStyle() & ~Font.BOLD));
                     }
@@ -679,6 +682,20 @@ public class Battle {
                     battleLabel.setText(p.getName() + " " + s.getFlavor());
                 }
 
+                if (s instanceof AttackSkill) {
+                    for (int i = 0; i < eLabs.size(); i++) {
+                        if (room.getEnemies().get(i).equals(c)) {
+                            eLabs.get(i).setForeground(Color.RED);
+                        }
+                    }
+                } else if (s instanceof SupportSkill) {
+                    for (int i = 0; i < pLabs.size(); i++) {
+                        if (room.getParty().get(i).equals(c)) {
+                            pLabs.get(i).setForeground(Color.GREEN);
+                        }
+                    }
+                }
+
                 s.takeEffect(c);
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     p.takeDamage(s.getDamage());
@@ -721,6 +738,21 @@ public class Battle {
                     battleLabel.setText(e.getName() + " " + s.getFlavor());
                 }
                 s.takeEffect(c);
+
+                if (s instanceof AttackSkill) {
+
+                    for (int i = 0; i < pLabs.size(); i++) {
+                        if (room.getParty().get(i).equals(c)) {
+                            pLabs.get(i).setForeground(Color.RED);
+                        }
+                    }
+                } else if (s instanceof SupportSkill) {
+                    for (int i = 0; i < eLabs.size(); i++) {
+                        if (room.getEnemies().get(i).equals(c)) {
+                            eLabs.get(i).setForeground(Color.GREEN);
+                        }
+                    }
+                }
 
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     e.takeDamage(s.getDamage());
