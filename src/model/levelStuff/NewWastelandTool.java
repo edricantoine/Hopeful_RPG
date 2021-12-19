@@ -62,6 +62,16 @@ public class NewWastelandTool {
                 new WastelandMelee(), new WastelandSupport(), new WastelandSupport()
         ));
 
+        List<Enemy> configB1 = new ArrayList<>(Arrays.asList(
+                new WastelandFrankie(), new WastelandAssassin(), new WastelandAssassin()
+        ));
+        List<Enemy> configB2 = new ArrayList<>(Arrays.asList(
+                new WastelandSentry(), new WastelandMelee(), new WastelandMelee()
+        ));
+        List<Enemy> configB3 = new ArrayList<Enemy>(Arrays.asList(
+                new WastelandRev(), new WastelandSupport(), new WastelandSupport()
+        ));
+
 
         configs.add(config1);
         configs.add(config2);
@@ -74,31 +84,31 @@ public class NewWastelandTool {
         configs.add(config9);
         configs.add(config10);
 
-        wastelandRooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false);
-        wastelandRooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, true, false);
+        wastelandRooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0);
+        wastelandRooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0);
         wastelandRooms[0][2] = new NewRoom(selectConfig(), party, inventory, new Item("Hot Coals", "Burns the target",
-                10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one"), false, false);
-        wastelandRooms[0][3] = new NewRoom(selectConfig(), party, inventory, null, true, false);
+                10.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one"), false, false, 0);
+        wastelandRooms[0][3] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0);
 
-        wastelandRooms[1][0] = new NewRoom(selectConfig(), party, inventory, null, false, false);
+        wastelandRooms[1][0] = new NewRoom(configB2, party, inventory, null, false, false, 2);
         wastelandRooms[1][1] = new NewRoom(selectConfig(), party, inventory, new Item("Food Rations", "Heals by 50 HP.",
-                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false);
-        wastelandRooms[1][2] = new NewRoom(selectConfig(), party, inventory, null, true, false);
-        wastelandRooms[1][3] = new NewRoom(selectConfig(), party, inventory, null, false, false);
+                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false, 0);
+        wastelandRooms[1][2] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0);
+        wastelandRooms[1][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0);
 
         wastelandRooms[2][0] = new NewRoom(selectConfig(), party, inventory, new Item("AP Potion", "Heals 50 AP",
-                0.0, 0.0, 50, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false);
-        wastelandRooms[2][1] = new NewRoom(selectConfig(), party, inventory, null, true, false);
-        wastelandRooms[2][2] = new NewRoom(selectConfig(), party, inventory, null, true, false);
+                0.0, 0.0, 50, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false ,0);
+        wastelandRooms[2][1] = new NewRoom(configB3, party, inventory, null, true, false, 3);
+        wastelandRooms[2][2] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0);
         wastelandRooms[2][3] = new NewRoom(selectConfig(), party, inventory, new Item("Bomb", "A bomb. Deals 100 damage.", 100, 0.0, 0, 1.0, 1.0, false,
-                StatusEffect.NONE, 0, "all"), false, false);
+                StatusEffect.NONE, 0, "all"), false, false, 0);
 
-        wastelandRooms[3][0] = new NewRoom(selectBossConfig(), party, inventory, null, true, true);
+        wastelandRooms[3][0] = new NewRoom(configB1, party, inventory, null, true, true, 1);
         wastelandRooms[3][1] = new NewRoom(selectConfig(), party, inventory, new Item("AP Potion", "Heals 50 AP",
-                0.0, 0.0, 50, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false);
-        wastelandRooms[3][2] = new NewRoom(selectConfig(), party, inventory, null, true, false);
+                0.0, 0.0, 50, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false, 0);
+        wastelandRooms[3][2] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0);
         wastelandRooms[3][3] = new NewRoom(selectConfig(), party, inventory, new Item("Food Rations", "Heals by 50 HP.",
-                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false);
+                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false, 0);
 
 
 

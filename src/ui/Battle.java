@@ -691,7 +691,7 @@ public class Battle {
                 } else if (s instanceof SupportSkill) {
                     for (int i = 0; i < pLabs.size(); i++) {
                         if (room.getParty().get(i).equals(c)) {
-                            pLabs.get(i).setForeground(Color.GREEN);
+                            pLabs.get(i).setForeground(Color.GREEN.darker().darker());
                         }
                     }
                 }
@@ -749,7 +749,7 @@ public class Battle {
                 } else if (s instanceof SupportSkill) {
                     for (int i = 0; i < eLabs.size(); i++) {
                         if (room.getEnemies().get(i).equals(c)) {
-                            eLabs.get(i).setForeground(Color.GREEN);
+                            eLabs.get(i).setForeground(Color.GREEN.darker().darker());
                         }
                     }
                 }

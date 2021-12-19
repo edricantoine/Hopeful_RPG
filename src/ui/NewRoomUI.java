@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 
 public class NewRoomUI {
@@ -17,6 +19,7 @@ public class NewRoomUI {
     private JButton leftButton;
     private JPanel centerPanel;
     private JButton takeItemButton;
+    private JLabel centerLabel;
 
     private NewLevel level;
     private NewRoom room;
@@ -30,6 +33,7 @@ public class NewRoomUI {
         this.col = c;
 
         initializeButtonsAndLabels();
+        inititializeActionListeners();
 
         JFrame frame = new JFrame("Room");
         frame.setContentPane(nRoomPanel);
@@ -41,6 +45,39 @@ public class NewRoomUI {
 
             //TODO: update Battle to use newRoom instead of old Room
         }
+    }
+
+    public void inititializeActionListeners() {
+        leftButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        downButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        rightButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        upButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        takeItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public void initializeButtonsAndLabels() {
@@ -65,6 +102,12 @@ public class NewRoomUI {
 
         if (room.getItem() == null || !room.canPickUpItem()) {
             takeItemButton.setEnabled(false);
+        }
+
+        if(room.getItem() == null) {
+            centerLabel.setText("There is no item in this room...");
+        } else {
+            centerLabel.setText(room.getItem().getName() + " is in this room!");
         }
     }
 
@@ -124,14 +167,14 @@ public class NewRoomUI {
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(takeItemButton, gbc);
-        final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$("Courier New", -1, -1, label1.getFont());
-        if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("Label");
+        centerLabel = new JLabel();
+        Font centerLabelFont = this.$$$getFont$$$("Courier New", -1, -1, centerLabel.getFont());
+        if (centerLabelFont != null) centerLabel.setFont(centerLabelFont);
+        centerLabel.setText("Label");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
-        centerPanel.add(label1, gbc);
+        centerPanel.add(centerLabel, gbc);
     }
 
     /**

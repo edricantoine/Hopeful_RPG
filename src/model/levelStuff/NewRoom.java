@@ -17,9 +17,10 @@ public class NewRoom {
     private Item item;
     private Boolean hasBattle;
     private Boolean isFinalRoom;
+    private int whichBoss; // can be 0 1 2 or 3
 
 
-    public NewRoom(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item i, Boolean hb, Boolean f) {
+    public NewRoom(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item i, Boolean hb, Boolean f, int whichBoss) {
         this.enemies = enemies;
         this.party = party;
         this.inventory = inventory;
@@ -27,8 +28,13 @@ public class NewRoom {
         this.item = i;
         this.hasBattle = hb;
         this.isFinalRoom = f;
+        this.whichBoss = whichBoss;
 
         createAllChars();
+    }
+
+    public int getWhichBoss() {
+        return whichBoss;
     }
 
     public Item getItem() {
