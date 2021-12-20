@@ -5,7 +5,7 @@ import model.PlayerCharacter;
 import model.Skill;
 import model.SupportSkill;
 import model.enemies.Enemy;
-import model.levelStuff.Room;
+import model.levelStuff.NewRoom;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -24,12 +24,12 @@ public class SelectTargetTool {
     private JButton e2b;
     private JButton e3b;
     private JPanel SelectTargetPanel;
-    private Room room;
+    private NewRoom room;
     private Skill skill;
     private PlayerCharacter user;
     private Battle bat;
 
-    public SelectTargetTool(Room r, Skill s, PlayerCharacter u, Battle bat) {
+    public SelectTargetTool(NewRoom r, Skill s, PlayerCharacter u, Battle bat) {
         buttons = new ArrayList<>();
         room = r;
         skill = s;

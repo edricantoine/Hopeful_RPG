@@ -20,6 +20,8 @@ public class NewRoomUI {
     private JPanel centerPanel;
     private JButton takeItemButton;
     private JLabel centerLabel;
+    private JLabel roomLabel;
+    private JLabel bossLabel;
 
     private NewLevel level;
     private NewRoom room;
@@ -32,18 +34,21 @@ public class NewRoomUI {
         this.row = r;
         this.col = c;
 
+
         initializeButtonsAndLabels();
         inititializeActionListeners();
+        nRoomPanel.setBackground(level.getColor());
+
 
         JFrame frame = new JFrame("Room");
         frame.setContentPane(nRoomPanel);
+        frame.getContentPane().setBackground(level.getColor());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         if (room.getHasBattle()) {
             frame.dispose();
-
-            //TODO: update Battle to use newRoom instead of old Room
+            new Battle(room, level.getColor(), level, r, c);
         }
     }
 
@@ -51,30 +56,42 @@ public class NewRoomUI {
         leftButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new NewRoomUI(level, level.getRooms()[row][col - 1], row, col - 1);
             }
         });
         downButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new NewRoomUI(level, level.getRooms()[row + 1][col], row + 1, col);
             }
         });
         rightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new NewRoomUI(level, level.getRooms()[row][col + 1], row, col + 1);
             }
         });
         upButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new NewRoomUI(level, level.getRooms()[row - 1][col], row - 1, col);
             }
         });
         takeItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                room.getInventory().add(room.getItem());
+                takeItemButton.setEnabled(false);
+                centerLabel.setText("Item taken.");
+                room.setItemNull();
 
             }
         });
@@ -104,11 +121,14 @@ public class NewRoomUI {
             takeItemButton.setEnabled(false);
         }
 
-        if(room.getItem() == null) {
+        if (room.getItem() == null) {
             centerLabel.setText("There is no item in this room...");
         } else {
             centerLabel.setText(room.getItem().getName() + " is in this room!");
         }
+
+        roomLabel.setText("Room " + row + "-" + col);
+        bossLabel.setText("Bosses defeated: " + level.howManyBossesDead() + "/3");
     }
 
     {
@@ -131,22 +151,22 @@ public class NewRoomUI {
         upButton = new JButton();
         Font upButtonFont = this.$$$getFont$$$("Courier New", -1, -1, upButton.getFont());
         if (upButtonFont != null) upButton.setFont(upButtonFont);
-        upButton.setText("Button");
+        upButton.setText("Go Up");
         nRoomPanel.add(upButton, BorderLayout.NORTH);
         rightButton = new JButton();
         Font rightButtonFont = this.$$$getFont$$$("Courier New", -1, -1, rightButton.getFont());
         if (rightButtonFont != null) rightButton.setFont(rightButtonFont);
-        rightButton.setText("Button");
+        rightButton.setText("Go right");
         nRoomPanel.add(rightButton, BorderLayout.EAST);
         downButton = new JButton();
         Font downButtonFont = this.$$$getFont$$$("Courier New", -1, -1, downButton.getFont());
         if (downButtonFont != null) downButton.setFont(downButtonFont);
-        downButton.setText("Button");
+        downButton.setText("Go down");
         nRoomPanel.add(downButton, BorderLayout.SOUTH);
         leftButton = new JButton();
         Font leftButtonFont = this.$$$getFont$$$("Courier New", -1, -1, leftButton.getFont());
         if (leftButtonFont != null) leftButton.setFont(leftButtonFont);
-        leftButton.setText("Button");
+        leftButton.setText("Go Left");
         nRoomPanel.add(leftButton, BorderLayout.WEST);
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
@@ -161,7 +181,7 @@ public class NewRoomUI {
         takeItemButton = new JButton();
         Font takeItemButtonFont = this.$$$getFont$$$("Courier New", -1, -1, takeItemButton.getFont());
         if (takeItemButtonFont != null) takeItemButton.setFont(takeItemButtonFont);
-        takeItemButton.setText("Button");
+        takeItemButton.setText("Take item");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -175,6 +195,24 @@ public class NewRoomUI {
         gbc.gridx = 1;
         gbc.gridy = 0;
         centerPanel.add(centerLabel, gbc);
+        roomLabel = new JLabel();
+        Font roomLabelFont = this.$$$getFont$$$("Courier New", -1, -1, roomLabel.getFont());
+        if (roomLabelFont != null) roomLabel.setFont(roomLabelFont);
+        roomLabel.setText("Label");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(roomLabel, gbc);
+        bossLabel = new JLabel();
+        Font bossLabelFont = this.$$$getFont$$$("Courier New", -1, -1, bossLabel.getFont());
+        if (bossLabelFont != null) bossLabel.setFont(bossLabelFont);
+        bossLabel.setText("Label");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(bossLabel, gbc);
     }
 
     /**

@@ -7,7 +7,8 @@ import model.enemies.Facility.FacilityGuard;
 import model.enemies.Facility.FacilityMelee;
 import model.enemies.Facility.FacilitySecurity;
 import model.enemies.Wasteland.WastelandFrankie;
-import model.levelStuff.Room;
+import model.levelStuff.NewLevel;
+import model.levelStuff.NewRoom;
 
 import javax.swing.Timer;
 import javax.swing.*;
@@ -22,7 +23,9 @@ import java.util.List;
 import java.util.*;
 
 public class Battle {
-    private Room room;
+
+    private NewRoom room;
+    private NewLevel level;
     private Color color;
     private List<JLabel> pLabs;
     private List<JLabel> eLabs;
@@ -68,9 +71,12 @@ public class Battle {
     private JFrame frame;
     private Timer timer;
     private Timer lootTimer;
+    private int row;
+    private int col;
 
-    public Battle(Room r, Color color) {
-
+    public Battle(NewRoom r, Color color, NewLevel level, int row, int col) {
+        this.row = row;
+        this.col = col;
         temp = this;
         jButtons = new ArrayList<>();
         tButtons = new ArrayList<>();
@@ -83,6 +89,7 @@ public class Battle {
         allLabs = new ArrayList<>();
         possibleLoot = new ArrayList<>();
         this.room = r;
+        this.level = level;
         this.color = color;
         this.loot = null;
         battlePanel.setBackground(color);
@@ -683,13 +690,13 @@ public class Battle {
                 }
 
                 if (s instanceof AttackSkill) {
-                    for (int i = 0; i < eLabs.size(); i++) {
+                    for (int i = 0; i < room.getEnemies().size(); i++) {
                         if (room.getEnemies().get(i).equals(c)) {
                             eLabs.get(i).setForeground(Color.RED);
                         }
                     }
                 } else if (s instanceof SupportSkill) {
-                    for (int i = 0; i < pLabs.size(); i++) {
+                    for (int i = 0; i < room.getParty().size(); i++) {
                         if (room.getParty().get(i).equals(c)) {
                             pLabs.get(i).setForeground(Color.GREEN.darker().darker());
                         }
@@ -741,13 +748,13 @@ public class Battle {
 
                 if (s instanceof AttackSkill) {
 
-                    for (int i = 0; i < pLabs.size(); i++) {
+                    for (int i = 0; i < room.getParty().size(); i++) {
                         if (room.getParty().get(i).equals(c)) {
                             pLabs.get(i).setForeground(Color.RED);
                         }
                     }
                 } else if (s instanceof SupportSkill) {
-                    for (int i = 0; i < eLabs.size(); i++) {
+                    for (int i = 0; i < room.getEnemies().size(); i++) {
                         if (room.getEnemies().get(i).equals(c)) {
                             eLabs.get(i).setForeground(Color.GREEN.darker().darker());
                         }
@@ -871,12 +878,22 @@ public class Battle {
 
                 } else {
                     lootTimer.stop();
-                    if (room.getNextRoom() != null) {
-                        frame.dispose();
-                        new Battle(room.getNextRoom(), temp.getColor());
-                    } else {
+                    if (room.getWhichBoss() == 1) {
+                        level.kill1Boss();
+                    } else if (room.getWhichBoss() == 2) {
+                        level.kill2Boss();
+                    } else if (room.getWhichBoss() == 3) {
+                        level.kill3Boss();
+                    }
+
+                    if (level.getComplete()) {
                         frame.dispose();
                         new YouWinUI();
+                    } else {
+                        level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
+                                null, false, false, 0);
+                        frame.dispose();
+                        new NewRoomUI(level, level.getRooms()[row][col], row, col);
                     }
 
                 }
@@ -903,7 +920,7 @@ public class Battle {
             if (room.getInventory().size() < 10) {
                 System.out.println("You got " + loot.getName() + "!");
                 battleLabel.setText("You got " + loot.getName() + "!");
-                room.getNextRoom().getInventory().add(loot);
+                room.getInventory().add(loot);
             } else {
                 System.out.println("oooo");
                 battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");

@@ -11,28 +11,28 @@
         <constraints border-constraint="North"/>
         <properties>
           <font name="Courier New"/>
-          <text value="Button"/>
+          <text value="Go Up"/>
         </properties>
       </component>
       <component id="b9033" class="javax.swing.JButton" binding="rightButton">
         <constraints border-constraint="East"/>
         <properties>
           <font name="Courier New"/>
-          <text value="Button"/>
+          <text value="Go right"/>
         </properties>
       </component>
       <component id="4e95f" class="javax.swing.JButton" binding="downButton">
         <constraints border-constraint="South"/>
         <properties>
           <font name="Courier New"/>
-          <text value="Button"/>
+          <text value="Go down"/>
         </properties>
       </component>
       <component id="e50ae" class="javax.swing.JButton" binding="leftButton">
         <constraints border-constraint="West"/>
         <properties>
           <font name="Courier New"/>
-          <text value="Button"/>
+          <text value="Go Left"/>
         </properties>
       </component>
       <grid id="75cac" binding="centerPanel" layout-manager="GridBagLayout">
@@ -53,12 +53,32 @@
             </constraints>
             <properties>
               <font name="Courier New"/>
-              <text value="Button"/>
+              <text value="Take item"/>
             </properties>
           </component>
           <component id="e0b13" class="javax.swing.JLabel" binding="centerLabel">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <font name="Courier New"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="dcb88" class="javax.swing.JLabel" binding="roomLabel">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <font name="Courier New"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="cfb95" class="javax.swing.JLabel" binding="bossLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>

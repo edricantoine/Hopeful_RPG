@@ -27,6 +27,10 @@ public class NewLevel {
 
     }
 
+    public Boolean getComplete() {
+        return complete;
+    }
+
     public Boolean getBoss1dead() {
         return boss1dead;
     }
@@ -37,6 +41,22 @@ public class NewLevel {
 
     public Boolean getBoss2dead() {
         return boss2dead;
+    }
+
+    public int howManyBossesDead() {
+        if((getBoss1dead() && getBoss2dead() && !getBoss3dead()) ||
+                (getBoss1dead() && getBoss3dead() && !getBoss2dead()) ||
+                (getBoss2dead() && getBoss3dead() && !getBoss1dead())) {
+            return 2;
+        } else if ((getBoss1dead() && !getBoss2dead() && !getBoss3dead()) ||
+                (getBoss2dead() && !getBoss1dead() && !getBoss3dead()) ||
+                (getBoss3dead() && !getBoss1dead() && !getBoss2dead())) {
+            return 1;
+        } else if ((!getBoss1dead() && !getBoss2dead() && !getBoss3dead())) {
+            return 0;
+        } else {
+            return 3;
+        }
     }
 
     public void kill1Boss() {

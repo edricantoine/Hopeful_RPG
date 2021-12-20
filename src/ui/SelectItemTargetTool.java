@@ -2,7 +2,7 @@ package ui;
 
 import model.Item;
 import model.PlayerCharacter;
-import model.levelStuff.Room;
+import model.levelStuff.NewRoom;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelectItemTargetTool {
-    private Room room;
+    private NewRoom room;
     private Item item;
     private PlayerCharacter user;
     private Battle battle;
@@ -28,7 +28,7 @@ public class SelectItemTargetTool {
     private JButton button7;
     private JButton button8;
 
-    public SelectItemTargetTool(Room r, Item it, PlayerCharacter user, Battle bat) {
+    public SelectItemTargetTool(NewRoom r, Item it, PlayerCharacter user, Battle bat) {
         playerButtons = new ArrayList<>();
         enemyButtons = new ArrayList<>();
         playerButtons.add(button1);

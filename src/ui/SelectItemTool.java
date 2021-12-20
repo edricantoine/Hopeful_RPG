@@ -2,7 +2,7 @@ package ui;
 
 import model.Item;
 import model.PlayerCharacter;
-import model.levelStuff.Room;
+import model.levelStuff.NewRoom;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class SelectItemTool {
-    private Room room;
+    private NewRoom room;
     private List<JButton> buttons;
     private List<Item> inventory;
     private PlayerCharacter user;
@@ -32,7 +32,7 @@ public class SelectItemTool {
     private JButton button9;
     private JButton button10;
 
-    public SelectItemTool(Room r, List<Item> inv, PlayerCharacter user, Battle bat) {
+    public SelectItemTool(NewRoom r, List<Item> inv, PlayerCharacter user, Battle bat) {
         buttons = new ArrayList<>();
         buttons.add(button1);
         buttons.add(button2);

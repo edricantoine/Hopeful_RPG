@@ -1,9 +1,7 @@
 package ui;
 
 import model.*;
-import model.levelStuff.FacilityLevelTool;
-import model.levelStuff.Level;
-import model.levelStuff.WastelandLevelTool;
+import model.levelStuff.*;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -23,11 +21,11 @@ public class LevelSelectUI {
     private PlayerCharacter boyle;
     private PlayerCharacter oscar;
     private List<PlayerCharacter> party;
-    private List<Level> levels;
-    private Level wasteland;
+    private List<NewLevel> levels;
+    private NewLevel wasteland;
     private Level facility;
-    private FacilityLevelTool flt;
-    private WastelandLevelTool wlt;
+    private NewFacilityTool flt;
+    private NewWastelandTool wlt;
 
     private JPanel lselectpanel;
     private JButton wastelandButton;
@@ -51,15 +49,13 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(wasteland.getRooms(), new Color(-2899838));
+                new NewRoomUI(wasteland, wasteland.getRooms()[0][0], 0, 0);
             }
         });
         facilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Component cButton = (Component) e.getSource();
-                SwingUtilities.getWindowAncestor(cButton).dispose();
-                new Battle(facility.getRooms(), Color.GRAY);
+
             }
         });
     }
@@ -141,12 +137,10 @@ public class LevelSelectUI {
     }
 
     public void setUpLevels() {
-        wlt = new WastelandLevelTool(inventory, party);
-        wasteland = new Level("The Wasteland", wlt.getWastelandRooms());
+        wlt = new NewWastelandTool(inventory, party);
+        wasteland = new NewLevel("The Wasteland", wlt.getWastelandRooms(), new Color(-2899838));
         levels.add(wasteland);
-        flt = new FacilityLevelTool(inventory, party);
-        facility = new Level("The Facility", flt.getFacilityRooms());
-        levels.add(facility);
+
     }
 
 

@@ -50,10 +50,12 @@ public class NewRoom {
     }
 
     public Boolean canPickUpItem() {
-        return inventory.size() == 10;
+        return inventory.size() < 10;
     }
 
-
+    public void setItemNull() {
+        this.item = null;
+    }
 
     public List<Item> getInventory() {
         return inventory;
