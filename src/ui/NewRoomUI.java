@@ -42,7 +42,7 @@ public class NewRoomUI {
 
         JFrame frame = new JFrame("Room");
         frame.setContentPane(nRoomPanel);
-        frame.getContentPane().setBackground(level.getColor());
+        centerPanel.setBackground(level.getColor());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -171,19 +171,13 @@ public class NewRoomUI {
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
         nRoomPanel.add(centerPanel, BorderLayout.CENTER);
-        final JPanel spacer1 = new JPanel();
-        GridBagConstraints gbc;
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        centerPanel.add(spacer1, gbc);
         takeItemButton = new JButton();
         Font takeItemButtonFont = this.$$$getFont$$$("Courier New", -1, -1, takeItemButton.getFont());
         if (takeItemButtonFont != null) takeItemButton.setFont(takeItemButtonFont);
         takeItemButton.setText("Take item");
+        GridBagConstraints gbc;
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(takeItemButton, gbc);
@@ -192,7 +186,7 @@ public class NewRoomUI {
         if (centerLabelFont != null) centerLabel.setFont(centerLabelFont);
         centerLabel.setText("Label");
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 0;
         centerPanel.add(centerLabel, gbc);
         roomLabel = new JLabel();
@@ -200,18 +194,16 @@ public class NewRoomUI {
         if (roomLabelFont != null) roomLabel.setFont(roomLabelFont);
         roomLabel.setText("Label");
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.WEST;
         centerPanel.add(roomLabel, gbc);
         bossLabel = new JLabel();
         Font bossLabelFont = this.$$$getFont$$$("Courier New", -1, -1, bossLabel.getFont());
         if (bossLabelFont != null) bossLabel.setFont(bossLabelFont);
         bossLabel.setText("Label");
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.anchor = GridBagConstraints.WEST;
         centerPanel.add(bossLabel, gbc);
     }
 
