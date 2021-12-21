@@ -23,6 +23,7 @@ public class NewRoomUI {
     private JLabel roomLabel;
     private JLabel bossLabel;
     private JButton partyStatusButton;
+    private JButton inventoryButton;
 
     private NewLevel level;
     private NewRoom room;
@@ -57,6 +58,12 @@ public class NewRoomUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new PartyStatusUI(room.getParty(), level.getColor());
+            }
+        });
+        inventoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewInventoryTool(room.getInventory());
             }
         });
     }
@@ -223,6 +230,15 @@ public class NewRoomUI {
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(partyStatusButton, gbc);
+        inventoryButton = new JButton();
+        Font inventoryButtonFont = this.$$$getFont$$$("Courier New", -1, -1, inventoryButton.getFont());
+        if (inventoryButtonFont != null) inventoryButton.setFont(inventoryButtonFont);
+        inventoryButton.setText("Inventory");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(inventoryButton, gbc);
     }
 
     /**

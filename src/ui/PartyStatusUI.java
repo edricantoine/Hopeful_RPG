@@ -42,6 +42,7 @@ public class PartyStatusUI {
                 frame.dispose();
             }
         });
+
     }
 
     public void initializeLabels() {
