@@ -24,6 +24,7 @@ public class NewRoomUI {
     private JLabel bossLabel;
     private JButton partyStatusButton;
     private JButton inventoryButton;
+    private JLabel eventLabel;
 
     private NewLevel level;
     private NewRoom room;
@@ -53,6 +54,10 @@ public class NewRoomUI {
         if (room.getHasBattle()) {
             frame.dispose();
             new Battle(room, level.getColor(), level, r, c);
+        }
+        if (room.getEvent() != null) {
+            room.getEvent().takeEffect(room.getParty());
+            room.useEvent();
         }
         partyStatusButton.addActionListener(new ActionListener() {
             @Override
@@ -143,6 +148,10 @@ public class NewRoomUI {
             centerLabel.setText(room.getItem().getName() + " is in this room!");
         }
 
+        if (room.getEvent() != null) {
+            eventLabel.setText(room.getEvent().getFlavor());
+        }
+
         roomLabel.setText("Room " + row + "-" + col);
         bossLabel.setText("Bosses defeated: " + level.howManyBossesDead() + "/3");
     }
@@ -194,7 +203,7 @@ public class NewRoomUI {
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(takeItemButton, gbc);
         centerLabel = new JLabel();
@@ -203,7 +212,7 @@ public class NewRoomUI {
         centerLabel.setText("Label");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         centerPanel.add(centerLabel, gbc);
         roomLabel = new JLabel();
         Font roomLabelFont = this.$$$getFont$$$("Courier New", -1, -1, roomLabel.getFont());
@@ -211,7 +220,7 @@ public class NewRoomUI {
         roomLabel.setText("Label");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         centerPanel.add(roomLabel, gbc);
         bossLabel = new JLabel();
         Font bossLabelFont = this.$$$getFont$$$("Courier New", -1, -1, bossLabel.getFont());
@@ -219,7 +228,7 @@ public class NewRoomUI {
         bossLabel.setText("Label");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         centerPanel.add(bossLabel, gbc);
         partyStatusButton = new JButton();
         Font partyStatusButtonFont = this.$$$getFont$$$("Courier New", -1, -1, partyStatusButton.getFont());
@@ -227,7 +236,7 @@ public class NewRoomUI {
         partyStatusButton.setText("Party status");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(partyStatusButton, gbc);
         inventoryButton = new JButton();
@@ -236,9 +245,17 @@ public class NewRoomUI {
         inventoryButton.setText("Inventory");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         centerPanel.add(inventoryButton, gbc);
+        eventLabel = new JLabel();
+        Font eventLabelFont = this.$$$getFont$$$("Courier New", -1, -1, eventLabel.getFont());
+        if (eventLabelFont != null) eventLabel.setFont(eventLabelFont);
+        eventLabel.setText("");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        centerPanel.add(eventLabel, gbc);
     }
 
     /**

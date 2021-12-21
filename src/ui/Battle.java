@@ -891,7 +891,7 @@ public class Battle {
                         new YouWinUI();
                     } else {
                         level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
-                                null, false, false, 0);
+                                null, false, false, 0, room.getEvent());
                         frame.dispose();
                         new NewRoomUI(level, level.getRooms()[row][col], row, col);
                     }

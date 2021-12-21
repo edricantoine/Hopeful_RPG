@@ -17,11 +17,14 @@ public class NewRoom {
     private Item item;
     private Boolean hasBattle;
     private Boolean isFinalRoom;
+    private RoomEvent event;
     private int whichBoss; // can be 0 1 2 or 3
 
 
-    public NewRoom(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item i, Boolean hb, Boolean f, int whichBoss) {
+    public NewRoom(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item i, Boolean hb, Boolean f, int whichBoss,
+                   RoomEvent ev) {
         this.enemies = enemies;
+        this.event = ev;
         this.party = party;
         this.inventory = inventory;
         this.allChars = new ArrayList<>();
@@ -31,6 +34,14 @@ public class NewRoom {
         this.whichBoss = whichBoss;
 
         createAllChars();
+    }
+
+    public RoomEvent getEvent() {
+        return event;
+    }
+
+    public void useEvent() {
+        event = null;
     }
 
     public int getWhichBoss() {

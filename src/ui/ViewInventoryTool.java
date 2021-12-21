@@ -147,6 +147,8 @@ public class ViewInventoryTool {
         invPanel.setLayout(new GridBagLayout());
         invPanel.setBackground(new Color(-4988956));
         dropButton = new JButton();
+        Font dropButtonFont = this.$$$getFont$$$("Courier New", -1, -1, dropButton.getFont());
+        if (dropButtonFont != null) dropButton.setFont(dropButtonFont);
         dropButton.setText("Drop");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
@@ -365,4 +367,5 @@ public class ViewInventoryTool {
     public JComponent $$$getRootComponent$$$() {
         return invPanel;
     }
+
 }
