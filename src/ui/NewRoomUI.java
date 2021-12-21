@@ -22,6 +22,7 @@ public class NewRoomUI {
     private JLabel centerLabel;
     private JLabel roomLabel;
     private JLabel bossLabel;
+    private JButton partyStatusButton;
 
     private NewLevel level;
     private NewRoom room;
@@ -33,23 +34,31 @@ public class NewRoomUI {
         room = rm;
         this.row = r;
         this.col = c;
+        JFrame frame = new JFrame("Room");
+
+        frame.setContentPane(nRoomPanel);
 
 
         initializeButtonsAndLabels();
         inititializeActionListeners();
         nRoomPanel.setBackground(level.getColor());
-
-
-        JFrame frame = new JFrame("Room");
-        frame.setContentPane(nRoomPanel);
         centerPanel.setBackground(level.getColor());
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+
         if (room.getHasBattle()) {
             frame.dispose();
             new Battle(room, level.getColor(), level, r, c);
         }
+        partyStatusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PartyStatusUI(room.getParty(), level.getColor());
+            }
+        });
     }
 
     public void inititializeActionListeners() {
@@ -205,6 +214,15 @@ public class NewRoomUI {
         gbc.gridx = 0;
         gbc.gridy = 3;
         centerPanel.add(bossLabel, gbc);
+        partyStatusButton = new JButton();
+        Font partyStatusButtonFont = this.$$$getFont$$$("Courier New", -1, -1, partyStatusButton.getFont());
+        if (partyStatusButtonFont != null) partyStatusButton.setFont(partyStatusButtonFont);
+        partyStatusButton.setText("Party status");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        centerPanel.add(partyStatusButton, gbc);
     }
 
     /**
