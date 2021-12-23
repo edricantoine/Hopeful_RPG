@@ -23,7 +23,7 @@ public class LevelSelectUI {
     private List<PlayerCharacter> party;
     private List<NewLevel> levels;
     private NewLevel wasteland;
-    private Level facility;
+    private NewLevel facility;
     private NewFacilityTool flt;
     private NewWastelandTool wlt;
 
@@ -44,6 +44,9 @@ public class LevelSelectUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        wastelandButton.setToolTipText("A level good for beginners. Smaller size and no room events.");
+        facilityButton.setToolTipText("Here, enemies will focus on debuffing your team and inflicting status ailments. Room events" +
+                " have the potential to help or hinder your team, too.");
         wastelandButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +58,9 @@ public class LevelSelectUI {
         facilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new NewRoomUI(facility, facility.getRooms()[0][0], 0, 0);
             }
         });
     }
@@ -140,6 +145,10 @@ public class LevelSelectUI {
         wlt = new NewWastelandTool(inventory, party);
         wasteland = new NewLevel("The Wasteland", wlt.getWastelandRooms(), new Color(-2899838));
         levels.add(wasteland);
+
+        flt = new NewFacilityTool(inventory, party);
+        facility = new NewLevel("The Facility", flt.getFacilityRooms(), Color.GRAY);
+        levels.add(facility);
 
     }
 

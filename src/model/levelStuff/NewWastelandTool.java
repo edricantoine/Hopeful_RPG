@@ -116,26 +116,6 @@ public class NewWastelandTool {
 
     }
 
-    public List<Enemy> selectBossConfig() {
-        List<Enemy> configB1 = new ArrayList<>(Arrays.asList(
-                new WastelandFrankie(), new WastelandAssassin(), new WastelandAssassin()
-        ));
-        List<Enemy> configB2 = new ArrayList<>(Arrays.asList(
-                new WastelandSentry(), new WastelandMelee(), new WastelandMelee()
-        ));
-        List<Enemy> configB3 = new ArrayList<Enemy>(Arrays.asList(
-                new WastelandRev(), new WastelandSupport(), new WastelandSupport()
-        ));
-        Random rand = new Random();
-        int chosenConfig = rand.nextInt(3);
-        if(chosenConfig == 0) {
-            return configB1;
-        } else if (chosenConfig == 1) {
-            return configB2;
-        } else {
-            return configB3;
-        }
-    }
 
     public List<Enemy> selectConfig() {
         List<Enemy> toReturn = new ArrayList<>();
