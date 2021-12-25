@@ -52,7 +52,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new NewRoomUI(wasteland, wasteland.getRooms()[0][0], 0, 0);
+                new LevelBeginStoryUI(wasteland, wasteland.getRooms()[0][0]);
             }
         });
         facilityButton.addActionListener(new ActionListener() {
@@ -60,7 +60,7 @@ public class LevelSelectUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new NewRoomUI(facility, facility.getRooms()[0][0], 0, 0);
+                new LevelBeginStoryUI(facility, facility.getRooms()[0][0]);
             }
         });
     }
@@ -193,7 +193,7 @@ public class LevelSelectUI {
         wastelandButton.setEnabled(true);
         Font wastelandButtonFont = this.$$$getFont$$$("Courier New", -1, -1, wastelandButton.getFont());
         if (wastelandButtonFont != null) wastelandButton.setFont(wastelandButtonFont);
-        wastelandButton.setText("Wasteland");
+        wastelandButton.setText("Level 1: Wasteland");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -203,7 +203,7 @@ public class LevelSelectUI {
         facilityButton = new JButton();
         Font facilityButtonFont = this.$$$getFont$$$("Courier New", -1, -1, facilityButton.getFont());
         if (facilityButtonFont != null) facilityButton.setFont(facilityButtonFont);
-        facilityButton.setText("Facility");
+        facilityButton.setText("Level 2: Facility");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;

@@ -24,7 +24,7 @@ public abstract class Char {
     public final static int W_POISONED = 3;
     public final static int W_FROZEN = 2;
     public final static int W_AFRAID = 3;
-    public final static int DMG_POISONED = 10;
+    public final static int DMG_POISONED = 7;
 
     //constructor
 

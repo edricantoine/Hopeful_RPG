@@ -55,7 +55,7 @@ public class NewFacilityTool {
                 new FacilitySecurity(), new FacilityDrone()
         ));
         List<Enemy> configB3 = new ArrayList<Enemy>(Arrays.asList(
-                new FacilityTank(), new FacilityMedic(), new FacilityBomber(), new FacilityDebuffer()
+                new FacilityTank(), new FacilityMedic(), new FacilityMelee(), new FacilityDebuffer()
         ));
 
         facilityRooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, null);
@@ -107,7 +107,7 @@ public class NewFacilityTool {
     public Boolean returnRandom1to2() {
         Random rand = new Random();
         int chosen = rand.nextInt(2);
-        return chosen == 1;
+        return chosen == 0;
     }
 
 

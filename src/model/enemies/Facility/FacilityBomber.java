@@ -16,7 +16,7 @@ public class FacilityBomber extends Enemy {
                         new AttackSkill("Rocket Barrage", "launched missiles!", 0, "all", 20,
                                 StatusEffect.NONE, 1.0, 1.0, 1),
                         new AttackSkill("Flashbang", "threw a flashbang!", 0, "all", 10,
-                                StatusEffect.NONE, 0.80, 1.20, 1)
+                                StatusEffect.NONE, -0.20, 0.20, 1)
                 )), 5, "Watch out for this enemy's AOE attacks! Make sure you have healing items ready.",
                 " are locked and loaded.", " was defeated!");
 

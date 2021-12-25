@@ -16,7 +16,7 @@ public class FacilityMelee extends Enemy {
                         new AttackSkill("Baton Strike", "swung a baton at", 0, "one",
                                 40, StatusEffect.NONE, 1.0, 1.0, 1),
                         new SupportSkill("Battlecry", "riled up the enemies!", 0, "all", 0,
-                                0, 1.25, 1.0, false),
+                                0, 0.25, 1.0, false),
                         new AttackSkill("Defensive Stance", "is ready to counter!", 0, "all",
                                 0, StatusEffect.NONE, 1.0, 1.0, 1)
 

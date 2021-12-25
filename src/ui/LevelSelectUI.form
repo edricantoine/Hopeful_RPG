@@ -34,7 +34,7 @@
         <properties>
           <enabled value="true"/>
           <font name="Courier New"/>
-          <text value="Wasteland"/>
+          <text value="Level 1: Wasteland"/>
         </properties>
       </component>
       <component id="6c82e" class="javax.swing.JButton" binding="facilityButton" default-binding="true">
@@ -44,7 +44,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="Facility"/>
+          <text value="Level 2: Facility"/>
         </properties>
       </component>
     </children>

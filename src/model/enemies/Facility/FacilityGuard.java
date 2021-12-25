@@ -19,7 +19,7 @@ public class FacilityGuard extends Enemy {
                         new SupportSkill("Group Defense", "commanded the enemies to defend!", 0, "all", 0,
                                 0, 1.0, -0.15, false),
                         new SupportSkill("Group Attack Up", "commanded the enemies to attack!", 0, "all", 0,
-                                0, 1.50, 1.0, false)
+                                0, 0.50, 1.0, false)
 
                 )), 5, "This enemy relies on her guards to help her in battle. Taking them out will make this easier!",
                 " are prepared.", " was defeated.");

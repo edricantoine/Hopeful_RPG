@@ -66,6 +66,7 @@ public class Battle {
     private JButton itemButton1;
     private JButton itemButton2;
     private JButton itemButton3;
+    private JLabel bossLabel;
     private Battle temp;
     private Item loot;
     private JFrame frame;
@@ -164,7 +165,9 @@ public class Battle {
 
         refresh();
         battleLabel.setText(room.getEnemies().get(0).getName() + " and its cohorts" + room.getEnemies().get(0).getEnterText());
-
+        if (room.getWhichBoss() != 0) {
+            bossLabel.setText("BOSS BATTLE");
+        }
     }
 
     public void initializeButtons() {
@@ -893,6 +896,10 @@ public class Battle {
                         level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
                                 null, false, false, 0, room.getEvent());
                         frame.dispose();
+                        for (PlayerCharacter p : room.getParty()) {
+                            p.setAtkMod(1.0);
+                            p.setDefMod(1.0);
+                        }
                         new NewRoomUI(level, level.getRooms()[row][col], row, col);
                     }
 
@@ -1215,6 +1222,13 @@ public class Battle {
         gbc.gridy = 7;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         battlePanel.add(itemButton3, gbc);
+        bossLabel = new JLabel();
+        bossLabel.setText("Label");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        battlePanel.add(bossLabel, gbc);
     }
 
     /**

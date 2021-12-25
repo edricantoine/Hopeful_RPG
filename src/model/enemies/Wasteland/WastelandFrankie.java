@@ -17,7 +17,7 @@ public class WastelandFrankie extends Enemy {
                         new AttackSkill("Hack Up A Lung", "coughed up toxic fumes at", 0, "one", 10,
                                 StatusEffect.POISONED, 1.0, 1.0, 1),
                         new SupportSkill("Get Mad", "flew into a rage!", 0, "one",
-                                0, 0, 1.01, 1.0, false),
+                                0, 0, 0.50, 1.0, false),
                         new AttackSkill("Burnout", "spewed flames from her exhaust pipes!", 0, "all", 10,
                                 StatusEffect.BURNED, 1.0, 1.0, 1)
 
@@ -27,6 +27,6 @@ public class WastelandFrankie extends Enemy {
                 " sputtered to a stop...");
 
         loot = new Item("Frankie's Engine", "Increases attack drastically but burns the user",
-                0.0, 0.0, 0, 1.75, 1.0, false, StatusEffect.BURNED, 1, "one");
+                0.0, 0.0, 0, 1.50, 1.0, false, StatusEffect.BURNED, 1, "one");
     }
 }

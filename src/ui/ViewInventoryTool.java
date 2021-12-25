@@ -91,7 +91,7 @@ public class ViewInventoryTool {
             ls.get(i).setText(inventory.get(i).getName());
         }
 
-        for (int j = marker; j < ls.size(); j++) {
+        for (int j = marker + 1; j < ls.size(); j++) {
             ls.get(j).setText("None");
         }
 
@@ -100,11 +100,13 @@ public class ViewInventoryTool {
     public void setUpListeners() {
         for (int i = 0; i < inventory.size(); i++) {
             int finalI = i;
+            int finalI1 = i;
             bs.get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     inventory.remove(inventory.get(finalI));
                     refresh();
+
                 }
             });
         }
@@ -117,15 +119,17 @@ public class ViewInventoryTool {
             marker = i;
         }
 
-        for (int j = marker; j < bs.size(); j++) {
+        for (int j = marker + 1; j < bs.size(); j++) {
             bs.get(j).setEnabled(false);
         }
 
     }
 
     public void refresh() {
+        setUpLists();
         setUpLabels();
         setUpButtons();
+        setUpListeners();
     }
 
     {

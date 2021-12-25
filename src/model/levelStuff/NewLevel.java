@@ -12,6 +12,8 @@ public class NewLevel {
     private Boolean boss2dead;
     private Boolean boss3dead;
     private Boolean complete;
+    private String introLabelText;
+    private String endLabelText;
 
 
     public NewLevel(String name, NewRoom[][] rooms, Color c) {
@@ -25,6 +27,22 @@ public class NewLevel {
         boss3dead = false;
         complete = false;
 
+    }
+
+    public String getIntroLabelText() {
+        return introLabelText;
+    }
+
+    public void setIntroLabelText(String introLabelText) {
+        this.introLabelText = introLabelText;
+    }
+
+    public String getEndLabelText() {
+        return endLabelText;
+    }
+
+    public void setEndLabelText(String endLabelText) {
+        this.endLabelText = endLabelText;
     }
 
     public Boolean getComplete() {

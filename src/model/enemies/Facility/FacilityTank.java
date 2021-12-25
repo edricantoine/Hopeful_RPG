@@ -14,7 +14,7 @@ public class FacilityTank extends Enemy {
     public FacilityTank() {
         super("Agent Jackpot", 250, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Shield Gauntlets", "struck with a massive shield, hitting", 0, "one",
-                                15, StatusEffect.NONE, 1.0, 1.10, 1),
+                                15, StatusEffect.NONE, 1.0, 0.20, 1),
                         new SupportSkill("Shrug It Off", "held up a shield, protecting", 0, "one", 0,
                                 0, 1.0, -10.0, false)
 
