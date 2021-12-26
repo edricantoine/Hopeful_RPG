@@ -782,6 +782,7 @@ public class Battle {
                 }
             }
             s.setAtkMod(1.00);
+
         } else {
             battleLabel.setText(e.getName() + " " + "couldn't move this turn...!");
         }
@@ -794,6 +795,7 @@ public class Battle {
         int chosenSkillNum = rand.nextInt(chooseNum);
         Skill chosenSkill = eSkills.get(chosenSkillNum);
         e.setSelectedSkill(chosenSkill);
+        chosenSkill.setSetTargets(new ArrayList<>());
         chooseEnemySkillTarget(e, chosenSkill);
     }
 
@@ -891,7 +893,7 @@ public class Battle {
 
                     if (level.getComplete()) {
                         frame.dispose();
-                        new YouWinUI();
+                        new LevelEndStoryUI(level);
                     } else {
                         level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
                                 null, false, false, 0, room.getEvent());
@@ -1223,7 +1225,9 @@ public class Battle {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         battlePanel.add(itemButton3, gbc);
         bossLabel = new JLabel();
-        bossLabel.setText("Label");
+        Font bossLabelFont = this.$$$getFont$$$("Courier New", -1, -1, bossLabel.getFont());
+        if (bossLabelFont != null) bossLabel.setFont(bossLabelFont);
+        bossLabel.setText("l");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;

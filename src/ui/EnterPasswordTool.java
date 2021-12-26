@@ -4,37 +4,26 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-public class MainMenu {
-    private JPanel MainMenuPanel;
-    private JButton levelSelectButton;
-    private JButton extrasMenuButton;
+public class EnterPasswordTool {
+    private JTextField textField1;
+    private JButton enterButton;
+    private JLabel pLabel;
+    private JPanel passPanel;
+    private List<String> validPass;
 
-    public MainMenu() {
-        JFrame frame = new JFrame("Main Menu");
-        frame.setContentPane(MainMenuPanel);
+    public EnterPasswordTool() {
+        validPass = new ArrayList<>();
+        validPass.add("ab42pgf9");
+        validPass.add("b0wwg5gn");
+        JFrame frame = new JFrame("Enter password");
+        frame.setContentPane(passPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        levelSelectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component cButton = (Component) e.getSource();
-                SwingUtilities.getWindowAncestor(cButton).dispose();
-                new LevelSelectUI(false, false, false);
-            }
-        });
-        extrasMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component cButton = (Component) e.getSource();
-                SwingUtilities.getWindowAncestor(cButton).dispose();
-                new ExtrasMenu();
-            }
-        });
     }
 
     {
@@ -52,27 +41,36 @@ public class MainMenu {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        MainMenuPanel = new JPanel();
-        MainMenuPanel.setLayout(new GridBagLayout());
-        MainMenuPanel.setBackground(new Color(-4988956));
-        extrasMenuButton = new JButton();
-        Font extrasMenuButtonFont = this.$$$getFont$$$("Courier New", -1, -1, extrasMenuButton.getFont());
-        if (extrasMenuButtonFont != null) extrasMenuButton.setFont(extrasMenuButtonFont);
-        extrasMenuButton.setText("Extras");
+        passPanel = new JPanel();
+        passPanel.setLayout(new GridBagLayout());
+        passPanel.setBackground(new Color(-4988956));
+        textField1 = new JTextField();
+        Font textField1Font = this.$$$getFont$$$("Courier New", -1, -1, textField1.getFont());
+        if (textField1Font != null) textField1.setFont(textField1Font);
+        textField1.setText("");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        MainMenuPanel.add(extrasMenuButton, gbc);
-        levelSelectButton = new JButton();
-        Font levelSelectButtonFont = this.$$$getFont$$$("Courier New", -1, -1, levelSelectButton.getFont());
-        if (levelSelectButtonFont != null) levelSelectButton.setFont(levelSelectButtonFont);
-        levelSelectButton.setText("Level Select");
+        passPanel.add(textField1, gbc);
+        enterButton = new JButton();
+        enterButton.setText("Enter");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        passPanel.add(enterButton, gbc);
+        pLabel = new JLabel();
+        Font pLabelFont = this.$$$getFont$$$("Courier New", -1, -1, pLabel.getFont());
+        if (pLabelFont != null) pLabel.setFont(pLabelFont);
+        pLabel.setText("Enter password here.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        MainMenuPanel.add(levelSelectButton, gbc);
+        gbc.anchor = GridBagConstraints.WEST;
+        passPanel.add(pLabel, gbc);
     }
 
     /**
@@ -101,6 +99,7 @@ public class MainMenu {
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return MainMenuPanel;
+        return passPanel;
     }
+
 }

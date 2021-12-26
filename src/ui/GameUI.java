@@ -1,5 +1,10 @@
 package ui;
 
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
@@ -7,6 +12,8 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Locale;
 
 public class GameUI {
@@ -15,6 +22,7 @@ public class GameUI {
     private JPanel titlePanel;
     private JLabel titleLabel;
     private JButton beginButton;
+    private JButton passButton;
 
     public GameUI() {
         beginButton.addActionListener(new ActionListener() {
@@ -25,6 +33,34 @@ public class GameUI {
                 new MainMenu();
             }
         });
+        passButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new EnterPasswordTool();
+            }
+        });
+
+        music();
+    }
+
+    public void music() {
+        AudioPlayer ap = AudioPlayer.player;
+        AudioStream bgm;
+        AudioData md;
+
+        ContinuousAudioDataStream loop = null;
+
+        try {
+            bgm = new AudioStream(new FileInputStream(""));
+            md = bgm.getData();
+            loop = new ContinuousAudioDataStream(md);
+        } catch (IOException e) {
+            System.out.println("Music error");
+        }
+
+        ap.start(loop);
     }
 
     public static void main(String[] args) {
@@ -76,6 +112,15 @@ public class GameUI {
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         titlePanel.add(beginButton, gbc);
+        passButton = new JButton();
+        Font passButtonFont = this.$$$getFont$$$("Courier New", -1, -1, passButton.getFont());
+        if (passButtonFont != null) passButton.setFont(passButtonFont);
+        passButton.setText("PASSWORD");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        titlePanel.add(passButton, gbc);
     }
 
     /**

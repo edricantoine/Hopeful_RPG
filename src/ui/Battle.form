@@ -311,7 +311,8 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <font name="Courier New"/>
+          <text value="l"/>
         </properties>
       </component>
     </children>

@@ -30,12 +30,30 @@ public class LevelSelectUI {
     private JPanel lselectpanel;
     private JButton wastelandButton;
     private JButton facilityButton;
+    private JLabel passwordLabel;
+    private JLabel mainLabel;
 
-    public LevelSelectUI() {
+    public LevelSelectUI(Boolean l1c, Boolean l2c, Boolean l3c) {
 
         party = new ArrayList<>();
         setUpParty();
         inventory = new ArrayList<>();
+        if (l1c && !l2c) {
+            passwordLabel.setText("PASSWORD: ab42pgf9");
+        } else if (l2c && !l3c) {
+            passwordLabel.setText("PASSWORD: b0wwg5gn");
+            mainLabel.setText("You've completed all levels so far! To be continued...");
+        }
+
+        if (!l1c) {
+            facilityButton.setEnabled(false);
+        }
+        if (l1c) {
+            wastelandButton.setEnabled(false);
+        }
+        if (l2c) {
+            wastelandButton.setEnabled(false);
+        }
 
         levels = new ArrayList<>();
         setUpLevels();
@@ -144,10 +162,22 @@ public class LevelSelectUI {
     public void setUpLevels() {
         wlt = new NewWastelandTool(inventory, party);
         wasteland = new NewLevel("The Wasteland", wlt.getWastelandRooms(), new Color(-2899838));
+        wasteland.setIntroLabelText("<html><body><p style='width:200px;'>" + "Jack Munroe and a couple of acquaintances have decided to" +
+                " venture out into the Scaravaje Wastelands, the former site of a military base, to investigate a strange phenomenon reported on the news. However, the locals" +
+                " don't take very kindly to those intruding on their turf. Beat all 3 bosses to win!" + "</p></body></html>");
+        wasteland.setEndLabelText("<html><body><p style='width:200px;'>" + "Unfortunately, nothing of substance relating to" +
+                " the phenomenon was discovered, and on top of that, Jack and co. are accused of tampering with military" +
+                " secrets. They are taken into custody and thrown into an underground prison facility..." + "</p></body></html>");
         levels.add(wasteland);
 
         flt = new NewFacilityTool(inventory, party);
         facility = new NewLevel("The Facility", flt.getFacilityRooms(), Color.GRAY);
+        facility.setIntroLabelText("<html><body><p style='width:200px;'>" + "After being wrongfully imprisoned for the events in " +
+                "the Scaravaje Wastelands, Jack and co. decide to attempt a prison break. They will need to use all of their strength" +
+                " to stand a chance at escaping. Beat all 3 bosses to win!" + "</p></body></html>");
+        facility.setEndLabelText("<html><body><p style='width:200px;'>" + "Fortunately, Jack and co. are able to avoid too much trouble" +
+                " and are able to prove to the head warden of the prison that their imprisonment was a mistake. With no clues on " +
+                "the strange phenomenon, they decide to head to the big city in search of clues..." + "</p></body></html>");
         levels.add(facility);
 
     }
@@ -172,21 +202,21 @@ public class LevelSelectUI {
         lselectpanel.setLayout(new GridBagLayout());
         lselectpanel.setBackground(new Color(-4988956));
         lselectpanel.setEnabled(true);
-        final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$("Courier New", -1, 16, label1.getFont());
-        if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("Select level.");
+        mainLabel = new JLabel();
+        Font mainLabelFont = this.$$$getFont$$$("Courier New", -1, 16, mainLabel.getFont());
+        if (mainLabelFont != null) mainLabel.setFont(mainLabelFont);
+        mainLabel.setText("Select level.");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        lselectpanel.add(label1, gbc);
+        lselectpanel.add(mainLabel, gbc);
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         lselectpanel.add(spacer1, gbc);
         wastelandButton = new JButton();
@@ -196,7 +226,7 @@ public class LevelSelectUI {
         wastelandButton.setText("Level 1: Wasteland");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         lselectpanel.add(wastelandButton, gbc);
@@ -206,9 +236,17 @@ public class LevelSelectUI {
         facilityButton.setText("Level 2: Facility");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         lselectpanel.add(facilityButton, gbc);
+        passwordLabel = new JLabel();
+        Font passwordLabelFont = this.$$$getFont$$$("Courier New", -1, -1, passwordLabel.getFont());
+        if (passwordLabelFont != null) passwordLabel.setFont(passwordLabelFont);
+        passwordLabel.setText("");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        lselectpanel.add(passwordLabel, gbc);
     }
 
     /**

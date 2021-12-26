@@ -27,7 +27,13 @@ public class LevelEndStoryUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new MainMenu();
+                if (l.getName().equals("The Wasteland")) {
+                    new LevelSelectUI(true, false, false);
+                } else if (l.getName().equals("The Facility")) {
+                    new LevelSelectUI(true, true, false);
+                } else {
+                    new LevelSelectUI(false, false, false);
+                }
             }
         });
     }
@@ -98,4 +104,5 @@ public class LevelEndStoryUI {
     public JComponent $$$getRootComponent$$$() {
         return endPanel;
     }
+
 }
