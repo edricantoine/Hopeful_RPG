@@ -53,6 +53,7 @@ public class LevelSelectUI {
         }
         if (l2c) {
             wastelandButton.setEnabled(false);
+            facilityButton.setEnabled(false);
         }
 
         levels = new ArrayList<>();

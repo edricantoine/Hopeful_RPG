@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -19,11 +21,40 @@ public class EnterPasswordTool {
         validPass = new ArrayList<>();
         validPass.add("ab42pgf9");
         validPass.add("b0wwg5gn");
+
+        setUpButton();
         JFrame frame = new JFrame("Enter password");
         frame.setContentPane(passPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+    }
+
+    public void setUpButton() {
+        enterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String enteredPass = textField1.getText();
+                if (enteredPass.length() == 0) {
+                    Toolkit.getDefaultToolkit().beep();
+                } else {
+                    if (!validPass.contains(enteredPass)) {
+                        Toolkit.getDefaultToolkit().beep();
+                    } else {
+                        if (enteredPass.equals("ab42pgf9")) {
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+                            new LevelSelectUI(true, false, false);
+                        } else if (enteredPass.equals("b0wwg5gn")) {
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+                            new LevelSelectUI(true, true, false);
+                        }
+                    }
+                }
+            }
+        });
     }
 
     {
