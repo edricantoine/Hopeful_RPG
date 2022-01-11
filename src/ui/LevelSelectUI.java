@@ -87,15 +87,15 @@ public class LevelSelectUI {
     public void setUpParty() {
         jack = new PlayerCharacter("Jack", 150, 100, new ArrayList<>(Arrays.asList(
                 new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
-                        StatusEffect.NONE, 1.0, 1.0, 1),
+                        StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
 
                 new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
-                        50, StatusEffect.NUMB, 1.0, 1.0, 2),
+                        50, StatusEffect.NUMB, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new AttackSkill("Shatter", "punched with a fist of ice, hitting", 40, "one",
-                        50, StatusEffect.NONE, 1.0, 1.0, 2),
+                        50, StatusEffect.NONE, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
 
                 new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 30, "one", 30,
-                        StatusEffect.NUMB, 1.0, 1.0, 3)
+                        StatusEffect.NUMB, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
 
 
         )), 5,
@@ -105,13 +105,16 @@ public class LevelSelectUI {
         trip = new PlayerCharacter("Trip", 200, 130, new ArrayList<>(Arrays.asList(
 
                 new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
-                        20, StatusEffect.NONE, 1.0, 1.0, 1),
+                        20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
-                        50.0, 0, 0.25, 1.0, false),
+                        50.0, 0, 0.25, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                        0, 0, 1.0, 1.0, StatusEffect.NONE),
                 new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
-                        50.0, 0, 1.0, -0.15, false),
+                        50.0, 0, 1.0, -0.15, false, 0, 0, 0, StatusEffect.NONE,
+                        0, 0, 1.0, 1.0, StatusEffect.NONE),
                 new SupportSkill("Toast", "and the party drank together!", 40, "all",
-                        70.0, 0, 1.0, 1.0, true)
+                        70.0, 0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                        0, 0, 1.0, 1.0, StatusEffect.NONE)
 
 
         )), 3,
@@ -121,13 +124,14 @@ public class LevelSelectUI {
         boyle = new PlayerCharacter("Boyle", 100, 150, new ArrayList<>(Arrays.asList(
 
                 new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one", 40
-                        , StatusEffect.NONE, 1.0, 1.0, 1),
+                        , StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new AttackSkill("Torch", "launched flames from her flamethrower, scorching", 30, "one",
-                        50, StatusEffect.BURNED, 1.0, 1.0, 2),
+                        50, StatusEffect.BURNED, 1.0, 1.0, 2, 0, 0, 1.0, 1.0,
+                        0, 0, StatusEffect.NONE),
                 new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
-                        75, StatusEffect.BURNED, 1.0, 1.0, 3),
+                        75, StatusEffect.BURNED, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new AttackSkill("Fumes", "sprayed toxic gas at", 20, "one",
-                        0, StatusEffect.POISONED, 1.0, 1.0, 1)
+                        0, StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
 
 
         )), 9,
@@ -138,14 +142,15 @@ public class LevelSelectUI {
         oscar = new PlayerCharacter("Oscar", 110, 100, new ArrayList<>(Arrays.asList(
 
                 new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
-                        15, StatusEffect.NONE, 1.0, 1.0, 1),
+                        15, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new AttackSkill("Primal Fear", "induced fear in the enemies...", 60, "all",
-                        0, StatusEffect.AFRAID, 1.0, 1.0, 1),
+                        0, StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new SupportSkill("Devotion", "gave his life for", 100, "one",
-                        300.0, 200, 3.00, 0.0, false),
+                        300.0, 200, 2.00, 0.0, false, 0, 3, 0, StatusEffect.NONE,
+                        0, 0, 1.0, 1.0, StatusEffect.NONE),
                 new AttackSkill("Bloodlust",
                         "acted on his cravings, biting into", 30, "one",
-                        50, StatusEffect.NONE, 1.0, 1.0, 0)
+                        50, StatusEffect.NONE, 1.0, 1.0, 0, 25, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
 
 
         )), 8,

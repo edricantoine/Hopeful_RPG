@@ -12,9 +12,11 @@ public class WastelandTank extends Enemy {
     public WastelandTank() {
         super("Armored Bandit", 250, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Armor Bash", "strikes with his armor, hitting", 0, "one",
-                                20, StatusEffect.NONE, 1.0, 1.0, 1),
+                                20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0,
+                                0, 0, StatusEffect.NONE),
                         new AttackSkill("Armor Break", "broke the guard of", 0, "one", 0,
-                                StatusEffect.NONE, 1.0, 0.25, 1)
+                                StatusEffect.NONE, 1.0, 0.25, 1, 0, 0, 1.0, 1.0,
+                                0, 0, StatusEffect.NONE)
                 )), 2,
                 "This bandit's scrap armor makes him tough to take down.", " are ready to fight!",
                 "'s armor crumbled...");

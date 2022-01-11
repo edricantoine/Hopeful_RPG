@@ -3,10 +3,7 @@ package ui;
 import model.*;
 import model.enemies.Enemy;
 import model.enemies.Facility.FacilityDrone;
-import model.enemies.Facility.FacilityGuard;
-import model.enemies.Facility.FacilityMelee;
 import model.enemies.Facility.FacilitySecurity;
-import model.enemies.Wasteland.WastelandFrankie;
 import model.levelStuff.NewLevel;
 import model.levelStuff.NewRoom;
 
@@ -260,7 +257,8 @@ public class Battle {
         button12.setToolTipText("Guaranteed to poison an enemy.");
         button13.setToolTipText("Deals 15 damage to all enemies.");
         button14.setToolTipText("Makes all enemies afraid.");
-        button15.setToolTipText("Gives his life to fully heal an ally's HP and AP and increase damage and defense.");
+        button15.setToolTipText("Gives his life to fully heal an ally's HP and AP and increase damage and defense. If " +
+                "he targets himself, does this to himself at the cost of all AP.");
         button16.setToolTipText("Deals 50 damage to an enemy and heals Oscar by 25 HP.");
 
         initializeActionListeners();
@@ -707,24 +705,32 @@ public class Battle {
                 }
 
                 s.takeEffect(c);
+
+                if (s instanceof AttackSkill) {
+                    ((AttackSkill) s).takeUserEffect(p);
+                } else if (s instanceof SupportSkill) {
+                    ((SupportSkill) s).takeUserEffect(p);
+                }
+
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     p.takeDamage(s.getDamage());
                 }
+
+                //special case accounting for Jack's Shatter skill
 
                 if (s.equals(room.getParty().get(0).getSkills().get(2)) && c.getCurrentStatus().equals(StatusEffect.NUMB)) {
                     c.takeDamage(25);
                 }
 
-                if (s.equals(room.getParty().get(3).getSkills().get(3))) {
-                    p.healDamage(25.0);
-                }
+
+                //special case accounting for Oscar's Devotion skill
 
                 if (s.equals(room.getParty().get(3).getSkills().get(2))) {
                     if (!s.getSetTargets().get(0).equals(room.getParty().get(3))) {
                         p.takeDamage(500);
                     } else {
-                        battleLabel.setText("Oscar's actions had no effect...");
-                        p.healAp(100);
+                        battleLabel.setText("Oscar fully heals himself!");
+
                     }
 
                 }
@@ -749,6 +755,7 @@ public class Battle {
                 }
                 s.takeEffect(c);
 
+
                 if (s instanceof AttackSkill) {
 
                     for (int i = 0; i < room.getParty().size(); i++) {
@@ -764,23 +771,18 @@ public class Battle {
                     }
                 }
 
+                if (s instanceof AttackSkill) {
+                    ((AttackSkill) s).takeUserEffect(e);
+                } else if (s instanceof SupportSkill) {
+                    ((SupportSkill) s).takeUserEffect(e);
+                }
+
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     e.takeDamage(s.getDamage());
                 }
             }
-            if (e instanceof WastelandFrankie && s.getName().equals("You Know The Drill")) {
-                e.setAtkMod((e.getAtkMod() + 0.50));
-            }
 
-            if (e instanceof FacilityMelee && s.getName().equals("Defensive Stance")) {
-                e.setCurrentStatus(StatusEffect.RIPOSTE);
-            }
 
-            if (e instanceof FacilityGuard && s.getName().equals("Group Counter")) {
-                for (Enemy n : room.getEnemies()) {
-                    n.setCurrentStatus(StatusEffect.RIPOSTE);
-                }
-            }
             s.setAtkMod(1.00);
 
         } else {

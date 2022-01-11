@@ -27,19 +27,19 @@ public class AttackSkillTest {
     public void setUp() {
         skills = new ArrayList<>();
         atkS = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 10,
-                StatusEffect.NONE, 1.0, 1.0, 0);
+                StatusEffect.NONE, 1.0, 1.0, 0, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkB = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 40,
-                StatusEffect.BURNED, 1.0, 1.0, 1);
+                StatusEffect.BURNED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkF = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 2,
-                StatusEffect.NUMB, 1.0, 1.0, 1);
+                StatusEffect.NUMB, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkP = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 13,
-                StatusEffect.POISONED, 1.0, 1.0, 1);
+                StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkA = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 44,
-                StatusEffect.AFRAID, 1.0, 1.0, 1);
+                StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkAmod = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 23,
-                StatusEffect.NONE, 0.50, 1.0, 1);
+                StatusEffect.NONE, 0.50, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkDmod = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
-                StatusEffect.NONE, 1.0, 1.50, 1);
+                StatusEffect.NONE, 1.0, 1.50, 1, 0, 0,1.0, 1.0, 0, 0, StatusEffect.NONE);
         skills.add(atkS);
         skills.add(atkB);
         skills.add(atkF);

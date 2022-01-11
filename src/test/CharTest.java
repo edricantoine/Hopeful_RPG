@@ -30,9 +30,10 @@ public class CharTest {
         skills = new ArrayList<>();
         party = new ArrayList<>();
         atkS = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 10,
-                StatusEffect.NONE, 1.0, 1.0, 0);
+                StatusEffect.NONE, 1.0, 1.0, 0, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         supS = new SupportSkill("Heal!", "...heals an ally", 10, "one", 10,
-                0, 1.0, 1.0, false);
+                0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
         skills.add(atkS);
         skills.add(supS);
         e1 = new Enemy("Joe", 100, 100, skills, 5, "It's Joe.", " enters.",

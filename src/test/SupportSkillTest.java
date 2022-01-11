@@ -24,19 +24,24 @@ public class SupportSkillTest {
     @BeforeEach
     public void setUp() {
         supS = new SupportSkill("Basic Heal", "Heals for 10 HP", 0, "one", 10.0,
-                0, 1.0, 1.0, false);
+                0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE, 0, 0,
+                1.0, 1.0, StatusEffect.NONE);
 
         supA = new SupportSkill("AP Heal", "Heals for 10 AP", 0, "one", 0.0,
-                10, 1.0, 1.0, false);
+                10, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE, 0, 0,
+                1.0, 1.0, StatusEffect.NONE);
 
         supAtk = new SupportSkill("Attack Up", "Increases attack", 0, "one",
-                0.0, 0, 1.25, 1.0, false);
+                0.0, 0, 1.25, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
 
         supDef = new SupportSkill("Defense Up", "Increases defense", 0, "one",
-                0.0, 0, 1.0, 0.75, false);
+                0.0, 0, 1.0, 0.75, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
 
         supCure = new SupportSkill("Cure", "Cures a status ailment, but resets attack and defense.",
-                0, "one", 0.0, 0, 1.0, 1.0, true);
+                0, "one", 0.0, 0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
 
 
         p1 = new PlayerCharacter("John", 100, 100, new ArrayList<>(), 5,

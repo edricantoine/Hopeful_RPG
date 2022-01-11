@@ -13,11 +13,14 @@ public class FacilityDrone extends Enemy {
     public FacilityDrone() {
         super("COBRA Drone", 350, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Discharge", "discharged electricity!", 0, "all",
-                                50, StatusEffect.NUMB, 1.0, 1.0, 2),
+                                50, StatusEffect.NUMB, 1.0, 1.0, 2, 0, 0,
+                                1.0, 1.0, 0, 0, StatusEffect.NONE),
                         new AttackSkill("Flamethrower", "shot flames out!", 0, "all", 50,
-                                StatusEffect.BURNED, 1.0, 1.0, 2),
+                                StatusEffect.BURNED, 1.0, 1.0, 2,
+                                0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                         new SupportSkill("Repair Subroutine", "entered repair mode, healing", 0, "one", 50,
-                                0, 1.0, 1.0, true)
+                                0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                                0, 0, 1.0, 1.0 ,StatusEffect.NONE)
 
                 )), 8, "You can't take out the commander until you take out the drone!",
                 " block the way!", " was destroyed.");
