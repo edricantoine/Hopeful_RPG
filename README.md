@@ -11,4 +11,7 @@ It's not much, but I hope you enjoy it!
 
 TODO:
 - Start work on 3rd level
-- Add music (maybe?)
+- Add music (probably won't happen)
+- Add better comments throughout code
+- Add more thorough unit tests
+- Rework items to reduce unnecessary code?
