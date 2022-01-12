@@ -9,6 +9,8 @@ The game is not yet complete, but I am making steady progress on it regularly.
 
 It's not much, but I hope you enjoy it!
 
+NOTE: This project is NOT COMPLETE YET! So, code quality might be lower than that of a fully completed project but I am working on fixing that. :)
+
 TODO:
 - Start work on 3rd level
 - Add music (probably won't happen)
