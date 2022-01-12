@@ -133,8 +133,6 @@ public class AttackSkillTest {
     public void testAtkA() {
         atkA.takeEffect(p1);
         assertEquals(p1.getHp(), p1.getMaxhp() - atkA.getDamage());
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
         assertEquals(p1.getCurrentStatus(), StatusEffect.AFRAID);
     }
 
@@ -142,7 +140,7 @@ public class AttackSkillTest {
     public void testAtkAmod() {
         atkAmod.takeEffect(p1);
         assertEquals(p1.getHp(), p1.getMaxhp() - atkAmod.getDamage());
-        assertEquals(p1.getAtkMod(), (atkAmod.getAtkEffect() + 1.0) / 2.0);
+        assertEquals(p1.getAtkMod(), (atkAmod.getAtkEffect() + 1.0));
         assertEquals(p1.getDefMod(), 1.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
@@ -152,33 +150,11 @@ public class AttackSkillTest {
         atkDmod.takeEffect(p1);
         assertEquals(p1.getHp(), p1.getMaxhp() - atkDmod.getDamage());
         assertEquals(p1.getAtkMod(), 1.0);
-        assertEquals(p1.getDefMod(), (1.0 + atkDmod.getDefEffect()) / 2.0);
+        assertEquals(p1.getDefMod(), 1.0 + atkDmod.getDefEffect());
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
 
-    @Test
-    public void testModifiersWhileAfraid() {
-        p1.setCurrentStatus(StatusEffect.AFRAID);
-        atkDmod.takeEffect(p1);
-        assertEquals(p1.getHp(), p1.getMaxhp() - atkDmod.getDamage() * 1.25);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
 
-        p1.healDamage(p1.getMaxhp());
-
-        atkAmod.takeEffect(p1);
-        assertEquals(p1.getHp(), p1.getMaxhp() - atkAmod.getDamage() * 1.25);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
-
-        p1.healDamage(p1.getMaxhp());
-
-        atkA.takeEffect(p1);
-        assertEquals(p1.getHp(), p1.getMaxhp() - atkA.getDamage() * 1.25);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
-        assertEquals(p1.getCurrentStatus(), StatusEffect.AFRAID);
-    }
 
     @Test
     public void testAtkDieWithStatusEffect() {

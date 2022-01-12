@@ -32,11 +32,11 @@ public class SupportSkillTest {
                 1.0, 1.0, StatusEffect.NONE);
 
         supAtk = new SupportSkill("Attack Up", "Increases attack", 0, "one",
-                0.0, 0, 1.25, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0.0, 0, 0.1, 1.0, false, 0, 0, 0, StatusEffect.NONE,
                 0, 0, 1.0, 1.0, StatusEffect.NONE);
 
         supDef = new SupportSkill("Defense Up", "Increases defense", 0, "one",
-                0.0, 0, 1.0, 0.75, false, 0, 0, 0, StatusEffect.NONE,
+                0.0, 0, 1.0, -0.1, false, 0, 0, 0, StatusEffect.NONE,
                 0, 0, 1.0, 1.0, StatusEffect.NONE);
 
         supCure = new SupportSkill("Cure", "Cures a status ailment, but resets attack and defense.",
@@ -90,22 +90,22 @@ public class SupportSkillTest {
     @Test
     public void testAtkModSkill() {
         supAtk.takeEffect(p1);
-        assertEquals(p1.getAtkMod(), (1.0 + 1.25) / 2.0);
+        assertEquals(p1.getAtkMod(), 1.0 + 0.1);
         assertEquals(p1.getDefMod(), 1.0);
 
         supAtk.takeEffect(p1);
-        assertEquals(p1.getAtkMod(), (((1.0 + 1.25) / 2.0) + 1.25) / 2.0);
+        assertEquals(p1.getAtkMod(), 1.0 + 0.1 + 0.1);
         assertEquals(p1.getDefMod(), 1.0);
     }
 
     @Test
     public void testDefModSkill() {
         supDef.takeEffect(p1);
-        assertEquals(p1.getDefMod(), (1.0 + 0.75) / 2.0);
+        assertEquals(p1.getDefMod(), 1.0 - 0.1);
         assertEquals(p1.getAtkMod(), 1.0);
 
         supDef.takeEffect(p1);
-        assertEquals(p1.getDefMod(), (((1.0 + 0.75) / 2.0) + 0.75) / 2.0);
+        assertEquals(p1.getDefMod(), 1.0 - 0.1 - 0.1);
         assertEquals(p1.getAtkMod(), 1.0);
     }
 
@@ -115,8 +115,8 @@ public class SupportSkillTest {
         p1.setDefMod(2.00);
         p1.setCurrentStatus(StatusEffect.BURNED);
         supCure.takeEffect(p1);
-        assertEquals(p1.getDefMod(), 1.0);
-        assertEquals(p1.getAtkMod(), 1.0);
+        assertEquals(p1.getDefMod(), 2.0);
+        assertEquals(p1.getAtkMod(), 2.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
 
     }

@@ -22,6 +22,7 @@ public class ItemTest {
     private Item itemCure;
     private Item itemStatus;
     private Item itemAfraid;
+    private Item itemAtkDefMod2;
 
 
     @BeforeEach
@@ -40,9 +41,12 @@ public class ItemTest {
                 0.0, 0.0, 10, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
 
         itemAtkDefMod = new Item("Slorp Juice", "???",
-                0.0, 0.0, 0, 1.50, 0.50, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, 0.1, 0.1, false, StatusEffect.NONE, 0, "one");
 
-        itemCure = new Item("Remedy", "Heals status effects and resets attack + defense",
+        itemAtkDefMod2 = new Item("UnSlorp Juice", "???",
+                0.0, 0.0, 0, -0.1, -0.1, false, StatusEffect.NONE, 0, "one");
+
+        itemCure = new Item("Remedy", "Heals status effects",
                 0.0, 0.0, 0, 1.0, 1.0, true, StatusEffect.NONE, 0, "one");
 
         itemStatus = new Item("Hot Coals", "Burns the target",
@@ -51,6 +55,13 @@ public class ItemTest {
         itemAfraid = new Item("Bad Memory", "Makes the target afraid",
                 0.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.AFRAID, 1, "one");
 
+    }
+
+    @Test
+    public void testSetTargets() {
+        assertEquals(itemDmg.getSetTargets().size(), 0);
+        itemDmg.addToSetTargets(p1);
+        assertEquals(itemDmg.getSetTargets().size(), 1);
     }
 
     @Test
@@ -89,10 +100,31 @@ public class ItemTest {
     @Test
     public void testItemAtkDefMod() {
         itemAtkDefMod.takeEffect(p1);
-        assertEquals(p1.getAtkMod(), (1.0 + 1.50) / 2);
-        assertEquals(p1.getDefMod(), (1.0 + 0.50) / 2);
+        assertEquals(p1.getAtkMod(), 1.0 + 0.1);
+        assertEquals(p1.getDefMod(), 1.0 + 0.1);
         p1.takeDamage(10);
-        assertEquals(p1.getHp(), p1.getMaxhp() - (10 * ((1.0 + 0.50) / 2)));
+        assertEquals(p1.getHp(), p1.getMaxhp() - (10 * (1.0 + 0.1)));
+    }
+
+    @Test
+    public void testItemAtkDefModOverLimits() {
+        p1.setAtkMod(4.00);
+        p1.setDefMod(4.00);
+
+        itemAtkDefMod.takeEffect(p1);
+
+        assertEquals(p1.getAtkMod(), 4.00);
+        assertEquals(p1.getDefMod(), 4.00);
+    }
+    @Test
+    public void testItemAtkDefModUnderLimits() {
+        p1.setAtkMod(0.25);
+        p1.setDefMod(0.25);
+
+        itemAtkDefMod2.takeEffect(p1);
+
+        assertEquals(p1.getAtkMod(), 0.25);
+        assertEquals(p1.getDefMod(), 0.25);
     }
 
     @Test
@@ -103,8 +135,8 @@ public class ItemTest {
         assertEquals(p1.getCurrentStatus(), StatusEffect.NUMB);
         itemCure.takeEffect(p1);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
-        assertEquals(p1.getAtkMod(), 1.0);
-        assertEquals(p1.getDefMod(), 1.0);
+        assertEquals(p1.getAtkMod(), 2.0);
+        assertEquals(p1.getDefMod(), 2.0);
     }
 
     @Test
@@ -118,9 +150,11 @@ public class ItemTest {
         assertEquals(p1.getAtkMod(), 2.0);
         assertEquals(p1.getDefMod(), 2.0);
         p1.takeDamage(90);
-        itemStatus.takeEffect(p1);
         assertTrue(p1.getDead());
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+        itemStatus.takeEffect(p1);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+
     }
 
     @Test
@@ -129,7 +163,6 @@ public class ItemTest {
         p1.setDefMod(2.00);
         itemAfraid.takeEffect(p1);
         assertEquals(p1.getCurrentStatus(), StatusEffect.AFRAID);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
+
     }
 }

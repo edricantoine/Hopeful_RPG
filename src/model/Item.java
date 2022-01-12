@@ -120,7 +120,7 @@ public class Item {
 
         }
 
-        if(effectInflict != StatusEffect.NONE && !c.getDead()) {
+        if(!c.getDead() && effectInflict != StatusEffect.NONE) {
 
             Random rand = new Random();
             int statusApply = rand.nextInt(statusChance);

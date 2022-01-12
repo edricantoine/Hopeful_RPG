@@ -135,22 +135,27 @@ public abstract class Char {
     }
 
     public void setCurrentStatus(StatusEffect currentStatus) {
-        if(!this.getDead()) {
-            this.currentStatus = currentStatus;
-            if (currentStatus.equals(StatusEffect.BURNED)) {
-                timeSinceStatusApplied = W_BURNED;
-            } else if (currentStatus.equals(StatusEffect.POISONED)) {
-                timeSinceStatusApplied = W_POISONED;
-            } else if (currentStatus.equals(StatusEffect.NUMB)) {
-                timeSinceStatusApplied = W_FROZEN;
-            } else if (currentStatus.equals(StatusEffect.AFRAID)) {
-                timeSinceStatusApplied = W_AFRAID;
+        if(currentStatus != StatusEffect.NONE) {
+            if (!this.getDead()) {
+                this.currentStatus = currentStatus;
+                if (currentStatus.equals(StatusEffect.BURNED)) {
+                    timeSinceStatusApplied = W_BURNED;
+                } else if (currentStatus.equals(StatusEffect.POISONED)) {
+                    timeSinceStatusApplied = W_POISONED;
+                } else if (currentStatus.equals(StatusEffect.NUMB)) {
+                    timeSinceStatusApplied = W_FROZEN;
+                } else if (currentStatus.equals(StatusEffect.AFRAID)) {
+                    timeSinceStatusApplied = W_AFRAID;
 
-            } else if (currentStatus.equals(StatusEffect.NONE)) {
-                timeSinceStatusApplied = 0;
+                }
             }
+        } else {
+            this.currentStatus = StatusEffect.NONE;
+            timeSinceStatusApplied = 0;
         }
     }
+
+
 
     public int getSpeed() {
         return speed;
@@ -212,6 +217,8 @@ public abstract class Char {
 
     public void kill() {
         isDead = true;
+        setAtkMod(1.0);
+        setDefMod(1.0);
         setCurrentStatus(StatusEffect.NONE);
     }
 

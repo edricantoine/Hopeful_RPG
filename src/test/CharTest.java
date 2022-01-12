@@ -94,12 +94,10 @@ public class CharTest {
     @Test
     public void testTakeDamageDieWhileStatusEffect() {
         p1.setCurrentStatus(StatusEffect.AFRAID);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
+
         assertEquals(p1.getHp(), 100);
         p1.takeDamage(10000);
 
-        assertEquals(p1.getHp(), -12400.0);
         assertTrue(p1.getDead());
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
         assertEquals(p1.getAtkMod(), 1.0);
@@ -180,9 +178,41 @@ public class CharTest {
         p1.setCurrentStatus(StatusEffect.AFRAID);
 
         p1.turnBeginRoutine();
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
+        assertNotEquals(p1.getAtkMod(), 1.0);
+        assertNotEquals(p1.getDefMod(), 1.0);
     }
+
+    @Test
+    public void testTurnBeginRoutineAfraidOverLimits() {
+        p1.setAtkMod(0.25);
+        p1.setDefMod(4.00);
+
+        p1.setCurrentStatus(StatusEffect.AFRAID);
+        p1.turnBeginRoutine();
+
+        assertEquals(p1.getAtkMod(), 0.25);
+        assertEquals(p1.getDefMod(), 4.0);
+    }
+
+    @Test
+    public void testTurnBeginRoutineAP() {
+        p1.useAp(10);
+        assertEquals(p1.getAp(), p1.getMaxap() - 10);
+        p1.turnBeginRoutine();
+        assertEquals(p1.getAp(), p1.getMaxap());
+
+    }
+
+    @Test
+    public void testRevive() {
+        p1.takeDamage(p1.getMaxhp() + 24);
+        assertTrue(p1.getDead());
+        p1.healDamage(25);
+        assertFalse(p1.getDead());
+    }
+
+
+
 
     @Test
     public void testTurnEndRoutineBurned() {
@@ -193,8 +223,17 @@ public class CharTest {
         assertEquals(p1.getAp(), 95);
         p1.turnEndRoutine();
         assertEquals(p1.getHp(), p1.getMaxhp() - Char.DMG_BURNED);
-        assertEquals(p1.getAp(), 100);
+
+
+
         assertEquals(p1.getTimeSinceStatusApplied(), Char.W_BURNED - 1);
+
+        for(int i = 0; i < Char.W_BURNED - 1; i++) {
+            p1.turnEndRoutine();
+        }
+
+        assertEquals(p1.getTimeSinceStatusApplied(), 0);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
 
     @Test
@@ -206,7 +245,7 @@ public class CharTest {
 
         p1.turnEndRoutine();
 
-        assertEquals(p1.getHp(), p1.getMaxhp() - Char.DMG_POISONED);
+        assertEquals(p1.getHp(), p1.getMaxhp() - (Char.DMG_POISONED * (p1.getTimeSinceStatusApplied() + 1)));
         assertEquals(p1.getTimeSinceStatusApplied(), Char.W_POISONED - 1);
 
         for(int i = 0; i < Char.W_POISONED - 1; i++) {
@@ -224,6 +263,7 @@ public class CharTest {
         assertEquals(p1.getTimeSinceStatusApplied(), Char.W_FROZEN);
 
         p1.turnEndRoutine();
+        p1.turnEndRoutine();
 
         assertEquals(p1.getTimeSinceStatusApplied(), 0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
@@ -236,8 +276,7 @@ public class CharTest {
 
         assertEquals(p1.getCurrentStatus(), StatusEffect.AFRAID);
         assertEquals(p1.getTimeSinceStatusApplied(), Char.W_AFRAID);
-        assertEquals(p1.getAtkMod(), 0.75);
-        assertEquals(p1.getDefMod(), 1.25);
+
 
         for(int i = 0; i < Char.W_AFRAID; i++) {
             p1.turnEndRoutine();
@@ -254,7 +293,7 @@ public class CharTest {
     @Test
     public void testTurnEndRoutineBurnedDie() {
         p1.setCurrentStatus(StatusEffect.BURNED);
-        p1.takeDamage(95);
+        p1.takeDamage(p1.getMaxhp() - Char.DMG_BURNED);
         p1.turnEndRoutine();
         assertEquals(p1.getHp(), 0);
         assertTrue(p1.getDead());
@@ -271,6 +310,8 @@ public class CharTest {
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
 
     }
+
+
 
     @Test
     public void testUseAtkSkill() {
