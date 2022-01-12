@@ -33,7 +33,7 @@ public class WastelandRev extends Enemy {
                 " stand strongly!",
                 " fell to his knees...");
 
-        loot = new Item("Reverend's Scripture", "Fully heals HP and AP, and cures status.",
-                0.0, 1000, 101, 1.0, 1.0, true, StatusEffect.NONE, 0, "one");
+        loot = new Item("Reverend's Scripture", "Fully heals HP and AP.",
+                0.0, 1000, 101, 1.0, 1.0, 0, true, StatusEffect.NONE, 0, "one");
     }
 }

@@ -31,29 +31,29 @@ public class ItemTest {
         p1 = new PlayerCharacter("John", 100, 100, new ArrayList<>(), 5,
                 "Test", new ArrayList<>(), new ArrayList<>());
 
-        itemDmg = new Item("Bomb", "A bomb.", 50.0, 0.0, 0, 1.0, 1.0, false,
+        itemDmg = new Item("Bomb", "A bomb.", 50.0, 0.0, 0, 1.0, 1.0, 0, false,
                 StatusEffect.NONE, 0, "all");
 
         itemHl = new Item("Potion", "A healing potion.",
-                0.0, 10.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
+                0.0, 10.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one");
 
         itemAphl = new Item("AP Juice", "An AP potion.",
-                0.0, 0.0, 10, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 10, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one");
 
         itemAtkDefMod = new Item("Slorp Juice", "???",
-                0.0, 0.0, 0, 0.1, 0.1, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, 0.1, 0.1, 0, false, StatusEffect.NONE, 0, "one");
 
         itemAtkDefMod2 = new Item("UnSlorp Juice", "???",
-                0.0, 0.0, 0, -0.1, -0.1, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, -0.1, -0.1, 0, false, StatusEffect.NONE, 0, "one");
 
         itemCure = new Item("Remedy", "Heals status effects",
-                0.0, 0.0, 0, 1.0, 1.0, true, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, 1.0, 1.0, 0, true, StatusEffect.NONE, 0, "one");
 
         itemStatus = new Item("Hot Coals", "Burns the target",
-                1.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.BURNED, 1, "one");
+                1.0, 0.0, 0, 1.0, 1.0, 0, false, StatusEffect.BURNED, 1, "one");
 
         itemAfraid = new Item("Bad Memory", "Makes the target afraid",
-                0.0, 0.0, 0, 1.0, 1.0, false, StatusEffect.AFRAID, 1, "one");
+                0.0, 0.0, 0, 1.0, 1.0, 0, false, StatusEffect.AFRAID, 1, "one");
 
     }
 

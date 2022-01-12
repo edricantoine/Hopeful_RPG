@@ -178,8 +178,8 @@ public class CharTest {
         p1.setCurrentStatus(StatusEffect.AFRAID);
 
         p1.turnBeginRoutine();
-        assertNotEquals(p1.getAtkMod(), 1.0);
-        assertNotEquals(p1.getDefMod(), 1.0);
+        assertEquals(p1.getAtkMod(), 1.0 - 0.15);
+        assertEquals(p1.getDefMod(), 1.0 + 0.25);
     }
 
     @Test
@@ -341,7 +341,7 @@ public class CharTest {
         assertTrue(p2.canUseSkill(atkS));
         assertTrue(p2.useSkill(atkS, e2));
         assertEquals(p2.getAp(), p2.getMaxap() - atkS.getApCost());
-        assertEquals(e2.getHp(), e2.getMaxhp() - (atkS.getDamage() * 1.00));
+        assertEquals(e2.getHp(), e2.getMaxhp() - (atkS.getDamage()));
     }
 
     @Test

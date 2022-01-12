@@ -24,6 +24,6 @@ public class WastelandSupport extends Enemy {
                 " fell over in pain.");
 
         loot = new Item("AP Potion", "Heals 50 AP",
-                0.0, 0.0, 50, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 50, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one");
     }
 }

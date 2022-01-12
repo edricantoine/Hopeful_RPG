@@ -22,7 +22,7 @@ public class WastelandMelee extends Enemy {
                 "Your typical desert wasteland bandit.", " enter the fray!",
                 " was defeated.");
 
-        loot = new Item("Bomb", "A bomb. Deals 100 damage.", 100, 0.0, 0, 1.0, 1.0, false,
+        loot = new Item("Bomb", "A bomb. Deals 100 damage.", 100, 0.0, 0, 1.0, 1.0, 0, false,
                 StatusEffect.NONE, 0, "all");
     }
 }

@@ -154,6 +154,9 @@ public class AttackSkillTest {
         assertEquals(p1.getHp(), p1.getMaxhp() - atkDmod.getDamage());
         assertEquals(p1.getAtkMod(), 1.0);
         assertEquals(p1.getDefMod(), 1.0 + atkDmod.getDefEffect());
+        p1.setDefMod(3.99);
+        atkDmod.takeEffect(p1);
+        assertEquals(p1.getDefMod(), 4.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
 

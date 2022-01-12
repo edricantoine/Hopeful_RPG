@@ -29,7 +29,7 @@ public class FacilitySecurity extends Enemy {
                 " block the way!", " was destroyed.");
         isDroneDead = false;
         loot = new Item("Dealer's Shield Cell", "Heavily increases defense of one character.", 0.0,
-                0.0, 0, 1.0, -0.38, false, StatusEffect.NONE, 1, "one");
+                0.0, 0, 1.0, -0.38, 0, false, StatusEffect.NONE, 1, "one");
     }
 
     public void turnDroneDead() {

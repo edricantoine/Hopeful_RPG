@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+//Class representing the menu where gameplay tips (status effects specifically) are displayed.
+//Will likely be updated as development continues.
+
 public class GameplayTipsMenu {
     private JPanel tipsPanel;
     private JLabel burnLabel;

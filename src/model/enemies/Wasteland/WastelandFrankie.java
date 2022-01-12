@@ -30,6 +30,6 @@ public class WastelandFrankie extends Enemy {
                 " sputtered to a stop...");
 
         loot = new Item("Frankie's Engine", "Increases attack drastically but burns the user",
-                0.0, 0.0, 0, 1.50, 1.0, false, StatusEffect.BURNED, 1, "one");
+                0.0, 0.0, 0, 1.50, 1.0, 0, false, StatusEffect.BURNED, 1, "one");
     }
 }

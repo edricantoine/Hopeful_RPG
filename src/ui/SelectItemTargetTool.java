@@ -2,6 +2,7 @@ package ui;
 
 import model.Item;
 import model.PlayerCharacter;
+import model.enemies.Enemy;
 import model.levelStuff.NewRoom;
 
 import javax.swing.*;
@@ -52,14 +53,25 @@ public class SelectItemTargetTool {
     }
 
     public void initializeButtons() {
-        for (int i = 0; i < playerButtons.size(); i++) {
-            playerButtons.get(i).setText(room.getParty().get(i).getName());
-        }
-        for (int i = 0; i < Math.min(enemyButtons.size(), room.getEnemies().size()); i++) {
-            enemyButtons.get(i).setText(room.getEnemies().get(i).getName());
-        }
-        for (int i = 0; i < enemyButtons.size(); i++) {
-            if (enemyButtons.get(i).getText().equals("Button")) {
+        if (item.getTarget().equals("one")) {
+            for (int i = 0; i < playerButtons.size(); i++) {
+                playerButtons.get(i).setText(room.getParty().get(i).getName());
+            }
+            for (int i = 0; i < Math.min(enemyButtons.size(), room.getEnemies().size()); i++) {
+                enemyButtons.get(i).setText(room.getEnemies().get(i).getName());
+            }
+            for (int i = 0; i < enemyButtons.size(); i++) {
+                if (enemyButtons.get(i).getText().equals("Button")) {
+                    enemyButtons.get(i).setText("N/A");
+                }
+            }
+        } else if (item.getTarget().equals("all")) {
+            playerButtons.get(0).setText("All allies");
+            enemyButtons.get(0).setText("All enemies");
+            for (int i = 1; i < playerButtons.size(); i++) {
+                playerButtons.get(i).setText("N/A");
+            }
+            for (int i = 1; i < enemyButtons.size(); i++) {
                 enemyButtons.get(i).setText("N/A");
             }
         }
@@ -69,32 +81,45 @@ public class SelectItemTargetTool {
     public void initializeListeners() {
         for (int i = 0; i < playerButtons.size(); i++) {
             int finalI = i;
-            playerButtons.get(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    user.setSelectedItem(item);
-                    item.addToSetTargets(room.getParty().get(finalI));
-                    battle.checkReadyToTurn();
-                    Component cButton = (Component) e.getSource();
-                    SwingUtilities.getWindowAncestor(cButton).dispose();
+            String text = playerButtons.get(i).getText();
+            if (text.equals("N/A")) {
+                playerButtons.get(i).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Component cButton = (Component) e.getSource();
+                        SwingUtilities.getWindowAncestor(cButton).dispose();
+                    }
+                });
+            } else {
+                if (item.getTarget().equals("one")) {
+                    playerButtons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            user.setSelectedItem(item);
+                            item.addToSetTargets(room.getParty().get(finalI));
+                            battle.checkReadyToTurn();
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+                        }
+                    });
+                } else if (item.getTarget().equals("all")) {
+                    playerButtons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            user.setSelectedItem(item);
+                            for (PlayerCharacter p : room.getParty()) {
+                                item.addToSetTargets(p);
+                            }
+
+                            battle.checkReadyToTurn();
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+                        }
+                    });
                 }
-            });
+            }
         }
 
-        for (int i = 0; i < Math.min(enemyButtons.size(), room.getEnemies().size()); i++) {
-            int finalI = i;
-            enemyButtons.get(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    user.setSelectedItem(item);
-                    item.addToSetTargets(room.getEnemies().get(finalI));
-                    battle.checkReadyToTurn();
-                    Component cButton = (Component) e.getSource();
-                    SwingUtilities.getWindowAncestor(cButton).dispose();
-
-                }
-            });
-        }
 
         for (int i = 0; i < enemyButtons.size(); i++) {
             int finalI = i;
@@ -109,6 +134,34 @@ public class SelectItemTargetTool {
 
                     }
                 });
+            } else {
+                if (item.getTarget().equals("one")) {
+                    enemyButtons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            user.setSelectedItem(item);
+                            item.addToSetTargets(room.getEnemies().get(finalI));
+                            battle.checkReadyToTurn();
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+
+                        }
+                    });
+                } else if (item.getTarget().equals("all")) {
+                    enemyButtons.get(i).addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            user.setSelectedItem(item);
+                            for (Enemy a : room.getEnemies()) {
+                                item.addToSetTargets(a);
+                            }
+                            battle.checkReadyToTurn();
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+
+                        }
+                    });
+                }
             }
         }
 

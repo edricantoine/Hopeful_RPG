@@ -29,7 +29,7 @@ public class FacilityBulwark extends Enemy {
                 " stand strong!", " crumpled to his knees!");
 
         loot = new Item("Riot Shield", "Activates Riposte on one character.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.RIPOSTE, 1, "one");
+                0.0, 0, 1.0, 1.0, 0, false, StatusEffect.RIPOSTE, 1, "one");
     }
 
 }

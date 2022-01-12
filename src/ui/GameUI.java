@@ -1,10 +1,5 @@
 package ui;
 
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.FontUIResource;
@@ -12,8 +7,6 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Locale;
 
 public class GameUI {
@@ -42,26 +35,10 @@ public class GameUI {
             }
         });
 
-        music();
+
     }
 
-    public void music() {
-        AudioPlayer ap = AudioPlayer.player;
-        AudioStream bgm;
-        AudioData md;
 
-        ContinuousAudioDataStream loop = null;
-
-        try {
-            bgm = new AudioStream(new FileInputStream(""));
-            md = bgm.getData();
-            loop = new ContinuousAudioDataStream(md);
-        } catch (IOException e) {
-            System.out.println("Music error");
-        }
-
-        ap.start(loop);
-    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("HOPEFUL");
@@ -69,6 +46,7 @@ public class GameUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        System.out.println("Version 0.1 - item fixes");
     }
 
     {

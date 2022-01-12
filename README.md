@@ -9,6 +9,16 @@ The game is not yet complete, but I am making steady progress on it regularly.
 
 It's not much, but I hope you enjoy it!
 
+To get to the folder containing the .jar file:
+
+out -> artifacts -> Hopeful_RPG_jar
+
+To use this .jar file:
+
+- On whatever command line your OS uses (e.g. Terminal for Mac OS / Linux), navigate to the directory containing the .jar file.
+- Then, use the command "java -jar Hopeful_RPG.jar" (without quotes).
+- Enjoy!
+
 NOTE: This project is NOT COMPLETE YET! So, code quality might be lower than that of a fully completed project but I am working on fixing that. :)
 
 TODO:
@@ -16,4 +26,4 @@ TODO:
 - Add music (probably won't happen)
 - Add better comments throughout code
 - Add more thorough unit tests
-- Rework items to reduce unnecessary code?
+

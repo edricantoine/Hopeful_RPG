@@ -73,7 +73,7 @@ public class NewFacilityTool {
         facilityRooms[0][2] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e0);
         facilityRooms[0][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[0][4] = new NewRoom(selectConfig(), party, inventory, new Item("Food Rations", "Heals by 50 HP.",
-                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one"), false, false, 0, null);
+                0.0, 50.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one"), false, false, 0, null);
 
         facilityRooms[1][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[1][1] = new NewRoom(configB1, party, inventory, null, true, false, 1, null);
@@ -83,7 +83,7 @@ public class NewFacilityTool {
 
         facilityRooms[2][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[2][1] = new NewRoom(selectConfig(), party, inventory, new Item("Flashbang Grenade", "Target's attack and defense are lowered, with chance to numb target", 10.0,
-                0.0, 0, -0.10, 1.20, false, StatusEffect.NUMB, 2, "one"), false, false, 0, null);
+                0.0, 0, -0.10, 1.20, 0, false, StatusEffect.NUMB, 2, "one"), false, false, 0, null);
         facilityRooms[2][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[2][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e3);
         facilityRooms[2][4] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
@@ -91,17 +91,17 @@ public class NewFacilityTool {
         facilityRooms[3][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e4);
         facilityRooms[3][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[3][2] = new NewRoom(selectConfig(), party, inventory,  new Item("Riot Shield", "Activates Riposte on one character.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.RIPOSTE, 1, "one"), false, false, 0, null);
+                0.0, 0, 1.0, 1.0, 0, false, StatusEffect.RIPOSTE, 1, "one"), false, false, 0, null);
         facilityRooms[3][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[3][4] = new NewRoom(configB2, party, inventory, null, true, false, 2, null);
 
         facilityRooms[4][0] = new NewRoom(selectConfig(), party, inventory,  new Item("Biofield", "Heals all allies by 50.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one"), false, false, 0, null);
+                50.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 1, "all"), false, false, 0, null);
         facilityRooms[4][1] = new NewRoom(configB3, party, inventory, null, true, false, 3, null);
         facilityRooms[4][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         facilityRooms[4][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e5);
         facilityRooms[4][4] = new NewRoom(selectConfig(), party, inventory,  new Item("Pot of Coffee", "Permanently increases Speed this level.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one"), false, false, 0, null);
+                0.0, 0, 1.0, 1.0, 1, false, StatusEffect.NONE, 1, "one"), false, false, 0, null);
 
 
 

@@ -23,7 +23,7 @@ public class WastelandTank extends Enemy {
                 "'s armor crumbled...");
 
         loot = new Item("Food Rations", "Heals by 50 HP.",
-                0.0, 50.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 0, "one");
+                0.0, 50.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one");
 
     }
 }

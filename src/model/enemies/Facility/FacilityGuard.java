@@ -30,8 +30,8 @@ public class FacilityGuard extends Enemy {
                 )), 5, "This enemy relies on her guards to help her in battle. Taking them out will make this easier!",
                 " are prepared.", " was defeated.");
 
-        loot = new Item("Ace's Counter Device", "Activates Riposte on the party.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
+        loot = new Item("Ace's Counter Device", "Activates Riposte on the targets.", 0.0,
+                0.0, 0, 1.0, 1.0, 1,false,  StatusEffect.RIPOSTE, 1, "all");
     }
 
 }

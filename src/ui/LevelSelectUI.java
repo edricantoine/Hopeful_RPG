@@ -38,6 +38,7 @@ public class LevelSelectUI {
         party = new ArrayList<>();
         setUpParty();
         inventory = new ArrayList<>();
+
         if (l1c && !l2c) {
             passwordLabel.setText("PASSWORD: ab42pgf9");
         } else if (l2c && !l3c) {

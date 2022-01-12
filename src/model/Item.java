@@ -12,6 +12,7 @@ public class Item {
     private int apHeal; //item AP healing
     private double atkMod; //attack modifier effect
     private double defMod; //DAMAGE TAKEN modifier effect
+    private int spdMod; //Speed effect caused by item
     private Boolean cures; //if item cures status
     private StatusEffect effectInflict; //status effect that item inflicts
     private int statusChance; //chance to inflict status effect
@@ -19,13 +20,14 @@ public class Item {
     private List<Char> setTargets; //item's set targets
 
     public Item(String nm ,String flv,
-                double dmg, double hl, int aph, double atk, double def, Boolean cur, StatusEffect ef, int chc, String tgt) {
+                double dmg, double hl, int aph, double atk, double def, int spd, Boolean cur, StatusEffect ef, int chc, String tgt) {
         this.name = nm;
         this.flavor = flv;
         this.damage = dmg;
         this.healing = hl;
         this.atkMod = atk;
         this.defMod = def;
+        this.spdMod = spd;
         this.apHeal = aph;
         this.cures = cur;
         this.effectInflict = ef;
@@ -139,6 +141,9 @@ public class Item {
             }
 
         }
+
+        //modifies target speed
+        c.setSpeed(c.getSpeed() + spdMod);
 
         //cures target, if applicable
 

@@ -25,7 +25,7 @@ public class FacilityDrone extends Enemy {
                 )), 8, "You can't take out the commander until you take out the drone!",
                 " block the way!", " was destroyed.");
 
-        loot = new Item("COBRA Battery", "Zaps all enemies with lightning and Numbs them.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
+        loot = new Item("COBRA Battery", "Zaps all targets with lightning and Numbs them.", 50.0,
+                0.0, 0, 1.0, 1.0, 0, false, StatusEffect.NUMB, 1, "all");
     }
 }

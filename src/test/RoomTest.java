@@ -79,7 +79,7 @@ public class RoomTest {
         List<Item> inv = new ArrayList<>();
 
         e = new RoomEvent(0, 0, 0, 0, 0, 0, StatusEffect.NONE, 0, "one", ".");
-        i = new Item(". ", ".", 0, 0, 0, 0, 0, false, StatusEffect.NONE, 0, ".");
+        i = new Item(". ", ".", 0, 0, 0, 0, 0, 0, false, StatusEffect.NONE, 0, ".");
         inv.add(i);
         r = new NewRoom(ens, party, inv, i, false, false, 0, e);
 

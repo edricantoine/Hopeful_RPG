@@ -32,6 +32,6 @@ public class WastelandSentry extends Enemy {
                 " crashed and burned.");
 
         loot = new Item("SEN-3's Shield", "Massive increase to defense but decreases attack",
-                0.0, 0.0, 0, -1.00, -0.50, false, StatusEffect.NONE, 0, "one");
+                0.0, 0.0, 0, -1.00, -0.50, 0, false, StatusEffect.NONE, 0, "one");
     }
 }

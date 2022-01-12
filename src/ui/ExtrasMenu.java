@@ -14,12 +14,15 @@ public class ExtrasMenu {
     private JPanel extrasPanel;
     private JButton backButton;
 
+    //Class representing the menu screen from which the player can access the gameplay tips and character profiles screens
+
     public ExtrasMenu() {
         JFrame frame = new JFrame("Extras");
         frame.setContentPane(extrasPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        //pretty self-explanatory
         gameplayTipsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -6,9 +6,12 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
+//class representing the game over screen
 public class GameOverUI {
     private JPanel GameOverPanel;
     private JLabel GameOverLabel;
+
+    //again, very self-explanatory
 
     public GameOverUI() {
         JFrame frame = new JFrame("Game Over");
@@ -34,13 +37,19 @@ public class GameOverUI {
      */
     private void $$$setupUI$$$() {
         GameOverPanel = new JPanel();
-        GameOverPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        GameOverPanel.setLayout(new GridBagLayout());
         GameOverPanel.setBackground(new Color(-4988956));
         GameOverLabel = new JLabel();
         Font GameOverLabelFont = this.$$$getFont$$$("Courier New", -1, 20, GameOverLabel.getFont());
         if (GameOverLabelFont != null) GameOverLabel.setFont(GameOverLabelFont);
         GameOverLabel.setText("Game Over! Try again.");
-        GameOverPanel.add(GameOverLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        GameOverPanel.add(GameOverLabel, gbc);
     }
 
     /**
@@ -71,4 +80,5 @@ public class GameOverUI {
     public JComponent $$$getRootComponent$$$() {
         return GameOverPanel;
     }
+
 }

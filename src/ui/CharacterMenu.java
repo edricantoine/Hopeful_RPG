@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//a class representing the screen where the player can view character info and stats
+
 public class CharacterMenu {
     private JPanel cmPanel;
     private JLabel e1l;
@@ -46,7 +48,7 @@ public class CharacterMenu {
         });
     }
 
-    public void initializeLabels() {
+    public void initializeLabels() { //gives labels on this screen text corresponding to the relevant character
         labs.add(e1l);
         labs.add(e2l);
         labs.add(e3l);

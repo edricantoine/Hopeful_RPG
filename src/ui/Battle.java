@@ -692,43 +692,24 @@ public class Battle {
 
         Item i = p.getSelectedItem();
 
-        //SPECIAL cases for certain items.
-        // WILL REWORK ITEMS TO GET RID OF THESE EVENTUALLY...
-        if (i.getName().equals("Pot of Coffee")) {
-            p.setSpeed(p.getSpeed() + 3);
-        }
-        if (i.getName().equals("COBRA Battery")) {
-            for (Enemy e : room.getEnemies()) {
-                e.takeDamage(50);
-                e.setCurrentStatus(StatusEffect.NUMB);
-            }
-        }
-        if (i.getName().equals("Ace's Counter Device")) {
-            for (PlayerCharacter c : room.getParty()) {
-                p.setCurrentStatus(StatusEffect.RIPOSTE);
-            }
-        }
-        if (i.getName().equals("Biofield")) {
-            for (PlayerCharacter c : room.getParty()) {
-                p.healDamage(50);
-            }
-        }
+        if (!room.getInventory().contains(i)) {
+            //if two characters use the same item on their turn, item will only be used one time
+            battleLabel.setText(p.getName() + " used " + i.getName() + "! But the item was gone...");
+        } else {
 
 
-        for (Char c : i.getSetTargets()) {
-            if (!room.getInventory().contains(i)) {
-                //if two characters use the same item on their turn, item will only be used one time
-                battleLabel.setText(p.getName() + " used " + i.getName() + "! But the item was gone...");
-            } else if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
+            for (Char c : i.getSetTargets()) {
+                if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
 
-                battleLabel.setText(p.getName() + " used " + i.getName() + "!");
-                i.takeEffect(c);
-                room.removeFromInventory(i);
+                    battleLabel.setText(p.getName() + " used " + i.getName() + "!");
+                    i.takeEffect(c);
+                    room.removeFromInventory(i);
 
 
-            } else {
-                battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
+                } else {
+                    battleLabel.setText(p.getName() + " " + "couldn't move this turn...!");
 
+                }
             }
         }
     }
@@ -926,7 +907,6 @@ public class Battle {
                     "Attack modifier: " + room.getEnemies().get(i).getAtkMod() + "<br/>" +
                     "Damage taken modifier: " + room.getEnemies().get(i).getDefMod());
         }
-
 
 
         frame.pack();

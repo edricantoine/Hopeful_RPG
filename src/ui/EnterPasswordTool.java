@@ -10,16 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//A class representing the screen where the player can enter a password to regain progress (think Mega Man (NES)).
+
 public class EnterPasswordTool {
     private JTextField textField1;
     private JButton enterButton;
     private JLabel pLabel;
     private JPanel passPanel;
-    private List<String> validPass;
+    private List<String> validPass; //all valid passwords. Will be updated as new levels come
 
     public EnterPasswordTool() {
         validPass = new ArrayList<>();
-        validPass.add("ab42pgf9");
+        validPass.add("ab42pgf9"); //these values were arbitrarily chosen
         validPass.add("b0wwg5gn");
 
         setUpButton();
@@ -49,7 +51,7 @@ public class EnterPasswordTool {
                         } else if (enteredPass.equals("b0wwg5gn")) {
                             Component cButton = (Component) e.getSource();
                             SwingUtilities.getWindowAncestor(cButton).dispose();
-                            new LevelSelectUI(true, true, false);
+                            new LevelSelectUI(true, true, false); //levels completed up to a certain point for each password
                         }
                     }
                 }

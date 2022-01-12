@@ -29,6 +29,6 @@ public class FacilityDebuffer extends Enemy {
                 " ready their equipment.", " ran away!");
 
         loot = new Item("Pot of Coffee", "Permanently increases Speed this level.", 0.0,
-                0.0, 0, 1.0, 1.0, false, StatusEffect.NONE, 1, "one");
+                0.0, 0, 1.0, 1.0, 1, false, StatusEffect.NONE, 1, "one");
     }
 }
