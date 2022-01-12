@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "Reverend Pastel" boss.
+
 public class WastelandRev extends Enemy {
     public WastelandRev() {
         super("Reverend Pastel", 600, 100, new ArrayList<>(Arrays.asList(

@@ -40,6 +40,7 @@ public class AttackSkill extends Skill {
         this.statUser = statUser;
     }
 
+    //getters, setters
 
     public double getAtkUser() {
         return atkUser;
@@ -102,6 +103,7 @@ public class AttackSkill extends Skill {
 
     //all effects that take place ON TARGET.
 
+    //Applies relevant effects onto user of skill.
     public void takeUserEffect(Char p) {
         //modify user's HP
         p.healDamage(hpUser);
@@ -140,6 +142,7 @@ public class AttackSkill extends Skill {
         }
     }
 
+    //applies relevant effects to target of skill
     @Override
     public void takeEffect(Char c) {
 

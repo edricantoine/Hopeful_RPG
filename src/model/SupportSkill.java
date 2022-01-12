@@ -2,20 +2,20 @@ package model;
 
 public class SupportSkill extends Skill {
 
-    private double hpEffect;
-    private int apEffect;
-    private double atkEffect;
-    private double defEffect;
-    private Boolean cures;
-    private double dmgEffect;
-    private int spdEffect;
-    private int spdUser;
-    private StatusEffect statusEffect;
-    private double hpUser;
-    private double dmgUser;
-    private double atkUser;
-    private double defUser;
-    private StatusEffect statUser;
+    private double hpEffect; //how much target is healed
+    private int apEffect; //how much ap target receives
+    private double atkEffect; //attack effect on target
+    private double defEffect; //defense effect on target
+    private Boolean cures; //whether skill cures target
+    private double dmgEffect; //how much target is damaged
+    private int spdEffect; //speed effect on target
+    private int spdUser; //speed effect on user
+    private StatusEffect statusEffect; //status effect on target
+    private double hpUser; //heal effect on user
+    private double dmgUser; //damage effect on user
+    private double atkUser; //attack effect on user
+    private double defUser; //defense effect on user
+    private StatusEffect statUser; //status inflicted on user
 
 
     public SupportSkill(String name, String flavor, int apCost, String target, double hpEffect,
@@ -38,6 +38,20 @@ public class SupportSkill extends Skill {
         this.statUser = stU;
 
     }
+
+    //getters, setters
+
+    @Override
+    public void setAtkMod(double atkMod) {
+        return;
+    }
+
+    @Override
+    public double getDamage() {
+        return 0;
+    }
+
+    //applies relevant effects onto user of skill
 
     public void takeUserEffect(Char p) {
         //modify user's hp
@@ -76,6 +90,7 @@ public class SupportSkill extends Skill {
         }
     }
 
+    //applies relevant effects onto target of skill
     @Override
     public void takeEffect(Char c) {
 
@@ -117,13 +132,5 @@ public class SupportSkill extends Skill {
 
     }
 
-    @Override
-    public void setAtkMod(double atkMod) {
-        return;
-    }
 
-    @Override
-    public double getDamage() {
-        return 0;
-    }
 }

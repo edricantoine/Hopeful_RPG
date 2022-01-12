@@ -1,5 +1,7 @@
 package model.levelStuff;
 
+//THIS CLASS WILL BE DELETED.
+
 public class Level {
     private String name;
     private Room rooms;

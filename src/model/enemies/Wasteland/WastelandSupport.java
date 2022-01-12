@@ -8,6 +8,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "Bandit Doctor" enemy.
+
 public class WastelandSupport extends Enemy {
     public WastelandSupport() {
         super("Bandit Doctor", 80, 100, new ArrayList<>(Arrays.asList(

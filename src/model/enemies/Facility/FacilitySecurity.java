@@ -8,6 +8,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Agent Dealer, Head of Security" boss.
+
 public class FacilitySecurity extends Enemy {
     private boolean isDroneDead;
     public FacilitySecurity() {

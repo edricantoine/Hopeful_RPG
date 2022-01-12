@@ -3,28 +3,29 @@ package model;
 import java.util.List;
 
 public abstract class Char {
-    protected String name;
-    protected String flavor;
-    protected double maxhp;
-    protected int maxap;
-    protected double hp;
-    protected int ap;
-    protected List<Skill> skills;
-    protected StatusEffect currentStatus;
-    protected double atkMod;
-    protected double defMod;
-    protected int speed;
-    protected Boolean isDead;
-    protected int timeSinceStatusApplied;
-    protected Skill selectedSkill;
-    protected Item selectedItem;
+    protected String name; //character name
+    protected String flavor; //flavor text
+    protected double maxhp; //max.hp
+    protected int maxap; //max.ap
+    protected double hp; //current hp
+    protected int ap; //current ap
+    protected List<Skill> skills; //skills list
+    protected StatusEffect currentStatus; //current status effect
+    protected double atkMod; //attack modifier
+    protected double defMod; //DAMAGE TAKEN modifier
+    protected int speed; //speed
+    protected Boolean isDead; //is this character dead?
+    protected int timeSinceStatusApplied; //time since last status was applied
+    protected Skill selectedSkill; //readied skill
+    protected Item selectedItem; //readied item
 
-    public final static int DMG_BURNED = 10;
-    public final static int W_BURNED = 3;
-    public final static int W_POISONED = 3;
-    public final static int W_FROZEN = 2;
-    public final static int W_AFRAID = 3;
-    public final static int DMG_POISONED = 7;
+    public final static int DMG_BURNED = 10; //damage taken per turn while burned
+    public final static int W_BURNED = 3; //duration of burn
+    public final static int DMG_POISONED = 7; //base damage per turn while poisoned
+    public final static int W_POISONED = 3; //duration of poison
+    public final static int W_FROZEN = 2; //duration of numb
+    public final static int W_AFRAID = 3;//duration of afraid
+
 
     //constructor
 
@@ -134,6 +135,12 @@ public abstract class Char {
         return currentStatus;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    //sets current status, but cannot change to anything other than NONE if character is dead
+
     public void setCurrentStatus(StatusEffect currentStatus) {
         if(currentStatus != StatusEffect.NONE) {
             if (!this.getDead()) {
@@ -157,9 +164,8 @@ public abstract class Char {
 
 
 
-    public int getSpeed() {
-        return speed;
-    }
+
+    //returns skills in string format
 
     public String getSkillsAsString() {
         StringBuilder temp = new StringBuilder();
@@ -169,13 +175,30 @@ public abstract class Char {
         return temp.toString();
     }
 
+    //if this can use skill, uses skill s on character c like in a battle. Utility function for tests
+    public Boolean useSkill(Skill s, Char c) {
+        if(canUseSkill(s)) {
+            useAp(s.getApCost());
+            s.setAtkMod(atkMod);
+            s.takeEffect(c);
+            s.setAtkMod(1.00);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    public abstract Boolean useSkill(Skill s, Char c);
-    public abstract void useItem(Item i, Char c);
+    //uses item i on character c, like in a battle. Utility function for tests
+    public void useItem(Item i, Char c) {
+        i.takeEffect(c);
+    }
 
+    //if this character can use skill s, returns true. Returns false otherwise.
     public Boolean canUseSkill(Skill s) {
         return ((this.ap >= s.getApCost() && !this.getDead()));
     }
+
+    //takes d damage. If this reduces hp below 0, kills this character.
 
     public void takeDamage(double d) {
 
@@ -186,6 +209,8 @@ public abstract class Char {
             hp -= (d * defMod);
         }
     }
+
+    //heals d damage. If this brings hp above 0, revives this character. Cannot increase hp above maxHp.
 
     public void healDamage(double d) {
         if((hp + d) > 0) {
@@ -199,6 +224,8 @@ public abstract class Char {
 
     }
 
+    //uses d ap. Cannot decrease ap below 0.
+
     public void useAp(int d) {
         if(ap - d <= 0) {
             ap = 0;
@@ -207,6 +234,7 @@ public abstract class Char {
         }
     }
 
+    //heals d ap. Cannot increase ap past maxAp.
     public void healAp(int d) {
         if((ap + d) >= maxap) {
             ap = maxap;
@@ -215,17 +243,20 @@ public abstract class Char {
         }
     }
 
+    //sets character to be dead, and resets attack, defense, and status effect.
     public void kill() {
         isDead = true;
         setAtkMod(1.0);
         setDefMod(1.0);
         setCurrentStatus(StatusEffect.NONE);
     }
-
+    //sets character to not be dead.
     public void revive() {
         isDead = false;
     }
 
+    //applies "AFRAID" attack and defense modifiers. They cannot go above 4.00 or below 0.25.
+    //Also, heals 10 AP.
     public void turnBeginRoutine() {
         if (currentStatus.equals(StatusEffect.AFRAID)) {
             if(this.getAtkMod() -0.15 <= 0.25) {
@@ -245,6 +276,9 @@ public abstract class Char {
         }
         healAp(10);
     }
+
+    //Applies Burned and Poisoned damage, and decreases time since status applied. Removes effects if
+    //their duration is up. Also, sets selected skill and item to null.
 
     public void turnEndRoutine() {
         if(currentStatus.equals(StatusEffect.BURNED)) {
@@ -283,7 +317,7 @@ public abstract class Char {
         setSelectedItem(null);
     }
 
-   public abstract String toLabel();
+
 
 
 

@@ -41,7 +41,7 @@ public class RoomEvent {
     public void takeEffect(List<PlayerCharacter> party) {
         if(target.equals("one")) {
             Random rand = new Random();
-            int chosenTarget = rand.nextInt(4);
+            int chosenTarget = rand.nextInt(party.size());
             party.get(chosenTarget).takeDamage(damage);
             party.get(chosenTarget).healDamage(healing);
             party.get(chosenTarget).healAp(apEffect);

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+//THIS CLASS WILL BE DELETED.
+
 public class Room {
     private List<Item> inventory;
     private List<Enemy> enemies;

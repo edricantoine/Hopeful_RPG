@@ -8,6 +8,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Watcher Medic" enemy.
+
 public class FacilityMedic extends Enemy {
     public FacilityMedic() {
         super("Watcher Medic", 80, 100, new ArrayList<>(Arrays.asList(

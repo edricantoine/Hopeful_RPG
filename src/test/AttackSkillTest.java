@@ -142,6 +142,9 @@ public class AttackSkillTest {
         assertEquals(p1.getHp(), p1.getMaxhp() - atkAmod.getDamage());
         assertEquals(p1.getAtkMod(), (atkAmod.getAtkEffect() + 1.0));
         assertEquals(p1.getDefMod(), 1.0);
+        p1.setAtkMod(3.50);
+        atkAmod.takeEffect(p1);
+        assertEquals(p1.getAtkMod(),4.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
 
@@ -166,5 +169,8 @@ public class AttackSkillTest {
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
         assertTrue(p1.getDead());
     }
+
+    //Tests involving the takeUserEffect() method are omitted since it is a similar method to takeEffect(),
+    //only involving different variables in the AttackSkill class.
 
 }

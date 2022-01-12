@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "SEN-3" boss.
+
 public class WastelandSentry extends Enemy {
     public WastelandSentry() {
         super("SEN-3", 500, 100, new ArrayList<>(Arrays.asList(

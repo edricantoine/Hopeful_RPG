@@ -8,6 +8,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "Blade Bandit" enemy.
+
 public class WastelandAssassin extends Enemy {
     public WastelandAssassin() {
         super("Blade Bandit", 100, 100, new ArrayList<>(Arrays.asList(

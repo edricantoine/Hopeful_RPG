@@ -21,26 +21,29 @@ import java.util.*;
 
 public class Battle {
 
-    private NewRoom room;
-    private NewLevel level;
-    private Color color;
-    private List<JLabel> pLabs;
-    private List<JLabel> eLabs;
-    private List<JButton> jButtons;
-    private List<JButton> tButtons;
-    private List<JButton> bButtons;
-    private List<JButton> oButtons;
-    private List<Item> possibleLoot;
-    private List<JLabel> allLabs;
-    private Map<Char, Integer> turnOrder;
+    private NewRoom room; //room the battle is based around
+    private NewLevel level; //level this battle is part of
+    private Color color; //background color of battle screen
+    private List<JLabel> pLabs; //player labels
+    private List<JLabel> eLabs; //enemy labels
+    private List<JButton> jButtons; //Jack's skill buttons
+    private List<JButton> tButtons; //Trip's skill buttons
+    private List<JButton> bButtons; //Boyle's skill buttons
+    private List<JButton> oButtons; //Oscar's skill buttons
+    private List<Item> possibleLoot; //Possible loot drops from enemies
+    private List<JLabel> allLabs; //ALl labels, sorted by turn order
+    private Map<Char, Integer> turnOrder; //maps character to their turn order
+    //party labels
     private JLabel p1;
     private JLabel p2;
     private JLabel p3;
     private JLabel p4;
+    //enemy labels
     private JLabel e1;
     private JLabel e2;
     private JLabel e3;
     private JLabel e4;
+    //Swing components
     private JPanel battlePanel;
     private JLabel battleLabel;
     private JButton button1;
@@ -67,10 +70,13 @@ public class Battle {
     private Battle temp;
     private Item loot;
     private JFrame frame;
+    //Turn timer
     private Timer timer;
+    //Loot obtaining timer
     private Timer lootTimer;
-    private int row;
-    private int col;
+
+    private int row; //row of level's room grid that this battle is in
+    private int col; //column of level's room grid that this battle is in
 
     public Battle(NewRoom r, Color color, NewLevel level, int row, int col) {
         this.row = row;
@@ -82,9 +88,7 @@ public class Battle {
         oButtons = new ArrayList<>();
         pLabs = new ArrayList<>();
         eLabs = new ArrayList<>();
-        turnOrder = new HashMap<>();
 
-        allLabs = new ArrayList<>();
         possibleLoot = new ArrayList<>();
         this.room = r;
         this.level = level;
@@ -107,13 +111,25 @@ public class Battle {
 
     }
 
+    //getters, setters used in program
+    public Color getColor() {
+        return color;
+    }
+
+    //initializes turn order map
+
     public void initializeTurnOrder() {
+        turnOrder = new HashMap<>();
         for (int i = 0; i < room.getAllChars().size(); i++) {
             turnOrder.put(room.getAllChars().get(i), i);
         }
     }
 
+    // initializes labels sorted by respective character speed
+
     public void initializeAllLabs() {
+
+        allLabs = new ArrayList<>();
         for (int i = 0; i < room.getAllChars().size(); i++) {
             for (int j = 0; j < room.getParty().size(); j++) {
                 if (turnOrder.containsKey(room.getParty().get(j))) {
@@ -132,11 +148,15 @@ public class Battle {
         }
     }
 
+    //decides if this room has loot
+
     public Boolean decideLoot() {
         Random rand = new Random();
         int lootchance = rand.nextInt(2);
         return lootchance == 0;
     }
+
+    //chooses which enemy to get the room's loot drop from
 
     public void chooseLoot() {
         for (Enemy e : room.getEnemies()) {
@@ -148,6 +168,7 @@ public class Battle {
         this.loot = possibleLoot.get(index);
     }
 
+    //initializes all labels
 
     public void initializeLabels() {
         pLabs.add(p1);
@@ -166,6 +187,8 @@ public class Battle {
             bossLabel.setText("BOSS BATTLE");
         }
     }
+
+    //initializes buttons and adds them to their proper lists
 
     public void initializeButtons() {
         jButtons.add(button1);
@@ -186,6 +209,8 @@ public class Battle {
         oButtons.add(button16);
         initializeButtonLabels();
     }
+
+    //initialize labels on buttons
 
     public void initializeButtonLabels() {
         for (int i = 0; i < jButtons.size(); i++) {
@@ -242,6 +267,8 @@ public class Battle {
         initializeTooltips();
     }
 
+    //initializes tooltips for buttons
+
     public void initializeTooltips() {
         button2.setToolTipText("Deals 50 damage to all enemies with 1/2 chance to freeze.");
         button1.setToolTipText("Deals 25 damage.");
@@ -264,14 +291,18 @@ public class Battle {
         initializeActionListeners();
     }
 
+    //initializes action listeners for buttons
+
     public void initializeActionListeners() {
+
+        //ON EACH GIVEN SKILL BUTTON:
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Skill s : room.getParty().get(0).getSkills()) {
-                    s.setSetTargets(new ArrayList<>());
+                    s.setSetTargets(new ArrayList<>()); //sets respective skill's targets to a new ArrayList
                 }
-                room.getParty().get(0).setSelectedItem(null);
+                room.getParty().get(0).setSelectedItem(null); //sets corresponding character's selected item to null
                 new SelectTargetTool(room, room.getParty().get(0).getSkills().get(0), room.getParty().get(0), temp);
 
             }
@@ -443,10 +474,12 @@ public class Battle {
 
             }
         });
+        //ON EACH GIVEN ITEM BUTTON:
+
         itemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                room.getParty().get(0).setSelectedSkill(null);
+                room.getParty().get(0).setSelectedSkill(null); //sets corresponding character's selected skill to null
                 new SelectItemTool(room, room.getInventory(), room.getParty().get(0), temp);
 
             }
@@ -481,12 +514,14 @@ public class Battle {
 
     }
 
+    //takes all actions needed for 1 turn of the game
 
     public void checkReadyToTurn() {
 
 
         if (isReadyToTakeAction()) {
 
+            //all buttons temporarily disabled
 
             for (int i = 0; i < jButtons.size(); i++) {
                 jButtons.get(i).setEnabled(false);
@@ -509,6 +544,8 @@ public class Battle {
             itemButton2.setEnabled(false);
             itemButton3.setEnabled(false);
 
+            //new key listener added to frame that lets player fast-forward text
+
             frame.addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent e) {
@@ -529,45 +566,50 @@ public class Battle {
             timer = new Timer(3000, null);
             timer.setRepeats(true);
             timer.setInitialDelay(0);
+            //this happens every time timer fires, with delay of 3 sec. that can be skipped with key press
             timer.addActionListener(new ActionListener() {
-                int n = 0;
+                int n = 0; //current turn number
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     for (JLabel l : allLabs) {
-                        l.setForeground(Color.BLACK);
+                        l.setForeground(Color.BLACK); //resets label colors
                     }
                     if (n > 0) {
+                        //turns all labels non-bold
                         allLabs.get(n - 1).setFont(allLabs.get(n - 1).getFont().deriveFont(allLabs.get(n - 1).getFont().getStyle() & ~Font.BOLD));
                     }
                     timer.setDelay(3000);
 
-                    if (n < room.getAllChars().size()) {
+                    if (n < room.getAllChars().size()) { // battle cycle is still going
 
                         if (room.getAllChars().get(n) instanceof PlayerCharacter) {
 
-                            if (room.getAllChars().get(n).getSelectedItem() == null) {
+                            if (room.getAllChars().get(n).getSelectedItem() == null) { //uses skill if no item selected
 
                                 usePlayerSkill((PlayerCharacter) room.getAllChars().get(n));
 
-                            } else if (room.getAllChars().get(n).getSelectedSkill() == null) {
+                            } else if (room.getAllChars().get(n).getSelectedSkill() == null) { // uses item if no skill selected
 
                                 usePlayerItem((PlayerCharacter) room.getAllChars().get(n));
 
                             }
 
+                            //DUE TO THE WAY THE GAME IS CODED, AN ITEM AND A SKILL CANNOT BE BOTH SELECTED.
+
 
                         } else if (room.getAllChars().get(n) instanceof Enemy) {
 
 
-                            useEnemySkill((Enemy) room.getAllChars().get(n));
+                            useEnemySkill((Enemy) room.getAllChars().get(n)); //enemies can't use items
 
 
                         }
 
 
-                        n++;
+                        n++; //increment turn counter
                         allLabs.get(n - 1).setFont(allLabs.get(n - 1).getFont().deriveFont(allLabs.get(n - 1).getFont().getStyle() | Font.BOLD));
+                        //set current character's label to bold
 
                     } else {
                         timer.stop();
@@ -575,11 +617,14 @@ public class Battle {
                             c.turnEndRoutine();
                             refresh();
                         }
+                        //resets inventory items' targets
                         for (Item i : room.getInventory()) {
                             i.setSetTargets(new ArrayList<>());
                         }
+
                         checkBattleOver();
                         battleLabel.setText("The battle rages on...");
+                        //enables skill buttons if character can use that skill.
                         for (int i = 0; i < jButtons.size(); i++) {
                             if (room.getParty().get(0).getDead() || room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
                                 jButtons.get(i).setEnabled(true);
@@ -604,10 +649,12 @@ public class Battle {
                             }
 
                         }
+                        //item buttons always enabled
                         itemButton.setEnabled(true);
                         itemButton1.setEnabled(true);
                         itemButton2.setEnabled(true);
                         itemButton3.setEnabled(true);
+                        //removes last key listener to avoid excess key listeners
                         frame.removeKeyListener(frame.getKeyListeners()[0]);
                     }
 
@@ -618,6 +665,8 @@ public class Battle {
                 c.turnBeginRoutine();
                 refresh();
             }
+
+            //special case to account for FacilityDrone and FacilitySecurity's unique mechanics
             for (Enemy e : room.getEnemies()) {
                 if (e instanceof FacilitySecurity) {
                     for (Enemy f : room.getEnemies()) {
@@ -640,7 +689,11 @@ public class Battle {
 
 
     private void usePlayerItem(PlayerCharacter p) {
+
         Item i = p.getSelectedItem();
+
+        //SPECIAL cases for certain items.
+        // WILL REWORK ITEMS TO GET RID OF THESE EVENTUALLY...
         if (i.getName().equals("Pot of Coffee")) {
             p.setSpeed(p.getSpeed() + 3);
         }
@@ -660,8 +713,11 @@ public class Battle {
                 p.healDamage(50);
             }
         }
+
+
         for (Char c : i.getSetTargets()) {
             if (!room.getInventory().contains(i)) {
+                //if two characters use the same item on their turn, item will only be used one time
                 battleLabel.setText(p.getName() + " used " + i.getName() + "! But the item was gone...");
             } else if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
 
@@ -680,11 +736,12 @@ public class Battle {
 
     private void usePlayerSkill(PlayerCharacter p) {
         Skill s = p.getSelectedSkill();
-        if (p.canUseSkill(s) && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
+
+        if (p.canUseSkill(s) && !p.getCurrentStatus().equals(StatusEffect.NUMB)) { //numb characters can't move.
             p.useAp(s.getApCost());
-            s.setAtkMod(p.getAtkMod());
+            s.setAtkMod(p.getAtkMod()); //sets skill's attack mod to user's attack mod
             for (Char c : s.getSetTargets()) {
-                if (s.getTarget().equals("one")) {
+                if (s.getTarget().equals("one")) { //update label to reflect skill used
                     battleLabel.setText(p.getName() + " " + s.getFlavor() + " " + s.getSetTargets().get(0).getName() + "!");
                 } else {
                     battleLabel.setText(p.getName() + " " + s.getFlavor());
@@ -693,24 +750,28 @@ public class Battle {
                 if (s instanceof AttackSkill) {
                     for (int i = 0; i < room.getEnemies().size(); i++) {
                         if (room.getEnemies().get(i).equals(c)) {
-                            eLabs.get(i).setForeground(Color.RED);
+                            eLabs.get(i).setForeground(Color.RED); //sets target's label color to red
                         }
                     }
                 } else if (s instanceof SupportSkill) {
                     for (int i = 0; i < room.getParty().size(); i++) {
                         if (room.getParty().get(i).equals(c)) {
-                            pLabs.get(i).setForeground(Color.GREEN.darker().darker());
+                            pLabs.get(i).setForeground(Color.GREEN.darker().darker()); //sets target's label color to green
                         }
                     }
                 }
 
                 s.takeEffect(c);
 
+                //apply relevant effects to user
+
                 if (s instanceof AttackSkill) {
                     ((AttackSkill) s).takeUserEffect(p);
                 } else if (s instanceof SupportSkill) {
                     ((SupportSkill) s).takeUserEffect(p);
                 }
+
+                //counter effect from RIPOSTE skill
 
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     p.takeDamage(s.getDamage());
@@ -743,7 +804,7 @@ public class Battle {
 
     }
 
-    private void useEnemySkill(Enemy e) {
+    private void useEnemySkill(Enemy e) { //pretty similar to usePlayerSkill method. see that method for details
         Skill s = e.getSelectedSkill();
         if (e.canUseSkill(s) && !e.getCurrentStatus().equals(StatusEffect.NUMB)) {
             s.setAtkMod(e.getAtkMod());
@@ -790,6 +851,7 @@ public class Battle {
         }
     }
 
+    //Enemy selects a skill to use at random
     public void selectEnemySkill(Enemy e) {
         List<Skill> eSkills = e.getSkills();
         int chooseNum = eSkills.size();
@@ -800,6 +862,9 @@ public class Battle {
         chosenSkill.setSetTargets(new ArrayList<>());
         chooseEnemySkillTarget(e, chosenSkill);
     }
+
+    //If skill affects all, all party is targeted.
+    //If skill affects one, a party member is targeted at random.
 
     public void chooseEnemySkillTarget(Enemy e, Skill s) {
         if (s instanceof AttackSkill) {
@@ -827,6 +892,8 @@ public class Battle {
         }
     }
 
+    //returns true if all party members have either an item or skill selected
+
     public Boolean isReadyToTakeAction() {
         for (PlayerCharacter p : room.getParty()) {
 
@@ -838,7 +905,12 @@ public class Battle {
         return true;
     }
 
+    //clears + remakes turn order map, clears + remakes sorted labels list, updates all labels in panel, finally
+    //repacks JFrame
+
     public void refresh() {
+        initializeTurnOrder();
+        initializeAllLabs();
         for (int i = 0; i < pLabs.size(); i++) {
             pLabs.get(i).setText("<html>Name: " + room.getParty().get(i).getName() + "<br/>" + "HP: " +
                     room.getParty().get(i).getHp() + "/" + room.getParty().get(i).getMaxhp() + "<br/>" +
@@ -855,28 +927,34 @@ public class Battle {
                     "Damage taken modifier: " + room.getEnemies().get(i).getDefMod());
         }
 
+
+
         frame.pack();
     }
+
+    //things the program does when it detects that the battle is over
 
     public void checkBattleOver() {
         lootTimer = new Timer(3000, null);
         lootTimer.setRepeats(true);
         lootTimer.setInitialDelay(0);
+
+        //Every 3 seconds, while timer is started
         lootTimer.addActionListener(new ActionListener() {
             int count = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (count == 0) {
+                if (count == 0) { //first screen: "You win!"
 
                     battleLabel.setText("You win!");
 
                     count++;
-                } else if (count == 1) {
+                } else if (count == 1) { //second and last screen: loot receiving screen
 
                     if (loot != null) {
                         battleLabel.setText("You got " + loot.getName() + ".");
-                        addLootToInventory();
+                        addLootToInventory(); //loot is actually added here
                     } else {
                         battleLabel.setText("There was no item in this room...");
                     }
@@ -885,6 +963,7 @@ public class Battle {
 
                 } else {
                     lootTimer.stop();
+                    // marks appropriate boss as killed in this battle's level, if applicable
                     if (room.getWhichBoss() == 1) {
                         level.kill1Boss();
                     } else if (room.getWhichBoss() == 2) {
@@ -897,13 +976,17 @@ public class Battle {
                         frame.dispose();
                         new LevelEndStoryUI(level);
                     } else {
+                        //sets room at row, col in level's room grid to have no battle
                         level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
                                 null, false, false, 0, room.getEvent());
                         frame.dispose();
+                        //resets all party attack, defense modifiers
                         for (PlayerCharacter p : room.getParty()) {
                             p.setAtkMod(1.0);
                             p.setDefMod(1.0);
                         }
+
+                        //launches new Room UI based on "completed" room (now with no battle)
                         new NewRoomUI(level, level.getRooms()[row][col], row, col);
                     }
 
@@ -912,28 +995,27 @@ public class Battle {
         });
 
         if (room.isBattleWon()) {
-            lootTimer.start();
+            lootTimer.start(); //starts timer
         } else if (room.isBattleLost()) {
-            frame.dispose();
+            frame.dispose(); //timer is not used at all in this case...
             new GameOverUI();
         }
     }
 
-    public Color getColor() {
-        return color;
-    }
+    //where loot is actually added to room inventory
 
     public void addLootToInventory() {
         if (loot == null) {
             battleLabel.setText("There was no loot in this room.");
             refresh();
         } else {
-            if (room.getInventory().size() < 10) {
+            if (room.getInventory().size() < 10) { //we can pick up loot
                 System.out.println("You got " + loot.getName() + "!");
                 battleLabel.setText("You got " + loot.getName() + "!");
                 room.getInventory().add(loot);
-            } else {
-                System.out.println("oooo");
+            } else {  //there is loot ,but we don't have room to pick it up
+
+
                 battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
             }
         }
@@ -1229,7 +1311,7 @@ public class Battle {
         bossLabel = new JLabel();
         Font bossLabelFont = this.$$$getFont$$$("Courier New", -1, -1, bossLabel.getFont());
         if (bossLabelFont != null) bossLabel.setFont(bossLabelFont);
-        bossLabel.setText("l");
+        bossLabel.setText("");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;

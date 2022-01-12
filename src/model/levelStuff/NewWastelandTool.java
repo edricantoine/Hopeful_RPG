@@ -12,16 +12,15 @@ import java.util.List;
 import java.util.Random;
 
 public class NewWastelandTool {
-    private List<Item> inventory;
-    private List<PlayerCharacter> party;
-    private List<List<Enemy>> configs;
-    private NewRoom[][] wastelandRooms;
-    private List<String> enemies;
+    private List<Item> inventory; //current inventory
+    private List<PlayerCharacter> party; //current party
+    private NewRoom[][] wastelandRooms; //grid of rooms
+    private List<String> enemies; //possible enemy types
 
     public NewWastelandTool(List<Item> inventory, List<PlayerCharacter> party) {
         this.inventory = inventory;
         this.party = party;
-        configs = new ArrayList<>();
+
         enemies = new ArrayList<>(Arrays.asList(
                 "as", "mel", "sup", "tan"
         ));
@@ -29,38 +28,13 @@ public class NewWastelandTool {
         setUpWastelandLevel();
     }
 
+    //getters
+    public NewRoom[][] getWastelandRooms() {
+        return wastelandRooms;
+    }
 
+    //Sets up possible Enemy configurations, then creates somewhat random rooms based on these
     public void setUpWastelandLevel() {
-        List<Enemy> config1 = new ArrayList<>(Arrays.asList(
-                new WastelandAssassin(), new WastelandMelee()
-        ));
-        List<Enemy> config2 = new ArrayList<>(Arrays.asList(
-                new WastelandAssassin(), new WastelandMelee(), new WastelandTank()
-        ));
-        List<Enemy> config3 = new ArrayList<>(Arrays.asList(
-                new WastelandTank(), new WastelandMelee(), new WastelandSupport()
-        ));
-        List<Enemy> config4 = new ArrayList<>(Arrays.asList(
-                new WastelandAssassin(), new WastelandMelee(), new WastelandTank(), new WastelandSupport()
-        ));
-        List<Enemy> config5 = new ArrayList<>(Arrays.asList(
-                new WastelandTank(), new WastelandSupport()
-        ));
-        List<Enemy> config6 = new ArrayList<>(Arrays.asList(
-                new WastelandAssassin(), new WastelandMelee()
-        ));
-        List<Enemy> config7 = new ArrayList<>(Arrays.asList(
-                new WastelandMelee(), new WastelandMelee(), new WastelandSupport()
-        ));
-        List<Enemy> config8 = new ArrayList<>(Arrays.asList(
-                new WastelandAssassin(), new WastelandTank()
-        ));
-        List<Enemy> config9 = new ArrayList<>(Arrays.asList(
-                new WastelandTank(), new WastelandTank(), new WastelandTank()
-        ));
-        List<Enemy> config10 = new ArrayList<>(Arrays.asList(
-                new WastelandMelee(), new WastelandSupport(), new WastelandSupport()
-        ));
 
         List<Enemy> configB1 = new ArrayList<>(Arrays.asList(
                 new WastelandFrankie(), new WastelandAssassin(), new WastelandAssassin()
@@ -73,16 +47,7 @@ public class NewWastelandTool {
         ));
 
 
-        configs.add(config1);
-        configs.add(config2);
-        configs.add(config3);
-        configs.add(config4);
-        configs.add(config5);
-        configs.add(config6);
-        configs.add(config7);
-        configs.add(config8);
-        configs.add(config9);
-        configs.add(config10);
+
 
         wastelandRooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, null);
         wastelandRooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, true, false, 0, null);
@@ -116,7 +81,7 @@ public class NewWastelandTool {
 
     }
 
-
+    //randomly creates a list of enemies from 1 to 4 members, then chooses random enemy types for each member
     public List<Enemy> selectConfig() {
         List<Enemy> toReturn = new ArrayList<>();
         Random rand = new Random();
@@ -141,7 +106,4 @@ public class NewWastelandTool {
 
     }
 
-    public NewRoom[][] getWastelandRooms() {
-        return wastelandRooms;
-    }
 }

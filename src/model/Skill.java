@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class Skill {
-    protected String name;
-    protected String flavor;
-    protected int apCost;
-    protected String target;
-    protected List<Char> setTargets;
+    protected String name; //name
+    protected String flavor; //flavor text
+    protected int apCost; //ap cost of skill
+    protected String target; //can be "one" or "all"
+    protected List<Char> setTargets; //skill's set targets
 
     //Target can be either "one" or "all".
 
@@ -21,18 +21,14 @@ public abstract class Skill {
         this.target = target;
     }
 
+    //getters, setters
+
     public List<Char> getSetTargets() {
         return setTargets;
     }
 
     public void setSetTargets(List<Char> setTargets) {
         this.setTargets = setTargets;
-    }
-
-    public void addToSetTargets(Char c) {
-        if(!setTargets.contains(c)) {
-            setTargets.add(c);
-        }
     }
 
     public String getName() {
@@ -47,18 +43,25 @@ public abstract class Skill {
         return apCost;
     }
 
-
     public String getTarget() {
         return target;
     }
-
-    public abstract void takeEffect(Char c);
 
     public abstract void setAtkMod(double atkMod);
 
     public abstract double getDamage();
 
+    //adds c to set targets
 
+    public void addToSetTargets(Char c) {
+        if(!setTargets.contains(c)) {
+            setTargets.add(c);
+        }
+    }
+
+    public abstract void takeEffect(Char c);
+
+    //equals function is based on name and flavor text.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

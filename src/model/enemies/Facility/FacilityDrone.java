@@ -8,7 +8,7 @@ import model.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+// A class for the "COBRA Drone" boss.
 public class FacilityDrone extends Enemy {
     public FacilityDrone() {
         super("COBRA Drone", 350, 100, new ArrayList<>(Arrays.asList(

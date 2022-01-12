@@ -7,8 +7,8 @@ import java.util.List;
 
 public class PlayerCharacter extends Char {
 
-    private List<Enemy> enemiesFighting;
-    private List<PlayerCharacter> partyWith;
+    private List<Enemy> enemiesFighting; //enemies this character is fighting
+    private List<PlayerCharacter> partyWith; //party this character is with
 
     public PlayerCharacter(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor,
                            List<Enemy> enemiesFighting, List<PlayerCharacter> partyWith) {
@@ -16,6 +16,8 @@ public class PlayerCharacter extends Char {
         this.enemiesFighting = new ArrayList<>();
         this.partyWith = new ArrayList<>();
     }
+
+    //getters, setters
 
     public List<Enemy> getEnemiesFighting() {
         return enemiesFighting;
@@ -33,36 +35,11 @@ public class PlayerCharacter extends Char {
         this.partyWith = partyWith;
     }
 
-    @Override
-    public Boolean useSkill(Skill s, Char c) {
-        if(canUseSkill(s)) {
-            useAp(s.getApCost());
-            s.setAtkMod(atkMod);
-            s.takeEffect(c);
-            if(c.getCurrentStatus() == StatusEffect.RIPOSTE) {
-                this.takeDamage(s.getDamage() / 2);
-            }
-            s.setAtkMod(1.00);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    @Override
-    public void useItem(Item i, Char c) {
-        i.takeEffect(c);
-    }
 
-    @Override
-    public String toLabel() {
-        return "<html>Name: " + this.getName() + "<br/>" + "HP: " +
-                this.getHp() + "/" + this.getMaxhp() + "<br/>" +
-                "AP:" + this.getAp() + "/" + this.getMaxap() + "<br/>" +
-                "Status: " + this.getCurrentStatus() + "<br/>" +
-                "Attack modifier: " + this.getAtkMod() + "<br/>" +
-                "Damage taken modifier: " + this.getDefMod();
-    }
+
+
+
 
 
 }

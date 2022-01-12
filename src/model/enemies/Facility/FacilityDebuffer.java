@@ -8,6 +8,7 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Watcher Scientist" enemy.
 public class FacilityDebuffer extends Enemy {
 
     public FacilityDebuffer() {

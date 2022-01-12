@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+//THIS CLASS WILL BE DELETED.
+
 public class FacilityLevelTool {
     private List<Item> inventory;
     private List<PlayerCharacter> party;

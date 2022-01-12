@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Agent Ace, Elite Guard" boss.
+
 public class FacilityGuard extends Enemy {
     public FacilityGuard() {
         super("Agent Ace, Elite Guard", 350, 100, new ArrayList<>(Arrays.asList(

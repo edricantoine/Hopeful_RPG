@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Watcher Striker" enemy.
+
 public class FacilityMelee extends Enemy {
 
     public FacilityMelee() {

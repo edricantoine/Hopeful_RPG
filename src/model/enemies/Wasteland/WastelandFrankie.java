@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "Frankie" boss.
+
 public class WastelandFrankie extends Enemy {
     public WastelandFrankie() {
         super("Frankie", 350, 100, new ArrayList<>(Arrays.asList(

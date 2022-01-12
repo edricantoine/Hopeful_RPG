@@ -11,12 +11,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class NewFacilityTool {
-    private List<Item> inventory;
-    private List<PlayerCharacter> party;
+//A tool that helps set up the Facility level in the game.
 
-    private NewRoom[][] facilityRooms;
-    private List<String> enemies;
+public class NewFacilityTool {
+    private List<Item> inventory; //current inventory
+    private List<PlayerCharacter> party; //current party
+
+    private NewRoom[][] facilityRooms; //grid of rooms
+    private List<String> enemies; //possible enemy types that can appear in this level
 
     public NewFacilityTool(List<Item> inventory, List<PlayerCharacter> party) {
         this.inventory = inventory;
@@ -28,6 +30,14 @@ public class NewFacilityTool {
         ));
         setUpFacilityLevel();
     }
+
+    //getters
+
+    public NewRoom[][] getFacilityRooms() {
+        return facilityRooms;
+    }
+
+    //Sets up possible Room Events and Enemy configurations, then creates somewhat random rooms based on these
 
 
     public void setUpFacilityLevel() {
@@ -104,13 +114,15 @@ public class NewFacilityTool {
 
     }
 
+    //returns a random true or false value
+
     public Boolean returnRandom1to2() {
         Random rand = new Random();
         int chosen = rand.nextInt(2);
         return chosen == 0;
     }
 
-
+    //randomly creates a list of enemies from 1 to 4 members, then chooses random enemy types for each member
 
     public List<Enemy> selectConfig() {
         List<Enemy> toReturn = new ArrayList<>();
@@ -138,7 +150,5 @@ public class NewFacilityTool {
 
     }
 
-    public NewRoom[][] getFacilityRooms() {
-        return facilityRooms;
-    }
+
 }

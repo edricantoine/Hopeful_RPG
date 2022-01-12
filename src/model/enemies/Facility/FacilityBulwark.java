@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Watcher Defender" enemy.
+
 public class FacilityBulwark extends Enemy {
 
     public FacilityBulwark() {

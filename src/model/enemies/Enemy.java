@@ -11,11 +11,11 @@ import java.util.List;
 public class Enemy extends Char {
 
 
-    protected List<Enemy> enemiesWith;
-    protected List<PlayerCharacter> pcAgainst;
-    protected String enterText;
-    protected String defeatText;
-    protected Item loot;
+    protected List<Enemy> enemiesWith; // enemies currently with this enemy
+    protected List<PlayerCharacter> pcAgainst; // the party this enemy is facing
+    protected String enterText; //Intro flavor text
+    protected String defeatText; //Death flavor text
+    protected Item loot; //Loot this enemy can drop
 
     public Enemy(String name, int maxhp, int maxap, List<Skill> skills, int speed, String flavor,
                  String enter, String defeat) {
@@ -25,6 +25,8 @@ public class Enemy extends Char {
         this.enterText = enter;
         this.defeatText = defeat;
     }
+
+    //getters, setters
 
     public Item getLoot() {
         return loot;
@@ -58,29 +60,8 @@ public class Enemy extends Char {
         this.pcAgainst = pcAgainst;
     }
 
-    @Override
-    public Boolean useSkill(Skill s, Char c) {
-        if(canUseSkill(s)) {
-            useAp(s.getApCost());
-            s.setAtkMod(atkMod);
-            s.takeEffect(c);
-            s.setAtkMod(1.00);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    @Override
-    public void useItem(Item i, Char c) {
-        i.takeEffect(c);
-    }
 
-    @Override
-    public String toLabel() {
-        return "<html>Name: " + this.getName() + "<br/>" + "HP: " + this.getHp() + "/" + this.getMaxhp() + "<br/>" +
-                "Status: " + this.getCurrentStatus() + "<br/>" +
-                "Attack modifier: " + this.getAtkMod() + "<br/>" +
-                "Damage taken modifier: " + this.getDefMod();
-    }
+
+
 }

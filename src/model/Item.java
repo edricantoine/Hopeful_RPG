@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Random;
 
 public class Item {
-    private String name;
-    private String flavor;
-    private double damage;
-    private double healing;
-    private int apHeal;
-    private double atkMod;
-    private double defMod;
-    private Boolean cures;
-    private StatusEffect effectInflict;
-    private int statusChance;
-    private String target;
-    private List<Char> setTargets;
+    private String name; //item name
+    private String flavor; //flavor text
+    private double damage; //item damage
+    private double healing; //item healing
+    private int apHeal; //item AP healing
+    private double atkMod; //attack modifier effect
+    private double defMod; //DAMAGE TAKEN modifier effect
+    private Boolean cures; //if item cures status
+    private StatusEffect effectInflict; //status effect that item inflicts
+    private int statusChance; //chance to inflict status effect
+    private String target; //can be "one" or "all"
+    private List<Char> setTargets; //item's set targets
 
     public Item(String nm ,String flv,
                 double dmg, double hl, int aph, double atk, double def, Boolean cur, StatusEffect ef, int chc, String tgt) {
@@ -34,14 +34,10 @@ public class Item {
         setTargets = new ArrayList<>();
     }
 
+    //setters, getters
+
     public List<Char> getSetTargets() {
         return setTargets;
-    }
-
-    public void addToSetTargets(Char c) {
-        if(!setTargets.contains(c)) {
-            setTargets.add(c);
-        }
     }
 
     public void setSetTargets(List<Char> setTargets) {
@@ -93,11 +89,23 @@ public class Item {
         return target;
     }
 
+    //adds c to set targets
+
+    public void addToSetTargets(Char c) {
+        if(!setTargets.contains(c)) {
+            setTargets.add(c);
+        }
+    }
+
+    //takes effect on the target of the item
+
     public void takeEffect(Char c) {
+        //modifies target's HP and AP
         c.healDamage(healing);
         c.healAp(apHeal);
         c.takeDamage(damage);
 
+        //modifies target's attack and defense. Cannot go over 4.00 or under 0.25
         if(defMod != 1.0) {
             if(c.getDefMod() + defMod <= 0.25) {
                 c.setDefMod(0.25);
@@ -120,6 +128,8 @@ public class Item {
 
         }
 
+        //applies status effect based on random chance (if target isn't dead)
+
         if(!c.getDead() && effectInflict != StatusEffect.NONE) {
 
             Random rand = new Random();
@@ -129,6 +139,8 @@ public class Item {
             }
 
         }
+
+        //cures target, if applicable
 
         if(cures) {
             c.setCurrentStatus(StatusEffect.NONE);

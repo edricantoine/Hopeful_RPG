@@ -10,15 +10,15 @@ import java.util.Comparator;
 import java.util.List;
 
 public class NewRoom {
-    private List<Item> inventory;
-    private List<Enemy> enemies;
-    private List<PlayerCharacter> party;
-    private List<Char> allChars;
-    private Item item;
-    private Boolean hasBattle;
-    private Boolean isFinalRoom;
-    private RoomEvent event;
-    private int whichBoss; // can be 0 1 2 or 3
+    private List<Item> inventory; //current room inventory
+    private List<Enemy> enemies; //enemies in room
+    private List<PlayerCharacter> party; //current party
+    private List<Char> allChars; //all characters in room, sorted by speed
+    private Item item; //room's item
+    private Boolean hasBattle; //whether room has battle
+    private Boolean isFinalRoom; //whether room is final one
+    private RoomEvent event; //room event
+    private int whichBoss; // can be 0 (no boss),  1 2 or 3
 
 
     public NewRoom(List<Enemy> enemies, List<PlayerCharacter> party, List<Item> inventory, Item i, Boolean hb, Boolean f, int whichBoss,
@@ -36,12 +36,10 @@ public class NewRoom {
         createAllChars();
     }
 
+    //getters, setters
+
     public RoomEvent getEvent() {
         return event;
-    }
-
-    public void useEvent() {
-        event = null;
     }
 
     public int getWhichBoss() {
@@ -60,52 +58,8 @@ public class NewRoom {
         return isFinalRoom;
     }
 
-    public Boolean canPickUpItem() {
-        return inventory.size() < 10;
-    }
-
-    public void setItemNull() {
-        this.item = null;
-    }
-
     public List<Item> getInventory() {
         return inventory;
-    }
-
-    public void removeFromInventory(Item i) {
-        inventory.remove(i);
-    }
-
-
-    public Boolean isBattleWon() {
-        for(Enemy e : enemies) {
-            if(!e.getDead()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public Boolean isBattleLost() {
-        for(PlayerCharacter e : party) {
-            if(!e.getDead()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void createAllChars() {
-        for(Enemy c : enemies) {
-            allChars.add(c);
-        }
-        for(PlayerCharacter c : party) {
-            c.setPartyWith(party);
-            c.setEnemiesFighting(enemies);
-            allChars.add(c);
-        }
-        allChars.sort(Comparator.comparing(Char::getSpeed).reversed());
-
     }
 
     public List<Enemy> getEnemies() {
@@ -119,4 +73,57 @@ public class NewRoom {
     public List<Char> getAllChars() {
         return allChars;
     }
+
+
+    //returns true if there is room in inventory for another item
+    public Boolean canPickUpItem() {
+        return inventory.size() < 10;
+    }
+    //sets event to null
+    public void useEvent() {
+        event = null;
+    }
+    //sets item to null
+    public void setItemNull() {
+        this.item = null;
+    }
+    //removes i from inventory
+    public void removeFromInventory(Item i) {
+        inventory.remove(i);
+    }
+
+    //returns true if all enemies are dead
+    public Boolean isBattleWon() {
+        for(Enemy e : enemies) {
+            if(!e.getDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    //returns true if all party members are dead
+    public Boolean isBattleLost() {
+        for(PlayerCharacter e : party) {
+            if(!e.getDead()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //sorts all characters by speed
+    public void createAllChars() {
+        for(Enemy c : enemies) {
+            allChars.add(c);
+        }
+        for(PlayerCharacter c : party) {
+            c.setPartyWith(party);
+            c.setEnemiesFighting(enemies);
+            allChars.add(c);
+        }
+        allChars.sort(Comparator.comparing(Char::getSpeed).reversed());
+
+    }
+
+
 }

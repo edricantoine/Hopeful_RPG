@@ -8,6 +8,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Watcher Rocketeer" enemy.
+
 public class FacilityBomber extends Enemy {
     public FacilityBomber() {
         super("Watcher Rocketeer", 80, 100, new ArrayList<>(Arrays.asList(

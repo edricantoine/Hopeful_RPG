@@ -120,4 +120,7 @@ public class SupportSkillTest {
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
 
     }
+
+    //Tests involving the takeUserEffect() method are omitted since it is a similar method to takeEffect(),
+    //only involving different variables in the SupportSkill class.
 }

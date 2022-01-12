@@ -8,6 +8,7 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Class for the "Armored Bandit" enemy.
 public class WastelandTank extends Enemy {
     public WastelandTank() {
         super("Armored Bandit", 250, 100, new ArrayList<>(Arrays.asList(

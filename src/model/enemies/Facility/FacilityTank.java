@@ -9,6 +9,8 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//A class for the "Agent Jackpot" boss.
+
 public class FacilityTank extends Enemy {
     private Boolean hasRevived;
     public FacilityTank() {
@@ -27,6 +29,11 @@ public class FacilityTank extends Enemy {
         hasRevived = false;
     }
 
+
+    //checks to see if hp is <= 1. If so:
+    // -if boss revived already, boss dies
+    // -if boss has not revived yet, boss revives and hasRevived is set to true
+
     public void checkandRevive() {
         if(getHp() <= 1 && !hasRevived) {
             ascend();
@@ -35,6 +42,8 @@ public class FacilityTank extends Enemy {
             kill();
         }
     }
+
+    //revives boss and changes moveset to be more powerful
 
     public void ascend() {
         setName("Agent Jackpot, the Ascended");
@@ -49,6 +58,9 @@ public class FacilityTank extends Enemy {
                         StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE))));
 
     }
+
+    //Every time this boss takes damage, game checks to see if it will revive.
+    //Inefficient, but whatever.
 
     @Override
     public void takeDamage(double d) {

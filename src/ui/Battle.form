@@ -312,7 +312,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="l"/>
+          <text value=""/>
         </properties>
       </component>
     </children>
