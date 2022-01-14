@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
+//Class representing the screen where the user chooses which characters' profile pages they wish to view.
+
 public class SelectCharacterMenuArea {
     private JButton wastelandButton;
     private JPanel selectAreaPanel;
@@ -35,6 +37,7 @@ public class SelectCharacterMenuArea {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
+                //initializes similar characters to the ones in-game to display as a string.
                 new CharacterMenu(Arrays.asList(new PlayerCharacter("Jack", 150, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
                                 StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
@@ -111,6 +114,7 @@ public class SelectCharacterMenuArea {
 ));
             }
         });
+        //to view the wasteland level's enemy profiles
         wastelandButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,14 +124,7 @@ public class SelectCharacterMenuArea {
                         new WastelandTank(), new WastelandFrankie(), new WastelandSentry(), new WastelandRev()));
             }
         });
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Component cButton = (Component) e.getSource();
-                SwingUtilities.getWindowAncestor(cButton).dispose();
-                new ExtrasMenu();
-            }
-        });
+        //to view the facility level's enemy profiles
         facilityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +133,15 @@ public class SelectCharacterMenuArea {
                 new CharacterMenu(Arrays.asList(new FacilityMelee(), new FacilityDebuffer(), new FacilityBomber(),
                         new FacilityBulwark(), new FacilityMedic(), new FacilityGuard(), new FacilityDrone(),
                         new FacilitySecurity(), new FacilityTank()));
+            }
+        });
+        //back to the extras menu
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new ExtrasMenu();
             }
         });
     }

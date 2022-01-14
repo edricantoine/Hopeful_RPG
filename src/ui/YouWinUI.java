@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
-
+//WILL BE DELETED, NOT USED ANYMORE
 public class YouWinUI {
     private JPanel WinPanel;
     private JLabel Winlabel;

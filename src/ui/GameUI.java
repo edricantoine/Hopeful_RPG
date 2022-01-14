@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+//A class representing the main menu screen, seen upon booting up the game.
+
 public class GameUI {
 
 
@@ -46,7 +48,7 @@ public class GameUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("Version 0.1 - item fixes");
+        System.out.println("Version 0.1 - item fixes"); //current version of the game
     }
 
     {

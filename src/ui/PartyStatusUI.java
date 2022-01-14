@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//very simple UI, just displays labels with your party, current HP/AP, and atk/def modifiers.
+
 public class PartyStatusUI {
     private JPanel mainPanel;
     private JLabel jackLabel;

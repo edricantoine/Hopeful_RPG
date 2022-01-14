@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+//A class representing the screen seen upon beating a level, with story
+
 public class LevelEndStoryUI {
     private JPanel endPanel;
     private JButton okButton;
@@ -27,6 +29,7 @@ public class LevelEndStoryUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
+                //sets certain levels as completed based on which level was just being played
                 if (l.getName().equals("The Wasteland")) {
                     new LevelSelectUI(true, false, false);
                 } else if (l.getName().equals("The Facility")) {

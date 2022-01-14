@@ -12,11 +12,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+//Class representing the screen where the user chooses the target of an item.
+
 public class SelectItemTargetTool {
-    private NewRoom room;
-    private Item item;
-    private PlayerCharacter user;
-    private Battle battle;
+    private NewRoom room; //room the battle is taking place in
+    private Item item; //the item being used
+    private PlayerCharacter user; // the user of the item
+    private Battle battle; //the battle currently happening
     private JPanel SelectItemTargetPanel;
     private List<JButton> playerButtons;
     private List<JButton> enemyButtons;
@@ -32,6 +34,7 @@ public class SelectItemTargetTool {
     public SelectItemTargetTool(NewRoom r, Item it, PlayerCharacter user, Battle bat) {
         playerButtons = new ArrayList<>();
         enemyButtons = new ArrayList<>();
+        //only up to 4 player characters and 4 enemies can be in the battle at a time
         playerButtons.add(button1);
         playerButtons.add(button2);
         playerButtons.add(button3);
@@ -53,6 +56,9 @@ public class SelectItemTargetTool {
     }
 
     public void initializeButtons() {
+        //sets labels to specific character names if the item only affects one target,
+        //sets labels on 2 buttons to "all enemies" and "all allies" if the item affects all of a group,
+        //sets all other labels to "N/A"
         if (item.getTarget().equals("one")) {
             for (int i = 0; i < playerButtons.size(); i++) {
                 playerButtons.get(i).setText(room.getParty().get(i).getName());
@@ -82,7 +88,7 @@ public class SelectItemTargetTool {
         for (int i = 0; i < playerButtons.size(); i++) {
             int finalI = i;
             String text = playerButtons.get(i).getText();
-            if (text.equals("N/A")) {
+            if (text.equals("N/A")) { //any button with label "N/A" simply closes the screen
                 playerButtons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -91,7 +97,7 @@ public class SelectItemTargetTool {
                     }
                 });
             } else {
-                if (item.getTarget().equals("one")) {
+                if (item.getTarget().equals("one")) { //in this case, only ONE character is the selected target of the item
                     playerButtons.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -102,7 +108,7 @@ public class SelectItemTargetTool {
                             SwingUtilities.getWindowAncestor(cButton).dispose();
                         }
                     });
-                } else if (item.getTarget().equals("all")) {
+                } else if (item.getTarget().equals("all")) { //in this case, ALL allies are targeted
                     playerButtons.get(i).addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -125,7 +131,7 @@ public class SelectItemTargetTool {
             int finalI = i;
             String text = enemyButtons.get(i).getText();
             if (text.equals("N/A")) {
-                enemyButtons.get(i).addActionListener(new ActionListener() {
+                enemyButtons.get(i).addActionListener(new ActionListener() { //same as above
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
@@ -136,7 +142,7 @@ public class SelectItemTargetTool {
                 });
             } else {
                 if (item.getTarget().equals("one")) {
-                    enemyButtons.get(i).addActionListener(new ActionListener() {
+                    enemyButtons.get(i).addActionListener(new ActionListener() { //same as above
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             user.setSelectedItem(item);
@@ -148,7 +154,7 @@ public class SelectItemTargetTool {
                         }
                     });
                 } else if (item.getTarget().equals("all")) {
-                    enemyButtons.get(i).addActionListener(new ActionListener() {
+                    enemyButtons.get(i).addActionListener(new ActionListener() { //same as above, but with ALL enemies instead
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             user.setSelectedItem(item);

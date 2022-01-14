@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
-
+//A class representing the panel seen upon starting a level. (With story, etc.)
 public class LevelBeginStoryUI {
     private JPanel begPanel;
     private JLabel begStoryLabel;
@@ -29,7 +29,7 @@ public class LevelBeginStoryUI {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new NewRoomUI(l, r, 0, 0);
+                new NewRoomUI(l, r, 0, 0); //starts a new Room UI in the top-left corner of the level's room grid
             }
         });
     }

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+// class representing the screen where you choose to go to the Level Select menu or the Extras menu
+
 public class MainMenu {
     private JPanel MainMenuPanel;
     private JButton levelSelectButton;

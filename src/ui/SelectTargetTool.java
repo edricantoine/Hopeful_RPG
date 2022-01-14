@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//class representing the screen where the user selects a target for a skill
+
 public class SelectTargetTool {
     private List<JButton> buttons;
     private JButton e4b;
@@ -52,19 +54,20 @@ public class SelectTargetTool {
         if (skill.getTarget().equals("one")) {
 
             if (skill instanceof AttackSkill) {
-
+                    //sets buttons to individual enemy names, any leftovers get "N/A"
                 for (int i = 0; i < Math.min(buttons.size(), room.getEnemies().size()); i++) {
                     buttons.get(i).setText(room.getEnemies().get(i).getName());
                 }
 
             } else if (skill instanceof SupportSkill) {
+                //sets buttons to individual ally names, any leftovers get "N/A"
                 for (int i = 0; i < Math.min(buttons.size(), room.getParty().size()); i++) {
                     buttons.get(i).setText(room.getParty().get(i).getName());
                 }
             }
 
         } else {
-
+            //sets one button's label to "All", rest are "N/A"
             buttons.get(0).setText("All");
             for (int i = 1; i < buttons.size(); i++) {
                 buttons.get(i).setText("N/A");
@@ -78,31 +81,31 @@ public class SelectTargetTool {
     public void initializeListeners() {
         e1b.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //this button is for the first enemy/party member
                 String t = e1b.getText();
                 if (skill instanceof AttackSkill) {
 
-                    if (t.equals("N/A")) {
+                    if (t.equals("N/A")) { //closes screen
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
-                    } else if (t.equals("All")) {
+                    } else if (t.equals("All")) { //all enemies get added to selected targets
                         for (Enemy n : room.getEnemies()) {
                             skill.addToSetTargets(n);
                         }
-                        user.setSelectedSkill(skill);
-                        bat.checkReadyToTurn();
+                        user.setSelectedSkill(skill); //sets user's selected skill to the one being used here
+                        bat.checkReadyToTurn(); //checks if game is ready to proceed
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else {
-                        skill.addToSetTargets(room.getEnemies().get(0));
-                        user.setSelectedSkill(skill);
-                        bat.checkReadyToTurn();
+                        skill.addToSetTargets(room.getEnemies().get(0)); //only one enemy gets added to selected targets
+                        user.setSelectedSkill(skill); //see above
+                        bat.checkReadyToTurn(); //see above
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     }
 
                 } else if (skill instanceof SupportSkill) {
-                    if (t.equals("N/A")) {
+                    if (t.equals("N/A")) { //same as above, but allies are targeted instead of enemies
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                     } else if (t.equals("All")) {
@@ -124,7 +127,7 @@ public class SelectTargetTool {
             }
         });
 
-        e2b.addActionListener(new ActionListener() {
+        e2b.addActionListener(new ActionListener() { //same as above buttons, but for the second enemy/party member
             @Override
             public void actionPerformed(ActionEvent e) {
                 String t = e2b.getText();
@@ -172,7 +175,7 @@ public class SelectTargetTool {
 
             }
         });
-        e3b.addActionListener(new ActionListener() {
+        e3b.addActionListener(new ActionListener() { //ditto, but for the 3rd enemy/party member
             @Override
             public void actionPerformed(ActionEvent e) {
                 String t = e3b.getText();
@@ -219,7 +222,7 @@ public class SelectTargetTool {
                 }
             }
         });
-        e4b.addActionListener(new ActionListener() {
+        e4b.addActionListener(new ActionListener() { //4th enemy/party member
             @Override
             public void actionPerformed(ActionEvent e) {
                 String t = e4b.getText();

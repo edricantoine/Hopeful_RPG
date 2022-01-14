@@ -33,18 +33,23 @@ public class LevelSelectUI {
     private JLabel passwordLabel;
     private JLabel mainLabel;
 
+    //Class representing the screen where you select a level to play.
+    //Party, inventory, levels are also initialized whenever a new instance is created.
+
     public LevelSelectUI(Boolean l1c, Boolean l2c, Boolean l3c) {
 
         party = new ArrayList<>();
         setUpParty();
         inventory = new ArrayList<>();
 
-        if (l1c && !l2c) {
-            passwordLabel.setText("PASSWORD: ab42pgf9");
+        if (l1c && !l2c) { //displays save password required for this amount of progress, so the user can continue later
+            passwordLabel.setText("PASSWORD: ab42pgf9"); //Arbitrarily chosen passwords
         } else if (l2c && !l3c) {
             passwordLabel.setText("PASSWORD: b0wwg5gn");
             mainLabel.setText("You've completed all levels so far! To be continued...");
         }
+
+        //Levels are not intended to be replayed in this game.
 
         if (!l1c) {
             facilityButton.setEnabled(false);
@@ -64,9 +69,11 @@ public class LevelSelectUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        //set up tooltips, may migrate code to a helper function when more levels are added
         wastelandButton.setToolTipText("A level good for beginners. Smaller size and no room events.");
         facilityButton.setToolTipText("Here, enemies will focus on debuffing your team and inflicting status ailments. Room events" +
                 " have the potential to help or hinder your team, too.");
+        //listeners open new UI forms for the levels
         wastelandButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,6 +91,8 @@ public class LevelSelectUI {
             }
         });
     }
+
+    //initializes the party and their skills. This is not intended to change at all.
 
     public void setUpParty() {
         jack = new PlayerCharacter("Jack", 150, 100, new ArrayList<>(Arrays.asList(
@@ -165,6 +174,9 @@ public class LevelSelectUI {
         party.add(boyle);
         party.add(oscar);
     }
+
+    //sets up levels using the NewLevelTools
+    //This function is not intended to change until new levels are added.
 
     public void setUpLevels() {
         wlt = new NewWastelandTool(inventory, party);

@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//Class representing the screen where the user chooses an item to use in battle
+
 public class SelectItemTool {
-    private NewRoom room;
+    private NewRoom room; //Room the battle is taking place in
     private List<JButton> buttons;
-    private List<Item> inventory;
-    private PlayerCharacter user;
-    private Battle battle;
+    private List<Item> inventory; //Inventory of the room
+    private PlayerCharacter user; //User of the item
+    private Battle battle; //Battle taking place
     private JPanel ItemSelectPanel;
     private JButton button1;
     private JButton button2;
@@ -56,7 +58,7 @@ public class SelectItemTool {
         frame.setVisible(true);
     }
 
-    public void initializeButtons() {
+    public void initializeButtons() { //sets up button labels, tooltips, listeners
         for (int i = 0; i < Math.min(room.getInventory().size(), buttons.size()); i++) {
             buttons.get(i).setText(room.getInventory().get(i).getName());
         }
@@ -64,13 +66,14 @@ public class SelectItemTool {
         initializeListeners();
     }
 
-    public void initializeTooltips() {
+    public void initializeTooltips() { //sets tooltip for a button to its respective item's flavor text
         for (int i = 0; i < Math.min(room.getInventory().size(), buttons.size()); i++) {
             buttons.get(i).setToolTipText(room.getInventory().get(i).getFlavor());
         }
     }
 
-    public void initializeListeners() {
+    public void initializeListeners() { //initializes action listeners. Creates a new SelectItemTargetTool screen if
+        // a button is assigned to an item in the inventory.
         for (int i = 0; i < Math.min(room.getInventory().size(), buttons.size()); i++) {
             int finalI = i;
             buttons.get(i).addActionListener(new ActionListener() {
@@ -85,7 +88,7 @@ public class SelectItemTool {
 
         for (int i = 0; i < buttons.size(); i++) {
             String text = buttons.get(i).getText();
-            if (text.equals("N/A")) {
+            if (text.equals("N/A")) { //If a button is labeled N/A, simply closes this screen
                 buttons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

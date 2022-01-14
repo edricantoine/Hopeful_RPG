@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//Class representing the screen that lets you view the inventory from a RoomUI
+
 public class ViewInventoryTool {
     private JPanel invPanel;
     private JButton dropButton;
@@ -35,9 +37,9 @@ public class ViewInventoryTool {
     private JLabel i9l;
     private JLabel i10l;
     private JButton backButton;
-    private List<JButton> bs;
-    private List<JLabel> ls;
-    private List<Item> inventory;
+    private List<JButton> bs; //button container
+    private List<JLabel> ls; //label container
+    private List<Item> inventory; //inventory to be displayed
 
     public ViewInventoryTool(List<Item> inventory) {
         bs = new ArrayList<>();
@@ -60,6 +62,8 @@ public class ViewInventoryTool {
             }
         });
     }
+
+    //adds buttons and labels to their respective containers
 
     public void setUpLists() {
         bs.add(dropButton);
@@ -84,6 +88,8 @@ public class ViewInventoryTool {
         ls.add(i10l);
     }
 
+    //iterates through label containers, sets the label texts to a corresponding item in the inventory
+
     public void setUpLabels() {
         int marker = 0;
         for (int i = 0; i < Math.min(inventory.size(), ls.size()); i++) {
@@ -96,6 +102,8 @@ public class ViewInventoryTool {
         }
 
     }
+
+    //for each button in the button container, sets the button to drop the corresponding inventory item from the inventory
 
     public void setUpListeners() {
         for (int i = 0; i < inventory.size(); i++) {
@@ -112,6 +120,8 @@ public class ViewInventoryTool {
         }
     }
 
+    //sets buttons that don't correspond to an item to be disabled
+
     public void setUpButtons() {
 
         int marker = 0;
@@ -124,6 +134,8 @@ public class ViewInventoryTool {
         }
 
     }
+
+    //calls the set-up functions again
 
     public void refresh() {
         setUpLists();

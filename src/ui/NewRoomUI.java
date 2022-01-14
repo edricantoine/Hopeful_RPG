@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+//A class representing the UI displayed in a non-battle room.
+
 public class NewRoomUI {
     private JPanel nRoomPanel;
     private JButton upButton;
@@ -36,6 +38,7 @@ public class NewRoomUI {
         room = rm;
         this.row = r;
         this.col = c;
+        //row, col are stored in this Room for the ability to change the room from its Battle (if any).
         JFrame frame = new JFrame("Room");
 
         frame.setContentPane(nRoomPanel);
@@ -50,7 +53,7 @@ public class NewRoomUI {
         frame.pack();
         frame.setVisible(true);
 
-
+        //creates a new Battle UI if this room has a battle
         if (room.getHasBattle()) {
             frame.dispose();
             new Battle(room, level.getColor(), level, r, c);
@@ -73,7 +76,11 @@ public class NewRoomUI {
         });
     }
 
+
+
     public void inititializeActionListeners() {
+        //left, down, right, up button listeners: moves to the next room in the direction of the pressed button.
+
         leftButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -106,6 +113,8 @@ public class NewRoomUI {
                 new NewRoomUI(level, level.getRooms()[row - 1][col], row - 1, col);
             }
         });
+
+        //takes the room's item, then sets the item to null so it can't be picked up again
         takeItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,6 +126,11 @@ public class NewRoomUI {
             }
         });
     }
+
+    //This function initializes buttons like so:
+    //for the room navigation buttons, if there is no room to the top, right, left, or bottom, the respective button
+    //will be disabled.
+    // for the item button, if the user cannot pick up an item, the item button is disabled.
 
     public void initializeButtonsAndLabels() {
         int rows = level.getRs();
