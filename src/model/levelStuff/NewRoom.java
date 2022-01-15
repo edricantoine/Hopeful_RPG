@@ -113,15 +113,17 @@ public class NewRoom {
 
     //sorts all characters by speed
     public void createAllChars() {
+        List<Char> temp = new ArrayList<>();
         for(Enemy c : enemies) {
-            allChars.add(c);
+            temp.add(c);
         }
         for(PlayerCharacter c : party) {
             c.setPartyWith(party);
             c.setEnemiesFighting(enemies);
-            allChars.add(c);
+            temp.add(c);
         }
-        allChars.sort(Comparator.comparing(Char::getSpeed).reversed());
+        temp.sort(Comparator.comparing(Char::getSpeed).reversed());
+        allChars = temp;
 
     }
 

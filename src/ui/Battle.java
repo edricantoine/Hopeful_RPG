@@ -701,7 +701,12 @@ public class Battle {
             for (Char c : i.getSetTargets()) {
                 if (!p.getDead() && !p.getCurrentStatus().equals(StatusEffect.NUMB)) {
 
-                    battleLabel.setText(p.getName() + " used " + i.getName() + "!");
+                    if (i.getTarget().equals("all")) {
+                        battleLabel.setText(p.getName() + " used " + i.getName() + "!");
+                    } else if (i.getTarget().equals("one")) {
+                        battleLabel.setText(p.getName() + " used " + i.getName() + " on " + c.getName() + "!");
+                    }
+
                     i.takeEffect(c);
                     room.removeFromInventory(i);
 
@@ -890,6 +895,7 @@ public class Battle {
     //repacks JFrame
 
     public void refresh() {
+        room.createAllChars();
         initializeTurnOrder();
         initializeAllLabs();
         for (int i = 0; i < pLabs.size(); i++) {
@@ -960,10 +966,20 @@ public class Battle {
                         level.getRooms()[row][col] = new NewRoom(room.getEnemies(), room.getParty(), room.getInventory(),
                                 null, false, false, 0, room.getEvent());
                         frame.dispose();
-                        //resets all party attack, defense modifiers
-                        for (PlayerCharacter p : room.getParty()) {
-                            p.setAtkMod(1.0);
-                            p.setDefMod(1.0);
+                        //resets all party attack, defense, speed modifiers
+                        for (int k = 0; k < room.getParty().size(); k++) {
+                            room.getParty().get(k).setAtkMod(1.0);
+                            room.getParty().get(k).setDefMod(1.0);
+                            if (k == 0) {
+                                room.getParty().get(k).setSpeed(5);
+                            } else if (k == 1) {
+                                room.getParty().get(k).setSpeed(3);
+                            } else if (k == 2) {
+                                room.getParty().get(k).setSpeed(9);
+                            } else if (k == 4) {
+                                room.getParty().get(k).setSpeed(8);
+                            }
+
                         }
 
                         //launches new Room UI based on "completed" room (now with no battle)

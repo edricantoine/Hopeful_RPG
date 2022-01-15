@@ -48,7 +48,7 @@ public class GameUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("Version 0.1 - item fixes"); //current version of the game
+        System.out.println("Version 0.2 - bug fixes and unit tests added"); //current version of the game
     }
 
     {

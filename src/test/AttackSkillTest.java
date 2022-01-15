@@ -20,6 +20,8 @@ public class AttackSkillTest {
     private AttackSkill atkAmod;
     private AttackSkill atkDmod;
 
+    private AttackSkill affectUser;
+
     private SupportSkill supS;
     private List<Skill> skills;
 
@@ -40,6 +42,9 @@ public class AttackSkillTest {
                 StatusEffect.NONE, 0.50, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkDmod = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
                 StatusEffect.NONE, 1.0, 1.50, 1, 0, 0,1.0, 1.0, 0, 0, StatusEffect.NONE);
+        affectUser = new AttackSkill("Recoil", "...attacks the enemy but u bump ur head and hurt urself :(",
+                10, "one", 10, StatusEffect.NONE, 1.0, 1.0, 0, 0,
+                10, -0.1, 0.1, -1, -1, StatusEffect.NONE);
         skills.add(atkS);
         skills.add(atkB);
         skills.add(atkF);
@@ -47,10 +52,27 @@ public class AttackSkillTest {
         skills.add(atkA);
         skills.add(atkAmod);
         skills.add(atkDmod);
+        skills.add(affectUser);
 
         p1 = new PlayerCharacter("John", 100, 100, skills, 5,
                 "Test", new ArrayList<>(), new ArrayList<>());
 
+    }
+
+    @Test
+    public void testAtkUser() {
+        affectUser.takeUserEffect(p1);
+        assertEquals(p1.getHp(), 100 - 10);
+        assertEquals(p1.getAtkMod(), 0.9);
+        assertEquals(p1.getDefMod(), 1.1);
+        assertEquals(p1.getSpeed(), 4);
+
+    }
+
+    @Test
+    public void testAtkSpd() {
+        affectUser.takeEffect(p1);
+        assertEquals(p1.getSpeed(), 4);
     }
 
     @Test
@@ -173,7 +195,6 @@ public class AttackSkillTest {
         assertTrue(p1.getDead());
     }
 
-    //Tests involving the takeUserEffect() method are omitted since it is a similar method to takeEffect(),
-    //only involving different variables in the AttackSkill class.
+
 
 }

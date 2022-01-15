@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Random;
 
 //A tool that helps set up the Facility level in the game.
+//No unit tests exist for this class due to the heavy reliance on random numbers and the fact that
+//any bugs can be easily detected by myself when play testing.
 
 public class NewFacilityTool {
     private List<Item> inventory; //current inventory

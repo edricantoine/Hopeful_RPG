@@ -46,10 +46,29 @@ public class RoomEvent {
             party.get(chosenTarget).healDamage(healing);
             party.get(chosenTarget).healAp(apEffect);
             party.get(chosenTarget).useAp(apLoss);
-            party.get(chosenTarget).setAtkMod(party.get(chosenTarget).getAtkMod() + atkEffect);
-            party.get(chosenTarget).setDefMod(party.get(chosenTarget).getDefMod() + defEffect);
+            if(atkEffect!= 1.0) {
+                if(party.get(chosenTarget).getAtkMod() + atkEffect <= 0.25) {
+                    party.get(chosenTarget).setAtkMod(0.25);
+                } else if (party.get(chosenTarget).getDefMod() + atkEffect>= 4.00) {
+                    party.get(chosenTarget).setAtkMod(4.00);
+                } else {
+                    party.get(chosenTarget).setAtkMod((party.get(chosenTarget).getAtkMod() + atkEffect));
+                }
+
+            }
+
+            if(defEffect!= 1.0) {
+                if(party.get(chosenTarget).getDefMod() + defEffect <= 0.25) {
+                    party.get(chosenTarget).setDefMod(0.25);
+                } else if (party.get(chosenTarget).getDefMod() + defEffect >= 4.00) {
+                    party.get(chosenTarget).setDefMod(4.00);
+                } else {
+                    party.get(chosenTarget).setDefMod((party.get(chosenTarget).getDefMod() + defEffect));
+                }
+
+            }
             party.get(chosenTarget).setCurrentStatus(statusEffect);
-            party.get(chosenTarget).setSpeed(speedEffect);
+            party.get(chosenTarget).setSpeed(party.get(chosenTarget).getSpeed() + speedEffect);
         } else {
             for(PlayerCharacter p : party) {
                 p.takeDamage(damage);
@@ -59,7 +78,7 @@ public class RoomEvent {
                 p.setAtkMod(p.getAtkMod() + atkEffect);
                 p.setDefMod(p.getDefMod() + defEffect);
                 p.setCurrentStatus(statusEffect);
-                p.setSpeed(speedEffect);
+                p.setSpeed(p.getSpeed() + speedEffect);
             }
         }
     }

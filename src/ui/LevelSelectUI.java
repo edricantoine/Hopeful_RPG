@@ -42,6 +42,7 @@ public class LevelSelectUI {
         setUpParty();
         inventory = new ArrayList<>();
 
+
         if (l1c && !l2c) { //displays save password required for this amount of progress, so the user can continue later
             passwordLabel.setText("PASSWORD: ab42pgf9"); //Arbitrarily chosen passwords
         } else if (l2c && !l3c) {

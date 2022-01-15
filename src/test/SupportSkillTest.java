@@ -19,6 +19,7 @@ public class SupportSkillTest {
     private SupportSkill supAtk;
     private SupportSkill supDef;
     private SupportSkill supCure;
+    private SupportSkill supUser;
 
 
     @BeforeEach
@@ -43,10 +44,33 @@ public class SupportSkillTest {
                 0, "one", 0.0, 0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
                 0, 0, 1.0, 1.0, StatusEffect.NONE);
 
+        supUser = new SupportSkill("BuffNHeal", "Heals target and user for 10 HP, increases user's atk, def, and speed, " +
+                "increases target speed, gives user riposte", 0, "one", 10.0, 0, 1.0, 1.0, false, 0, 1, 1,
+                StatusEffect.NONE, 10, 0, 0.1, -0.1, StatusEffect.RIPOSTE);
+
 
         p1 = new PlayerCharacter("John", 100, 100, new ArrayList<>(), 5,
                 "Test", new ArrayList<>(), new ArrayList<>());
 
+    }
+
+    @Test
+    public void testsupUser() {
+        p1.takeDamage(10);
+        assertEquals(p1.getHp(), p1.getMaxhp() - 10);
+        supUser.takeUserEffect(p1);
+        assertEquals(p1.getHp(), p1.getMaxhp());
+        assertEquals(p1.getAtkMod(), 1.1);
+        assertEquals(p1.getDefMod(), 0.9);
+        assertEquals(p1.getSpeed(), 6);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.RIPOSTE);
+    }
+
+    @Test
+    public void testAffectSpeed() {
+        assertEquals(p1.getSpeed(), 5);
+        supUser.takeEffect(p1);
+        assertEquals(p1.getSpeed(), 6);
     }
 
     @Test
@@ -121,6 +145,5 @@ public class SupportSkillTest {
 
     }
 
-    //Tests involving the takeUserEffect() method are omitted since it is a similar method to takeEffect(),
-    //only involving different variables in the SupportSkill class.
+
 }
