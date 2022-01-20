@@ -181,7 +181,7 @@ public class LevelSelectUI {
 
     public void setUpLevels() {
         wlt = new NewWastelandTool(inventory, party);
-        wasteland = new NewLevel("The Wasteland", wlt.getWastelandRooms(), new Color(-2899838));
+        wasteland = new NewLevel("The Wasteland", wlt.getRooms(), new Color(-2899838));
         wasteland.setIntroLabelText("<html><body><p style='width:200px;'>" + "Jack Munroe and a couple of acquaintances have decided to" +
                 " venture out into the Scaravaje Wastelands, the former site of a military base, to investigate a strange phenomenon reported on the news. However, the locals" +
                 " don't take very kindly to those intruding on their turf. Beat all 3 bosses to win!" + "</p></body></html>");
@@ -191,7 +191,7 @@ public class LevelSelectUI {
         levels.add(wasteland);
 
         flt = new NewFacilityTool(inventory, party);
-        facility = new NewLevel("The Facility", flt.getFacilityRooms(), Color.GRAY);
+        facility = new NewLevel("The Facility", flt.getRooms(), Color.GRAY);
         facility.setIntroLabelText("<html><body><p style='width:200px;'>" + "After being wrongfully imprisoned for the events in " +
                 "the Scaravaje Wastelands, Jack and co. decide to attempt a prison break. They will need to use all of their strength" +
                 " to stand a chance at escaping. Beat all 3 bosses to win!" + "</p></body></html>");

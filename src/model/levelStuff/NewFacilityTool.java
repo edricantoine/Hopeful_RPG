@@ -15,34 +15,25 @@ import java.util.Random;
 //No unit tests exist for this class due to the heavy reliance on random numbers and the fact that
 //any bugs can be easily detected by myself when play testing.
 
-public class NewFacilityTool {
-    private List<Item> inventory; //current inventory
-    private List<PlayerCharacter> party; //current party
+public class NewFacilityTool extends NewTool {
 
-    private NewRoom[][] facilityRooms; //grid of rooms
-    private List<String> enemies; //possible enemy types that can appear in this level
 
     public NewFacilityTool(List<Item> inventory, List<PlayerCharacter> party) {
-        this.inventory = inventory;
-        this.party = party;
-        facilityRooms = new NewRoom[5][5];
+        super(inventory, party);
+        rooms = new NewRoom[5][5];
 
         enemies = new ArrayList<>(Arrays.asList(
                 "bom", "bul", "deb", "med", "mel"
         ));
-        setUpFacilityLevel();
+        setUpLevel();
     }
 
-    //getters
 
-    public NewRoom[][] getFacilityRooms() {
-        return facilityRooms;
-    }
 
     //Sets up possible Room Events and Enemy configurations, then creates somewhat random rooms based on these
 
-
-    public void setUpFacilityLevel() {
+    @Override
+    public void setUpLevel() {
 
         RoomEvent e0 = new RoomEvent(0, 50.0, 0, 0, 0.0, 0.0, StatusEffect.NONE, 0, "all",
                 "A strange machine is in this room. Upon examining it, your party is healed a bit!");
@@ -70,39 +61,39 @@ public class NewFacilityTool {
                 new FacilityTank(), new FacilityMedic(), new FacilityMelee(), new FacilityDebuffer()
         ));
 
-        facilityRooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, null);
-        facilityRooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[0][2] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e0);
-        facilityRooms[0][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[0][4] = new NewRoom(selectConfig(), party, inventory, new Item("Food Rations", "Heals by 50 HP.",
+        rooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, null);
+        rooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[0][2] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e0);
+        rooms[0][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[0][4] = new NewRoom(selectConfig(), party, inventory, new Item("Food Rations", "Heals by 50 HP.",
                 0.0, 50.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 0, "one"), false, false, 0, null);
 
-        facilityRooms[1][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[1][1] = new NewRoom(configB1, party, inventory, null, true, false, 1, null);
-        facilityRooms[1][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[1][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[1][4] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e1);
+        rooms[1][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[1][1] = new NewRoom(configB1, party, inventory, null, true, false, 1, null);
+        rooms[1][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[1][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[1][4] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e1);
 
-        facilityRooms[2][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[2][1] = new NewRoom(selectConfig(), party, inventory, new Item("Flashbang Grenade", "Target's attack and defense are lowered, with chance to numb target", 10.0,
+        rooms[2][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[2][1] = new NewRoom(selectConfig(), party, inventory, new Item("Flashbang Grenade", "Target's attack and defense are lowered, with chance to numb target", 10.0,
                 0.0, 0, -0.10, 1.20, 0, false, StatusEffect.NUMB, 2, "one"), false, false, 0, null);
-        facilityRooms[2][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[2][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e3);
-        facilityRooms[2][4] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[2][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[2][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e3);
+        rooms[2][4] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
 
-        facilityRooms[3][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e4);
-        facilityRooms[3][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[3][2] = new NewRoom(selectConfig(), party, inventory,  new Item("Riot Shield", "Activates Riposte on one character.", 0.0,
+        rooms[3][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e4);
+        rooms[3][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[3][2] = new NewRoom(selectConfig(), party, inventory,  new Item("Riot Shield", "Activates Riposte on one character.", 0.0,
                 0.0, 0, 1.0, 1.0, 0, false, StatusEffect.RIPOSTE, 1, "one"), false, false, 0, null);
-        facilityRooms[3][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[3][4] = new NewRoom(configB2, party, inventory, null, true, false, 2, null);
+        rooms[3][3] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[3][4] = new NewRoom(configB2, party, inventory, null, true, false, 2, null);
 
-        facilityRooms[4][0] = new NewRoom(selectConfig(), party, inventory,  new Item("Biofield", "Heals all allies by 50.", 0.0,
+        rooms[4][0] = new NewRoom(selectConfig(), party, inventory,  new Item("Biofield", "Heals all allies by 50.", 0.0,
                 50.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 1, "all"), false, false, 0, null);
-        facilityRooms[4][1] = new NewRoom(configB3, party, inventory, null, true, false, 3, null);
-        facilityRooms[4][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
-        facilityRooms[4][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e5);
-        facilityRooms[4][4] = new NewRoom(selectConfig(), party, inventory,  new Item("Pot of Coffee", "Permanently increases Speed this level.", 0.0,
+        rooms[4][1] = new NewRoom(configB3, party, inventory, null, true, false, 3, null);
+        rooms[4][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[4][3] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e5);
+        rooms[4][4] = new NewRoom(selectConfig(), party, inventory,  new Item("Pot of Coffee", "Permanently increases Speed this level.", 0.0,
                 0.0, 0, 1.0, 1.0, 1, false, StatusEffect.NONE, 1, "one"), false, false, 0, null);
 
 
@@ -116,16 +107,9 @@ public class NewFacilityTool {
 
     }
 
-    //returns a random true or false value
-
-    public Boolean returnRandom1to2() {
-        Random rand = new Random();
-        int chosen = rand.nextInt(2);
-        return chosen == 0;
-    }
 
     //randomly creates a list of enemies from 1 to 4 members, then chooses random enemy types for each member
-
+    @Override
     public List<Enemy> selectConfig() {
         List<Enemy> toReturn = new ArrayList<>();
         Random rand = new Random();
