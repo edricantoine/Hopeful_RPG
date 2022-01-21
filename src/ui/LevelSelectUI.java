@@ -118,13 +118,13 @@ public class LevelSelectUI {
                 new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
                         20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
                 new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
-                        50.0, 0, 0.25, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                        50.0, 0, 0.25, 1.0, true, 0, 0, 0, StatusEffect.NONE,
                         0, 0, 1.0, 1.0, StatusEffect.NONE),
                 new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
-                        50.0, 0, 1.0, -0.15, false, 0, 0, 0, StatusEffect.NONE,
+                        50.0, 0, 1.0, -0.15, true, 0, 0, 0, StatusEffect.NONE,
                         0, 0, 1.0, 1.0, StatusEffect.NONE),
                 new SupportSkill("Toast", "and the party drank together!", 40, "all",
-                        70.0, 0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                        70.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
                         0, 0, 1.0, 1.0, StatusEffect.NONE)
 
 

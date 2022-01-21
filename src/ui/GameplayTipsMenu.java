@@ -65,7 +65,7 @@ public class GameplayTipsMenu {
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$("Courier New", -1, -1, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("POISONED: Take decreasing damage starting at 30 for 3 turns.");
+        label1.setText("POISONED: Take decreasing damage starting at 21 for 3 turns.");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -95,9 +95,18 @@ public class GameplayTipsMenu {
         backButton.setText("Back");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tipsPanel.add(backButton, gbc);
+        final JLabel label4 = new JLabel();
+        Font label4Font = this.$$$getFont$$$("Courier New", -1, -1, label4.getFont());
+        if (label4Font != null) label4.setFont(label4Font);
+        label4.setText("RIPOSTE: Attacking characters take equal damage to this character.");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
+        tipsPanel.add(label4, gbc);
     }
 
     /**

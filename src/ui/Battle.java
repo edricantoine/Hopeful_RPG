@@ -275,9 +275,9 @@ public class Battle {
         button3.setToolTipText("Deals 50 damage, 75 to a Numbed enemy.");
         button4.setToolTipText("Deals 60 damage to one enemy with 1/3 chance to freeze.");
         button5.setToolTipText("Deals 20 damage - and looks totally badass.");
-        button6.setToolTipText("Heals 50 damage to an ally and increases attack.");
-        button7.setToolTipText("Heals 50 damage to an ally and increases defense.");
-        button8.setToolTipText("Heals 70 damage to all allies and cures status.");
+        button6.setToolTipText("Heals 50 damage to an ally, increases attack, and cures status.");
+        button7.setToolTipText("Heals 50 damage to an ally, increases defense, and cures status.");
+        button8.setToolTipText("Heals 70 damage to all allies.");
         button9.setToolTipText("Deals 40 damage.");
         button10.setToolTipText("Deals 50 damage to an enemy with 1/2 chance to burn.");
         button11.setToolTipText("Deals 75 damage to all enemies with 1/3 chance to burn.");
