@@ -60,6 +60,10 @@ public class NewCityTool extends NewTool{
                new CityBoxer(), new CityCop(), new CityBruiser(), new CityKnifer()
         ));
 
+        List<Enemy> configRats = new ArrayList<>(Arrays.asList(
+                new CityAlarm(), new CityAlarm()
+        ));
+
         RoomEvent e0 = new RoomEvent(0, 0, 0, 0, 1.1, 1.1, StatusEffect.NONE, 0,"all",
                 "Stopping by a liquor store, the party decides to get drinks. Attack up, but defense down for the next " +
                         "fight!");
@@ -78,7 +82,7 @@ public class NewCityTool extends NewTool{
                 "A livewire lying across the road shocks and stuns one of your party members! (Check your party status!)");
 
         rooms[0][0] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, null);
-        rooms[0][1] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[0][1] = new NewRoom(configRats, party, inventory, null, true, false, 0, null);
         rooms[0][2] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
         rooms[0][3] = new NewRoom(selectConfig(), party, inventory, new Item("Protein Shake", "Increases one character's attack and defense!", 10.0,
                 0.0, 0, 0.50, -0.10, 0, false, StatusEffect.NONE, 2, "one"), false, false, 0, null);

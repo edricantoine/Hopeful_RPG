@@ -1,6 +1,8 @@
 package ui;
 
 import model.*;
+import model.enemies.City.CityBruiser;
+import model.enemies.City.CityKnifer;
 import model.enemies.Enemy;
 import model.enemies.Facility.FacilityDrone;
 import model.enemies.Facility.FacilitySecurity;
@@ -826,6 +828,28 @@ public class Battle {
 
                 if (c.getCurrentStatus() == StatusEffect.RIPOSTE) {
                     e.takeDamage(s.getDamage());
+                }
+            }
+
+            //Special case for Squealing Rat's "Squeal" skill
+            if (e.getName().equals("Squealing Rat") && s.getName().equals("Squeal")) {
+                if (room.getEnemies().size() < 4) {
+                    Random rand = new Random();
+                    int chosen = rand.nextInt(2);
+                    if (chosen == 0) {
+                        Enemy temp = new CityBruiser();
+                        temp.setSelectedSkill(new AttackSkill("n/a", "did nothing this turn", 0, "all",
+                                0, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE));
+                        room.getEnemies().add(temp);
+                    } else if (chosen == 1) {
+                        Enemy temp = new CityKnifer();
+                        temp.setSelectedSkill(new AttackSkill("n/a", "did nothing this turn", 0, "all",
+                                0, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE));
+                        room.getEnemies().add(temp);
+                    }
+                    refresh();
+                } else {
+                    battleLabel.setText("Squealing Rat called for help... but nobody came.");
                 }
             }
 

@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class CityDoppel2 extends Enemy {
     public CityDoppel2() {
         super("Alt Punk Doppel", 175, 100, new ArrayList<>(Arrays.asList(
-                        new AttackSkill("Bash", "transformed into", 0, "one",
+                        new AttackSkill("Transform", "transformed into", 0, "one",
                                 0, StatusEffect.NONE, 1.0, 1.0, 1,
                                 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE )
 
