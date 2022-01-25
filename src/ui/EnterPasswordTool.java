@@ -23,6 +23,7 @@ public class EnterPasswordTool {
         validPass = new ArrayList<>();
         validPass.add("ab42pgf9"); //these values were arbitrarily chosen
         validPass.add("b0wwg5gn");
+        validPass.add("38hb3igf");
 
         setUpButton();
         JFrame frame = new JFrame("Enter password");
@@ -47,11 +48,15 @@ public class EnterPasswordTool {
                         if (enteredPass.equals("ab42pgf9")) {
                             Component cButton = (Component) e.getSource();
                             SwingUtilities.getWindowAncestor(cButton).dispose();
-                            new LevelSelectUI(true, false, false);
+                            new LevelSelectUI(true, false, false, false);
                         } else if (enteredPass.equals("b0wwg5gn")) {
                             Component cButton = (Component) e.getSource();
                             SwingUtilities.getWindowAncestor(cButton).dispose();
-                            new LevelSelectUI(true, true, false); //levels completed up to a certain point for each password
+                            new LevelSelectUI(true, true, false, false); //levels completed up to a certain point for each password
+                        } else if (enteredPass.equals("38hb3igf")) {
+                            Component cButton = (Component) e.getSource();
+                            SwingUtilities.getWindowAncestor(cButton).dispose();
+                            new LevelSelectUI(true, true, true, false);
                         }
                     }
                 }

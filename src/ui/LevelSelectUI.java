@@ -24,6 +24,8 @@ public class LevelSelectUI {
     private List<NewLevel> levels;
     private NewLevel wasteland;
     private NewLevel facility;
+    private NewLevel city;
+    private NewCityTool clt;
     private NewFacilityTool flt;
     private NewWastelandTool wlt;
 
@@ -32,11 +34,12 @@ public class LevelSelectUI {
     private JButton facilityButton;
     private JLabel passwordLabel;
     private JLabel mainLabel;
+    private JButton cityButton;
 
     //Class representing the screen where you select a level to play.
     //Party, inventory, levels are also initialized whenever a new instance is created.
 
-    public LevelSelectUI(Boolean l1c, Boolean l2c, Boolean l3c) {
+    public LevelSelectUI(Boolean l1c, Boolean l2c, Boolean l3c, Boolean l4c) {
 
         party = new ArrayList<>();
         setUpParty();
@@ -47,6 +50,9 @@ public class LevelSelectUI {
             passwordLabel.setText("PASSWORD: ab42pgf9"); //Arbitrarily chosen passwords
         } else if (l2c && !l3c) {
             passwordLabel.setText("PASSWORD: b0wwg5gn");
+
+        } else if (l3c && !l4c) {
+            passwordLabel.setText("PASSWORD: 38hb3igf");
             mainLabel.setText("You've completed all levels so far! To be continued...");
         }
 
@@ -54,6 +60,7 @@ public class LevelSelectUI {
 
         if (!l1c) {
             facilityButton.setEnabled(false);
+            cityButton.setEnabled(false);
         }
         if (l1c) {
             wastelandButton.setEnabled(false);
@@ -61,6 +68,11 @@ public class LevelSelectUI {
         if (l2c) {
             wastelandButton.setEnabled(false);
             facilityButton.setEnabled(false);
+        }
+        if (l3c) {
+            wastelandButton.setEnabled(false);
+            facilityButton.setEnabled(false);
+            cityButton.setEnabled(false);
         }
 
         levels = new ArrayList<>();
@@ -89,6 +101,14 @@ public class LevelSelectUI {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
                 new LevelBeginStoryUI(facility, facility.getRooms()[0][0]);
+            }
+        });
+        cityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new LevelBeginStoryUI(city, city.getRooms()[0][0]);
             }
         });
     }
@@ -199,6 +219,17 @@ public class LevelSelectUI {
                 " and are able to prove to the head warden of the prison that their imprisonment was a mistake. With no clues on " +
                 "the strange phenomenon, they decide to head to the big city in search of clues..." + "</p></body></html>");
         levels.add(facility);
+        clt = new NewCityTool(inventory, party);
+        city = new NewLevel("The City", clt.getRooms(), Color.CYAN);
+        city.setIntroLabelText("<html><body><p style='width:200px;'>" + "The next day, the party asks around for information on the phenomenon they were researching." +
+                "After hours of hopeless searching, Jack is about to call it a day, when the janitor at their hotel informs him of another individual" +
+                "who just happens to be researching the same phenomenon as them! Unfortunately, they live in the... not-so-good part of town, and upon" +
+                "arrival, the local gangs of punks and corrupt cops are more than happy to 'welcome' the party... Beat all 3 bosses to win!" + "</p></body></html>");
+        city.setEndLabelText("<html><body><p style='width:200px;'>" + "Finally, the party reaches their mystery person's address, and knock on the door. The bat-like creature who" +
+                "answers introduces himself as Malcolm Lowe, and they confirm with each other that they are studying the same phenomenon. According to Malcolm's research, " +
+                "this phenomenon is known as 'The Dark', and appears as small patches of space in which all light is supernaturally removed. It was first discovered in the desert of Scavejo, " +
+                "but there have been some recent sightings in the tropical continent of Milutai. So, Jack and co. set off there for their next destination..." + "</p></body></html>");
+        levels.add(city);
 
     }
 
@@ -236,7 +267,7 @@ public class LevelSelectUI {
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         lselectpanel.add(spacer1, gbc);
         wastelandButton = new JButton();
@@ -267,6 +298,15 @@ public class LevelSelectUI {
         gbc.gridx = 0;
         gbc.gridy = 1;
         lselectpanel.add(passwordLabel, gbc);
+        cityButton = new JButton();
+        Font cityButtonFont = this.$$$getFont$$$("Courier New", -1, -1, cityButton.getFont());
+        if (cityButtonFont != null) cityButton.setFont(cityButtonFont);
+        cityButton.setText("Level 3: The City");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        lselectpanel.add(cityButton, gbc);
     }
 
     /**

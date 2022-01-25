@@ -31,11 +31,13 @@ public class LevelEndStoryUI {
                 SwingUtilities.getWindowAncestor(cButton).dispose();
                 //sets certain levels as completed based on which level was just being played
                 if (l.getName().equals("The Wasteland")) {
-                    new LevelSelectUI(true, false, false);
+                    new LevelSelectUI(true, false, false, false);
                 } else if (l.getName().equals("The Facility")) {
-                    new LevelSelectUI(true, true, false);
+                    new LevelSelectUI(true, true, false, false);
+                } else if (l.getName().equals("The City")) {
+                    new LevelSelectUI(true, true, true, false);
                 } else {
-                    new LevelSelectUI(false, false, false);
+                    new LevelSelectUI(false, false, false, false);
                 }
             }
         });

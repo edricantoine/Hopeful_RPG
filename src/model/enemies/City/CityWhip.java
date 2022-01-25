@@ -22,7 +22,7 @@ public class CityWhip extends Enemy {
                                 50, StatusEffect.NONE, 1.0, 1.0, 1,
                                 0, 0,  0.5, 1.0, 1, 0, StatusEffect.NONE),
                         new SupportSkill("Swig", "drank from a flask", 0, "one", 100,
-                                0, 0.2, 1.0, true, 0, 0, 0, StatusEffect.NUMB,
+                                0, 0.2, 1.0, true, 0, 0, 0, StatusEffect.POISONED,
                                 0, 0, 1.0, 1.0, StatusEffect.NONE)
 
                 )), 6, "Ari attacks with deadly scale whips that pack a serious punch - and can poison, too! Time to put Trip to work!",

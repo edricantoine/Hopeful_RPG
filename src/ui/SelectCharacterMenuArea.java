@@ -4,6 +4,7 @@ import model.AttackSkill;
 import model.PlayerCharacter;
 import model.StatusEffect;
 import model.SupportSkill;
+import model.enemies.City.*;
 import model.enemies.Facility.*;
 import model.enemies.Wasteland.*;
 
@@ -25,6 +26,8 @@ public class SelectCharacterMenuArea {
     private JButton partyButton;
     private JButton backButton;
     private JButton facilityButton;
+    private JButton cityButton;
+
 
     public SelectCharacterMenuArea() {
         JFrame frame = new JFrame("Character Profiles");
@@ -39,79 +42,79 @@ public class SelectCharacterMenuArea {
                 SwingUtilities.getWindowAncestor(cButton).dispose();
                 //initializes similar characters to the ones in-game to display as a string.
                 new CharacterMenu(Arrays.asList(new PlayerCharacter("Jack", 150, 100, new ArrayList<>(Arrays.asList(
-                        new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
-                                StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
+                                        StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
 
-                        new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
-                                50, StatusEffect.NUMB, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new AttackSkill("Shatter", "punched with a fist of ice, hitting", 40, "one",
-                                50, StatusEffect.NONE, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
+                                        50, StatusEffect.NUMB, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Shatter", "punched with a fist of ice, hitting", 40, "one",
+                                        50, StatusEffect.NONE, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
 
-                        new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 30, "one", 30,
-                                StatusEffect.NUMB, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
-
-
-                )), 5,
-                        "A dragon-like creature who can use his frosty breath as an offensive tactic.", new ArrayList<>(),
-                        new ArrayList<>()),
-
-                new PlayerCharacter("Trip", 200, 130, new ArrayList<>(Arrays.asList(
-
-                        new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
-                                20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
-                                50.0, 0, 0.25, 1.0, true, 0, 0, 0, StatusEffect.NONE,
-                                0, 0, 1.0, 1.0, StatusEffect.NONE),
-                        new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
-                                50.0, 0, 1.0, -0.15, true, 0, 0, 0, StatusEffect.NONE,
-                                0, 0, 1.0, 1.0, StatusEffect.NONE),
-                        new SupportSkill("Toast", "and the party drank together!", 40, "all",
-                                70.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
-                                0, 0, 1.0, 1.0, StatusEffect.NONE)
+                                new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 30, "one", 30,
+                                        StatusEffect.NUMB, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
 
 
-                )), 3,
-                        "A former bartender who uses alcoholic concoctions to support the party.", new ArrayList<>(),
-                        new ArrayList<>()),
+                        )), 5,
+                                "A dragon-like creature who can use his frosty breath as an offensive tactic.", new ArrayList<>(),
+                                new ArrayList<>()),
 
-                new PlayerCharacter("Boyle", 100, 150, new ArrayList<>(Arrays.asList(
+                        new PlayerCharacter("Trip", 200, 130, new ArrayList<>(Arrays.asList(
 
-                        new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one", 40
-                                , StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new AttackSkill("Torch", "launched flames from her flamethrower, scorching", 30, "one",
-                                50, StatusEffect.BURNED, 1.0, 1.0, 2, 0, 0, 1.0, 1.0,
-                                0, 0, StatusEffect.NONE),
-                        new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
-                                75, StatusEffect.BURNED, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new AttackSkill("Fumes", "sprayed toxic gas at", 20, "one",
-                                0, StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
-
-
-                )), 9,
-                        "A rollerblade-riding, flamethrower-wielding pyromaniac who uses her skills to burn whoever stands in her way.",
-                        new ArrayList<>(),
-                        new ArrayList<>()),
-
-                new PlayerCharacter("Oscar", 110, 100, new ArrayList<>(Arrays.asList(
-
-                        new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
-                                15, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new AttackSkill("Primal Fear", "induced fear in the enemies...", 60, "all",
-                                0, StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
-                        new SupportSkill("Devotion", "gave his life for", 100, "one",
-                                300.0, 200, 2.00, 0.0, false, 0, 3, 0, StatusEffect.NONE,
-                                0, 0, 1.0, 1.0, StatusEffect.NONE),
-                        new AttackSkill("Bloodlust",
-                                "acted on his cravings, biting into", 30, "one",
-                                50, StatusEffect.NONE, 1.0, 1.0, 0, 25, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                                new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
+                                        20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
+                                        50.0, 0, 0.25, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                                        0, 0, 1.0, 1.0, StatusEffect.NONE),
+                                new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
+                                        50.0, 0, 1.0, -0.15, true, 0, 0, 0, StatusEffect.NONE,
+                                        0, 0, 1.0, 1.0, StatusEffect.NONE),
+                                new SupportSkill("Toast", "and the party drank together!", 40, "all",
+                                        70.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                                        0, 0, 1.0, 1.0, StatusEffect.NONE)
 
 
-                )), 8,
-                        "A half-canine, half-eldritch-abomination hybrid. Despite his appearances, he has a heart of gold. " +
-                                "He uses his skills to inflict status on enemies, and attack them in groups.",
-                        new ArrayList<>(),
-                        new ArrayList<>())
-));
+                        )), 3,
+                                "A former bartender who uses alcoholic concoctions to support the party.", new ArrayList<>(),
+                                new ArrayList<>()),
+
+                        new PlayerCharacter("Boyle", 100, 150, new ArrayList<>(Arrays.asList(
+
+                                new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one", 40
+                                        , StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Torch", "launched flames from her flamethrower, scorching", 30, "one",
+                                        50, StatusEffect.BURNED, 1.0, 1.0, 2, 0, 0, 1.0, 1.0,
+                                        0, 0, StatusEffect.NONE),
+                                new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
+                                        75, StatusEffect.BURNED, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Fumes", "sprayed toxic gas at", 20, "one",
+                                        0, StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+
+
+                        )), 9,
+                                "A rollerblade-riding, flamethrower-wielding pyromaniac who uses her skills to burn whoever stands in her way.",
+                                new ArrayList<>(),
+                                new ArrayList<>()),
+
+                        new PlayerCharacter("Oscar", 110, 100, new ArrayList<>(Arrays.asList(
+
+                                new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
+                                        15, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new AttackSkill("Primal Fear", "induced fear in the enemies...", 60, "all",
+                                        0, StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                                new SupportSkill("Devotion", "gave his life for", 100, "one",
+                                        300.0, 200, 2.00, 0.0, false, 0, 3, 0, StatusEffect.NONE,
+                                        0, 0, 1.0, 1.0, StatusEffect.NONE),
+                                new AttackSkill("Bloodlust",
+                                        "acted on his cravings, biting into", 30, "one",
+                                        50, StatusEffect.NONE, 1.0, 1.0, 0, 25, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+
+
+                        )), 8,
+                                "A half-canine, half-eldritch-abomination hybrid. Despite his appearances, he has a heart of gold. " +
+                                        "He uses his skills to inflict status on enemies, and attack them in groups.",
+                                new ArrayList<>(),
+                                new ArrayList<>())
+                ));
             }
         });
         //to view the wasteland level's enemy profiles
@@ -135,6 +138,17 @@ public class SelectCharacterMenuArea {
                         new FacilitySecurity(), new FacilityTank()));
             }
         });
+        //to view the city level's enemy profiles
+        cityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component cButton = (Component) e.getSource();
+                SwingUtilities.getWindowAncestor(cButton).dispose();
+                new CharacterMenu(Arrays.asList(new CityBruiser(), new CityAlarm(), new CityCop(),
+                        new CityKnifer(), new CityDoppel(), new CityDoppel2(), new CityWhip(),
+                        new CityBiker(), new CityBoxer()));
+            }
+        });
         //back to the extras menu
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -144,6 +158,8 @@ public class SelectCharacterMenuArea {
                 new ExtrasMenu();
             }
         });
+
+
     }
 
     {
@@ -200,13 +216,13 @@ public class SelectCharacterMenuArea {
         backButton.setText("Back");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         selectAreaPanel.add(backButton, gbc);
         final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         selectAreaPanel.add(spacer1, gbc);
         facilityButton = new JButton();
@@ -218,6 +234,15 @@ public class SelectCharacterMenuArea {
         gbc.gridy = 3;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         selectAreaPanel.add(facilityButton, gbc);
+        cityButton = new JButton();
+        Font cityButtonFont = this.$$$getFont$$$("Courier New", -1, -1, cityButton.getFont());
+        if (cityButtonFont != null) cityButton.setFont(cityButtonFont);
+        cityButton.setText("City");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        selectAreaPanel.add(cityButton, gbc);
     }
 
     /**

@@ -26,7 +26,7 @@ public class MainMenu {
             public void actionPerformed(ActionEvent e) {
                 Component cButton = (Component) e.getSource();
                 SwingUtilities.getWindowAncestor(cButton).dispose();
-                new LevelSelectUI(false, false, false);
+                new LevelSelectUI(false, false, false, false);
             }
         });
         extrasMenuButton.addActionListener(new ActionListener() {
