@@ -831,6 +831,87 @@ public class Battle {
                 }
             }
 
+            //Special case for Punk Doppel and Alt Punk Doppels' Transform skill
+            if (e.getName().equals("Alt Punk Doppel") && s.getName().equals("Transform")) {
+                e.setName("Alt Punk Doppel (" + s.getSetTargets().get(0).getName() + ")");
+                if (s.getSetTargets().get(0).getName().equals("Jack")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Icicle Throw", "launched an icicle at", 0, "one", 25,
+                                    StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+
+                            new AttackSkill("Blizzard", "formed a huge cloud of frost!", 75, "all",
+                                    50, StatusEffect.NUMB, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                    )));
+                } else if (s.getSetTargets().get(0).getName().equals("Trip")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Slash", "slashed with a katana, hitting", 0, "one",
+                                    20, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                            new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
+                                    50.0, 0, 0.25, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                                    0, 0, 1.0, 1.0, StatusEffect.NONE)
+                    )));
+
+                } else if (s.getSetTargets().get(0).getName().equals("Boyle")) {
+
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Skate Kick", "did a roundhouse kick, hitting", 0, "one", 40
+                                    , StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                            new AttackSkill("Torch", "launched flames from her flamethrower, scorching", 30, "one",
+                                    50, StatusEffect.BURNED, 1.0, 1.0, 2, 0, 0, 1.0, 1.0,
+                                    0, 0, StatusEffect.NONE)
+                    )));
+
+                } else if (s.getSetTargets().get(0).getName().equals("Oscar")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
+                                    15, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                            new AttackSkill("Primal Fear", "induced fear in the enemies...", 60, "all",
+                                    0, StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                    )));
+                }
+
+            }
+
+            if (e.getName().equals("Punk Doppel") && s.getName().equals("Transform")) {
+                e.setName("Punk Doppel (" + s.getSetTargets().get(0).getName() + ")");
+                if (s.getSetTargets().get(0).getName().equals("Jack")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Shatter", "punched with a fist of ice, hitting", 40, "one",
+                                    50, StatusEffect.NONE, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+
+                            new AttackSkill("Freeze!", "coated the enemy in frost, chilling", 30, "one", 30,
+                                    StatusEffect.NUMB, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                    )));
+                } else if (s.getSetTargets().get(0).getName().equals("Trip")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new SupportSkill("Bloody Mary", "procured a spicy drink for", 20, "one",
+                                    50.0, 0, 0.25, 1.0, true, 0, 0, 0, StatusEffect.NONE,
+                                    0, 0, 1.0, 1.0, StatusEffect.NONE),
+                            new SupportSkill("Numbing Tonic", "procured a numbing drink for", 20, "one",
+                                    50.0, 0, 1.0, -0.15, true, 0, 0, 0, StatusEffect.NONE,
+                                    0, 0, 1.0, 1.0, StatusEffect.NONE)
+                    )));
+
+                } else if (s.getSetTargets().get(0).getName().equals("Boyle")) {
+
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Immolate", "blanketed the area in flames!", 75, "all",
+                                    75, StatusEffect.BURNED, 1.0, 1.0, 3, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                            new AttackSkill("Fumes", "sprayed toxic gas at", 20, "one",
+                                    0, StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                    )));
+
+                } else if (s.getSetTargets().get(0).getName().equals("Oscar")) {
+                    e.setSkills(new ArrayList<>(Arrays.asList(
+                            new AttackSkill("Tendrilize", "attacked in all directions!", 0, "all",
+                                    15, StatusEffect.NONE, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE),
+                            new AttackSkill("Bloodlust",
+                                    "acted on his cravings, biting into", 30, "one",
+                                    50, StatusEffect.NONE, 1.0, 1.0, 0, 25, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE)
+                    )));
+                }
+            }
+
             //Special case for Squealing Rat's "Squeal" skill
             if (e.getName().equals("Squealing Rat") && s.getName().equals("Squeal")) {
                 if (room.getEnemies().size() < 4) {

@@ -63,6 +63,9 @@ public class NewCityTool extends NewTool{
         List<Enemy> configRats = new ArrayList<>(Arrays.asList(
                 new CityAlarm(), new CityAlarm()
         ));
+        List<Enemy> configDoppels = new ArrayList<>(Arrays.asList(
+                new CityDoppel(), new CityDoppel2()
+        ));
 
         RoomEvent e0 = new RoomEvent(0, 0, 0, 0, 1.1, 1.1, StatusEffect.NONE, 0,"all",
                 "Stopping by a liquor store, the party decides to get drinks. Attack up, but defense down for the next " +
@@ -89,7 +92,7 @@ public class NewCityTool extends NewTool{
         rooms[0][4] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e4);
         rooms[0][5] = new NewRoom(configB1, party, inventory, null, true, false, 1, null);
 
-        rooms[1][0] = new NewRoom(selectConfig(), party, inventory, null, returnRandom1to2(), false, 0, null);
+        rooms[1][0] = new NewRoom(configDoppels, party, inventory, null, true, false, 0, null);
         rooms[1][1] = new NewRoom(selectConfig(), party, inventory, null, false, false, 0, e3);
         rooms[1][2] = new NewRoom(selectConfig(), party, inventory, new Item("Riot Shield", "Activates Riposte on one character.", 0.0,
                 0.0, 0, 1.0, 1.0, 0, false, StatusEffect.RIPOSTE, 1, "one"), false, false, 0, null);
