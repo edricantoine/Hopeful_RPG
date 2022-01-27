@@ -22,8 +22,7 @@ To use this .jar file:
 NOTE: This project is NOT COMPLETE YET! So, code quality might be lower than that of a fully completed project but I am working on fixing that. :)
 
 TODO:
-- Start work on 3rd level
+
 - Add music (probably won't happen)
-- Add better comments throughout code
-- Add more thorough unit tests
+
 
