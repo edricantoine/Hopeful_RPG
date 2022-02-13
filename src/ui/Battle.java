@@ -9,6 +9,9 @@ import model.enemies.Facility.FacilitySecurity;
 import model.levelStuff.NewLevel;
 import model.levelStuff.NewRoom;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.Timer;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -18,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.List;
 import java.util.*;
 
@@ -109,6 +113,7 @@ public class Battle {
         }
         frame.pack();
         frame.setVisible(true);
+        playSound();
 
 
     }
@@ -1119,6 +1124,20 @@ public class Battle {
 
                 battleLabel.setText("You got " + loot.getName() + "! But your inventory is full! You didn't take the item.");
             }
+        }
+    }
+
+    //plays battle music
+    public void playSound() {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("funky.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
         }
     }
 

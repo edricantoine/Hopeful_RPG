@@ -118,6 +118,7 @@ public class NewLevel {
     }
 
 
+
     //kills first boss, if all 3 bosses dead sets completed to true
     public void kill1Boss() {
         boss1dead = true;

@@ -48,7 +48,7 @@ public class GameUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("Version 0.4 - City level released"); //current version of the game
+        System.out.println("Version 0.5 - Battle music added"); //current version of the game
     }
 
     {

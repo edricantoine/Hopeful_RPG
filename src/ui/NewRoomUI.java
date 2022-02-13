@@ -3,12 +3,16 @@ package ui;
 import model.levelStuff.NewLevel;
 import model.levelStuff.NewRoom;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Locale;
 
 //A class representing the UI displayed in a non-battle room.
@@ -74,7 +78,9 @@ public class NewRoomUI {
                 new ViewInventoryTool(room.getInventory());
             }
         });
+
     }
+
 
 
 
