@@ -1,4 +1,6 @@
 # Hopeful_RPG
+Demo Version
+
 A small turn-based RPG game.
 Each level consists of a grid of rooms. To beat a level, find and beat all 3 bosses in that level.
 Also, there is something vaguely resembling a plot.
@@ -19,10 +21,6 @@ To use this .jar file:
 - Then, use the command "java -jar Hopeful_RPG.jar" (without quotes).
 - Enjoy!
 
-NOTE: This project is NOT COMPLETE YET! So, code quality might be lower than that of a fully completed project but I am working on fixing that. :)
-
-TODO:
-
-- Add music (probably won't happen)
+To be continued...
 
 
