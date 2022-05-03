@@ -56,21 +56,21 @@ public class SelectItemTool {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-            for (JButton b : battle.oButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : battle.oButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : battle.jButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : battle.jButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : battle.bButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : battle.bButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : battle.tButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : battle.tButtons) {
+            b.setEnabled(false);
+        }
 
         battle.itemButton.setEnabled(false);
         battle.itemButton1.setEnabled(false);
@@ -108,7 +108,7 @@ public class SelectItemTool {
 
         for (int i = 0; i < buttons.size(); i++) {
             String text = buttons.get(i).getText();
-            if (text.equals("N/A")) { //If a button is labeled N/A, simply closes this screen
+            if (text.equals("Cancel")) { //If a button is labeled N/A, simply closes this screen
                 buttons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -149,7 +149,7 @@ public class SelectItemTool {
         button2 = new JButton();
         Font button2Font = this.$$$getFont$$$("Courier New", -1, -1, button2.getFont());
         if (button2Font != null) button2.setFont(button2Font);
-        button2.setText("N/A");
+        button2.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -158,7 +158,7 @@ public class SelectItemTool {
         button3 = new JButton();
         Font button3Font = this.$$$getFont$$$("Courier New", -1, -1, button3.getFont());
         if (button3Font != null) button3.setFont(button3Font);
-        button3.setText("N/A");
+        button3.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -167,7 +167,7 @@ public class SelectItemTool {
         button4 = new JButton();
         Font button4Font = this.$$$getFont$$$("Courier New", -1, -1, button4.getFont());
         if (button4Font != null) button4.setFont(button4Font);
-        button4.setText("N/A");
+        button4.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -176,7 +176,7 @@ public class SelectItemTool {
         button1 = new JButton();
         Font button1Font = this.$$$getFont$$$("Courier New", -1, -1, button1.getFont());
         if (button1Font != null) button1.setFont(button1Font);
-        button1.setText("N/A");
+        button1.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -185,7 +185,7 @@ public class SelectItemTool {
         button5 = new JButton();
         Font button5Font = this.$$$getFont$$$("Courier New", -1, -1, button5.getFont());
         if (button5Font != null) button5.setFont(button5Font);
-        button5.setText("N/A");
+        button5.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 5;
@@ -194,7 +194,7 @@ public class SelectItemTool {
         button6 = new JButton();
         Font button6Font = this.$$$getFont$$$("Courier New", -1, -1, button6.getFont());
         if (button6Font != null) button6.setFont(button6Font);
-        button6.setText("N/A");
+        button6.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -203,7 +203,7 @@ public class SelectItemTool {
         button7 = new JButton();
         Font button7Font = this.$$$getFont$$$("Courier New", -1, -1, button7.getFont());
         if (button7Font != null) button7.setFont(button7Font);
-        button7.setText("N/A");
+        button7.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 7;
@@ -212,7 +212,7 @@ public class SelectItemTool {
         button8 = new JButton();
         Font button8Font = this.$$$getFont$$$("Courier New", -1, -1, button8.getFont());
         if (button8Font != null) button8.setFont(button8Font);
-        button8.setText("N/A");
+        button8.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 8;
@@ -221,7 +221,7 @@ public class SelectItemTool {
         button9 = new JButton();
         Font button9Font = this.$$$getFont$$$("Courier New", -1, -1, button9.getFont());
         if (button9Font != null) button9.setFont(button9Font);
-        button9.setText("N/A");
+        button9.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 9;
@@ -230,7 +230,7 @@ public class SelectItemTool {
         button10 = new JButton();
         Font button10Font = this.$$$getFont$$$("Courier New", -1, -1, button10.getFont());
         if (button10Font != null) button10.setFont(button10Font);
-        button10.setText("N/A");
+        button10.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 10;
@@ -266,4 +266,5 @@ public class SelectItemTool {
     public JComponent $$$getRootComponent$$$() {
         return ItemSelectPanel;
     }
+
 }

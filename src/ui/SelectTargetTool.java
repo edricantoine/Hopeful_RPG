@@ -47,21 +47,21 @@ public class SelectTargetTool {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-            for (JButton b : bat.oButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : bat.oButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : bat.jButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : bat.jButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : bat.bButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : bat.bButtons) {
+            b.setEnabled(false);
+        }
 
-            for (JButton b : bat.tButtons) {
-                b.setEnabled(false);
-            }
+        for (JButton b : bat.tButtons) {
+            b.setEnabled(false);
+        }
 
         bat.itemButton.setEnabled(false);
         bat.itemButton1.setEnabled(false);
@@ -90,7 +90,7 @@ public class SelectTargetTool {
             //sets one button's label to "All", rest are "N/A"
             buttons.get(0).setText("All");
             for (int i = 1; i < buttons.size(); i++) {
-                buttons.get(i).setText("N/A");
+                buttons.get(i).setText("Cancel");
             }
 
         }
@@ -105,7 +105,7 @@ public class SelectTargetTool {
                 String t = e1b.getText();
                 if (skill instanceof AttackSkill) {
 
-                    if (t.equals("N/A")) { //closes screen
+                    if (t.equals("Cancel")) { //closes screen
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -126,7 +126,7 @@ public class SelectTargetTool {
                     }
 
                 } else if (skill instanceof SupportSkill) {
-                    if (t.equals("N/A")) { //same as above, but allies are targeted instead of enemies
+                    if (t.equals("Cancel")) { //same as above, but allies are targeted instead of enemies
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -155,7 +155,7 @@ public class SelectTargetTool {
                 String t = e2b.getText();
                 if (skill instanceof AttackSkill) {
 
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -176,7 +176,7 @@ public class SelectTargetTool {
                     }
 
                 } else if (skill instanceof SupportSkill) {
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -205,7 +205,7 @@ public class SelectTargetTool {
                 String t = e3b.getText();
                 if (skill instanceof AttackSkill) {
 
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -226,7 +226,7 @@ public class SelectTargetTool {
                     }
 
                 } else if (skill instanceof SupportSkill) {
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -254,7 +254,7 @@ public class SelectTargetTool {
                 String t = e4b.getText();
                 if (skill instanceof AttackSkill) {
 
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -275,7 +275,7 @@ public class SelectTargetTool {
                     }
 
                 } else if (skill instanceof SupportSkill) {
-                    if (t.equals("N/A")) {
+                    if (t.equals("Cancel")) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
                         bat.refreshButtons();
@@ -321,7 +321,7 @@ public class SelectTargetTool {
         e1b = new JButton();
         Font e1bFont = this.$$$getFont$$$("Courier New", -1, -1, e1b.getFont());
         if (e1bFont != null) e1b.setFont(e1bFont);
-        e1b.setText("N/A");
+        e1b.setText("Cancel");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -332,7 +332,7 @@ public class SelectTargetTool {
         e3b = new JButton();
         Font e3bFont = this.$$$getFont$$$("Courier New", -1, -1, e3b.getFont());
         if (e3bFont != null) e3b.setFont(e3bFont);
-        e3b.setText("N/A");
+        e3b.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -342,7 +342,7 @@ public class SelectTargetTool {
         e4b = new JButton();
         Font e4bFont = this.$$$getFont$$$("Courier New", -1, -1, e4b.getFont());
         if (e4bFont != null) e4b.setFont(e4bFont);
-        e4b.setText("N/A");
+        e4b.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -353,7 +353,7 @@ public class SelectTargetTool {
         e2b = new JButton();
         Font e2bFont = this.$$$getFont$$$("Courier New", -1, -1, e2b.getFont());
         if (e2bFont != null) e2b.setFont(e2bFont);
-        e2b.setText("N/A");
+        e2b.setText("Cancel");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;

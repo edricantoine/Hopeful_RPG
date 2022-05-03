@@ -22,7 +22,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="44059" class="javax.swing.JButton" binding="button3" default-binding="true">
@@ -32,7 +32,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="622a5" class="javax.swing.JButton" binding="button4" default-binding="true">
@@ -42,7 +42,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="c95f" class="javax.swing.JButton" binding="button1" default-binding="true">
@@ -52,7 +52,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="886c8" class="javax.swing.JButton" binding="button5" default-binding="true">
@@ -62,7 +62,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="d7962" class="javax.swing.JButton" binding="button6" default-binding="true">
@@ -72,7 +72,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="33c6e" class="javax.swing.JButton" binding="button7" default-binding="true">
@@ -82,7 +82,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="d0d8d" class="javax.swing.JButton" binding="button8" default-binding="true">
@@ -92,7 +92,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="ab6e7" class="javax.swing.JButton" binding="button9" default-binding="true">
@@ -102,7 +102,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="965a7" class="javax.swing.JButton" binding="button10" default-binding="true">
@@ -112,7 +112,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
     </children>

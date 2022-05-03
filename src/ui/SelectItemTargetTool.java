@@ -69,17 +69,17 @@ public class SelectItemTargetTool {
             }
             for (int i = 0; i < enemyButtons.size(); i++) {
                 if (enemyButtons.get(i).getText().equals("Button")) {
-                    enemyButtons.get(i).setText("N/A");
+                    enemyButtons.get(i).setText("Cancel");
                 }
             }
         } else if (item.getTarget().equals("all")) {
             playerButtons.get(0).setText("All allies");
             enemyButtons.get(0).setText("All enemies");
             for (int i = 1; i < playerButtons.size(); i++) {
-                playerButtons.get(i).setText("N/A");
+                playerButtons.get(i).setText("Cancel");
             }
             for (int i = 1; i < enemyButtons.size(); i++) {
-                enemyButtons.get(i).setText("N/A");
+                enemyButtons.get(i).setText("Cancel");
             }
         }
         initializeListeners();
@@ -89,7 +89,7 @@ public class SelectItemTargetTool {
         for (int i = 0; i < playerButtons.size(); i++) {
             int finalI = i;
             String text = playerButtons.get(i).getText();
-            if (text.equals("N/A")) { //any button with label "N/A" simply closes the screen
+            if (text.equals("Cancel")) { //any button with label "N/A" simply closes the screen
                 playerButtons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -132,7 +132,7 @@ public class SelectItemTargetTool {
         for (int i = 0; i < enemyButtons.size(); i++) {
             int finalI = i;
             String text = enemyButtons.get(i).getText();
-            if (text.equals("N/A")) {
+            if (text.equals("Cancel")) {
                 enemyButtons.get(i).addActionListener(new ActionListener() { //same as above
                     @Override
                     public void actionPerformed(ActionEvent e) {

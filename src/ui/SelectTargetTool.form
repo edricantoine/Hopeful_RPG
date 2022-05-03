@@ -16,7 +16,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="22377" class="javax.swing.JButton" binding="e3b">
@@ -26,7 +26,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="a558c" class="javax.swing.JButton" binding="e4b">
@@ -36,7 +36,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
       <component id="c7e70" class="javax.swing.JButton" binding="e2b">
@@ -46,7 +46,7 @@
         </constraints>
         <properties>
           <font name="Courier New"/>
-          <text value="N/A"/>
+          <text value="Cancel"/>
         </properties>
       </component>
     </children>
