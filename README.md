@@ -23,4 +23,6 @@ To use this .jar file:
 
 To be continued...
 
+BUGS: On Windows, sometimes pressing space during the battle sequence advances the turns too quickly. (No turns are actually skipped, though.)
+
 
