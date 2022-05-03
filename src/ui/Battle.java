@@ -28,10 +28,10 @@ public class Battle {
     private Color color; //background color of battle screen
     private List<JLabel> pLabs; //player labels
     private List<JLabel> eLabs; //enemy labels
-    private List<JButton> jButtons; //Jack's skill buttons
-    private List<JButton> tButtons; //Trip's skill buttons
-    private List<JButton> bButtons; //Boyle's skill buttons
-    private List<JButton> oButtons; //Oscar's skill buttons
+    public List<JButton> jButtons; //Jack's skill buttons
+    public List<JButton> tButtons; //Trip's skill buttons
+    public List<JButton> bButtons; //Boyle's skill buttons
+    public List<JButton> oButtons; //Oscar's skill buttons
     private List<Item> possibleLoot; //Possible loot drops from enemies
     private List<JLabel> allLabs; //ALl labels, sorted by turn order
     private Map<Char, Integer> turnOrder; //maps character to their turn order
@@ -64,10 +64,10 @@ public class Battle {
     private JButton button14;
     private JButton button15;
     private JButton button16;
-    private JButton itemButton;
-    private JButton itemButton1;
-    private JButton itemButton2;
-    private JButton itemButton3;
+    public JButton itemButton;
+    public JButton itemButton1;
+    public JButton itemButton2;
+    public JButton itemButton3;
     private JLabel bossLabel;
     private Battle temp;
     private Item loot;
@@ -686,8 +686,42 @@ public class Battle {
             timer.start();
 
 
+        } else {
+            refreshButtons();
         }
 
+    }
+
+    public void refreshButtons() {
+        for (int i = 0; i < jButtons.size(); i++) {
+            if (room.getParty().get(0).getDead() || room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {
+                jButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < tButtons.size(); i++) {
+            if (room.getParty().get(1).getDead() || room.getParty().get(1).canUseSkill(room.getParty().get(1).getSkills().get(i))) {
+                tButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < bButtons.size(); i++) {
+            if (room.getParty().get(2).getDead() || room.getParty().get(2).canUseSkill(room.getParty().get(2).getSkills().get(i))) {
+                bButtons.get(i).setEnabled(true);
+            }
+
+        }
+        for (int i = 0; i < oButtons.size(); i++) {
+            if (room.getParty().get(3).getDead() || room.getParty().get(3).canUseSkill(room.getParty().get(3).getSkills().get(i))) {
+                oButtons.get(i).setEnabled(true);
+            }
+
+        }
+        //item buttons always enabled
+        itemButton.setEnabled(true);
+        itemButton1.setEnabled(true);
+        itemButton2.setEnabled(true);
+        itemButton3.setEnabled(true);
     }
 
 

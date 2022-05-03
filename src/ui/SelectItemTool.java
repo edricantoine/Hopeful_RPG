@@ -56,6 +56,26 @@ public class SelectItemTool {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+            for (JButton b : battle.oButtons) {
+                b.setEnabled(false);
+            }
+
+            for (JButton b : battle.jButtons) {
+                b.setEnabled(false);
+            }
+
+            for (JButton b : battle.bButtons) {
+                b.setEnabled(false);
+            }
+
+            for (JButton b : battle.tButtons) {
+                b.setEnabled(false);
+            }
+
+        battle.itemButton.setEnabled(false);
+        battle.itemButton1.setEnabled(false);
+        battle.itemButton2.setEnabled(false);
+        battle.itemButton3.setEnabled(false);
     }
 
     public void initializeButtons() { //sets up button labels, tooltips, listeners
@@ -94,6 +114,7 @@ public class SelectItemTool {
                     public void actionPerformed(ActionEvent e) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
+                        battle.refreshButtons();
                     }
                 });
             }

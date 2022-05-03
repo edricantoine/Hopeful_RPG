@@ -44,6 +44,8 @@ public class LevelSelectUI {
         party = new ArrayList<>();
         setUpParty();
         inventory = new ArrayList<>();
+        inventory.add(new Item("Bomb", "A bomb.", 50.0, 0.0, 0, 1.0, 1.0, 0, false,
+                StatusEffect.NONE, 0, "all"));
 
 
         if (l1c && !l2c) { //displays save password required for this amount of progress, so the user can continue later

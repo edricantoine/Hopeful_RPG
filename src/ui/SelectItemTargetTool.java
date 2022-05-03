@@ -53,6 +53,7 @@ public class SelectItemTargetTool {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public void initializeButtons() {
@@ -94,6 +95,7 @@ public class SelectItemTargetTool {
                     public void actionPerformed(ActionEvent e) {
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
+                        battle.refreshButtons();
                     }
                 });
             } else {
@@ -137,6 +139,7 @@ public class SelectItemTargetTool {
 
                         Component cButton = (Component) e.getSource();
                         SwingUtilities.getWindowAncestor(cButton).dispose();
+                        battle.refreshButtons();
 
                     }
                 });

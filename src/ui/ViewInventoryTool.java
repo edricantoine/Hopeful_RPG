@@ -97,7 +97,7 @@ public class ViewInventoryTool {
             ls.get(i).setText(inventory.get(i).getName());
         }
 
-        for (int j = marker + 1; j < ls.size(); j++) {
+        for (int j = inventory.size() == 0 ? marker :  marker + 1; j < ls.size(); j++) {
             ls.get(j).setText("None");
         }
 
@@ -129,7 +129,7 @@ public class ViewInventoryTool {
             marker = i;
         }
 
-        for (int j = marker + 1; j < bs.size(); j++) {
+        for (int j = inventory.size() == 0 ? marker : marker + 1; j < bs.size(); j++) {
             bs.get(j).setEnabled(false);
         }
 
