@@ -59,7 +59,7 @@ public class SelectItemTargetTool {
     public void initializeButtons() {
         //sets labels to specific character names if the item only affects one target,
         //sets labels on 2 buttons to "all enemies" and "all allies" if the item affects all of a group,
-        //sets all other labels to "N/A"
+        //sets all other labels to "Cancel"
         if (item.getTarget().equals("one")) {
             for (int i = 0; i < playerButtons.size(); i++) {
                 playerButtons.get(i).setText(room.getParty().get(i).getName());
@@ -89,7 +89,7 @@ public class SelectItemTargetTool {
         for (int i = 0; i < playerButtons.size(); i++) {
             int finalI = i;
             String text = playerButtons.get(i).getText();
-            if (text.equals("Cancel")) { //any button with label "N/A" simply closes the screen
+            if (text.equals("Cancel")) { //any button with label "Cancel" simply closes the screen
                 playerButtons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

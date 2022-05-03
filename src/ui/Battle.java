@@ -692,6 +692,7 @@ public class Battle {
 
     }
 
+    // sets all buttons of usable skills (and item buttons) to be enabled
     public void refreshButtons() {
         for (int i = 0; i < jButtons.size(); i++) {
             if (room.getParty().get(0).getDead() || room.getParty().get(0).canUseSkill(room.getParty().get(0).getSkills().get(i))) {

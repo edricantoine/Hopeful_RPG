@@ -74,20 +74,20 @@ public class SelectTargetTool {
         if (skill.getTarget().equals("one")) {
 
             if (skill instanceof AttackSkill) {
-                //sets buttons to individual enemy names, any leftovers get "N/A"
+                //sets buttons to individual enemy names, any leftovers get "Cancel"
                 for (int i = 0; i < Math.min(buttons.size(), room.getEnemies().size()); i++) {
                     buttons.get(i).setText(room.getEnemies().get(i).getName());
                 }
 
             } else if (skill instanceof SupportSkill) {
-                //sets buttons to individual ally names, any leftovers get "N/A"
+                //sets buttons to individual ally names, any leftovers get "Cancel"
                 for (int i = 0; i < Math.min(buttons.size(), room.getParty().size()); i++) {
                     buttons.get(i).setText(room.getParty().get(i).getName());
                 }
             }
 
         } else {
-            //sets one button's label to "All", rest are "N/A"
+            //sets one button's label to "All", rest are "Cancel"
             buttons.get(0).setText("All");
             for (int i = 1; i < buttons.size(); i++) {
                 buttons.get(i).setText("Cancel");

@@ -108,7 +108,7 @@ public class SelectItemTool {
 
         for (int i = 0; i < buttons.size(); i++) {
             String text = buttons.get(i).getText();
-            if (text.equals("Cancel")) { //If a button is labeled N/A, simply closes this screen
+            if (text.equals("Cancel")) { //If a button is labeled Cancel, simply closes this screen
                 buttons.get(i).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
