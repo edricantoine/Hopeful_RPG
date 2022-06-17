@@ -21,6 +21,8 @@ To use this .jar file:
 - Then, use the command "java -jar Hopeful_RPG.jar" (without quotes).
 - Enjoy!
 
+Currently confirmed to be working on the latest version of Java (Java 18) as of Jun. 2022.
+
 To be continued...
 
 BUGS: On Windows, sometimes pressing space during the battle sequence advances the turns too quickly. (No turns are actually skipped, though.)
