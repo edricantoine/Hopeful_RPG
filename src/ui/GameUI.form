@@ -19,7 +19,7 @@
           <background color="-6774876"/>
           <font name="Courier New" size="20" style="0"/>
           <horizontalAlignment value="0"/>
-          <text value="HOPEFUL: a simple RPG"/>
+          <text value="HOPEFUL: a simple RPG. (6/21/2022)"/>
         </properties>
       </component>
       <component id="312d2" class="javax.swing.JButton" binding="beginButton">
