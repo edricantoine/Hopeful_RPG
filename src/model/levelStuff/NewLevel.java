@@ -2,6 +2,8 @@ package model.levelStuff;
 
 import java.awt.*;
 
+// A class representing a Level in the game, with a 2D grid of rooms.
+
 public class NewLevel {
     private String name; //level name
     private NewRoom[][] rooms; //grid of rooms in level
@@ -29,7 +31,7 @@ public class NewLevel {
 
     }
 
-    //getters, setters
+    //getters, setters, no testing needed!
 
     public String getIntroLabelText() {
         return introLabelText;

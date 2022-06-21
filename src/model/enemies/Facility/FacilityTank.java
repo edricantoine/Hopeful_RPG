@@ -28,7 +28,10 @@ public class FacilityTank extends Enemy {
                 0.0, 0, 1.0, 1.0, 0, false, StatusEffect.NONE, 1, "one");
         hasRevived = false;
     }
-
+    // getter
+    public Boolean getHasRevived() {
+        return hasRevived;
+    }
 
     //checks to see if hp is <= 1. If so:
     // -if boss revived already, boss dies

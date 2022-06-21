@@ -1,6 +1,7 @@
 package test;
 
 import model.*;
+import model.enemies.Facility.FacilitySecurity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +12,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AttackSkillTest {
     private PlayerCharacter p1;
-
+    private FacilitySecurity gordon;
     private AttackSkill atkS;
     private AttackSkill atkB;
+    private AttackSkill atkBU;
     private AttackSkill atkF;
     private AttackSkill atkP;
     private AttackSkill atkA;
     private AttackSkill atkAmod;
+    private AttackSkill atkAmodD;
     private AttackSkill atkDmod;
+    private AttackSkill atkDmodD;
+    private AttackSkill atkAmodU;
+    private AttackSkill atkAmodDU;
+    private AttackSkill atkDmodU;
+    private AttackSkill atkDmodDU;
 
     private AttackSkill affectUser;
 
@@ -34,17 +42,34 @@ public class AttackSkillTest {
                 StatusEffect.BURNED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkF = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 2,
                 StatusEffect.NUMB, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
-        atkP = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 13,
+        atkP = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 0,
                 StatusEffect.POISONED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkA = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 44,
                 StatusEffect.AFRAID, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkAmod = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 23,
                 StatusEffect.NONE, 0.50, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
+        atkAmodD = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 23,
+                StatusEffect.NONE, -0.50, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE);
         atkDmod = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
                 StatusEffect.NONE, 1.0, 1.50, 1, 0, 0,1.0, 1.0, 0, 0, StatusEffect.NONE);
+        atkDmodD = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
+                StatusEffect.NONE, 1.0, -1.50, 1, 0, 0,1.0, 1.0, 0, 0, StatusEffect.NONE);
+
+        atkAmodU = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 23,
+                StatusEffect.NONE, 0.50, 1.0, 1, 0, 0, 0.50, 1.0, 0, 0, StatusEffect.NONE);
+        atkAmodDU = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 23,
+                StatusEffect.NONE, -0.50, 1.0, 1, 0, 0, -0.50, 1.0, 0, 0, StatusEffect.NONE);
+        atkDmodU = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
+                StatusEffect.NONE, 1.0, 1.50, 1, 0, 0,1.0, 1.50, 0, 0, StatusEffect.NONE);
+        atkDmodDU = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 9,
+                StatusEffect.NONE, 1.0, 1.50, 1, 0, 0,1.0, -1.50, 0, 0, StatusEffect.NONE);
+
         affectUser = new AttackSkill("Recoil", "...attacks the enemy but u bump ur head and hurt urself :(",
                 10, "one", 10, StatusEffect.NONE, 1.0, 1.0, 0, 0,
                 10, -0.1, 0.1, -1, -1, StatusEffect.NONE);
+
+        atkBU = new AttackSkill("Attack!", "...attacks the enemy.", 10, "one", 40,
+                StatusEffect.BURNED, 1.0, 1.0, 1, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.BURNED);
         skills.add(atkS);
         skills.add(atkB);
         skills.add(atkF);
@@ -56,6 +81,8 @@ public class AttackSkillTest {
 
         p1 = new PlayerCharacter("John", 100, 100, skills, 5,
                 "Test", new ArrayList<>(), new ArrayList<>());
+
+        gordon = new FacilitySecurity();
 
     }
 
@@ -170,6 +197,14 @@ public class AttackSkillTest {
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
     }
 
+
+    @Test
+    public void testAtkAmodDown() {
+        p1.setAtkMod(0.26);
+        atkAmodD.takeEffect(p1);
+        assertEquals(p1.getAtkMod(), 0.25);
+    }
+
     @Test
     public void testAtkDmod() {
         atkDmod.takeEffect(p1);
@@ -180,6 +215,41 @@ public class AttackSkillTest {
         atkDmod.takeEffect(p1);
         assertEquals(p1.getDefMod(), 4.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+    }
+
+    @Test
+    public void testAtkDmodDown() {
+        p1.setDefMod(0.26);
+        atkDmodD.takeEffect(p1);
+        assertEquals(p1.getDefMod(), 0.25);
+    }
+
+    @Test
+    public void testAtkAmodUUp() {
+        p1.setAtkMod(3.99);
+        atkAmodU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 4.00);
+    }
+
+    @Test
+    public void testAtkAmodUDown() {
+        p1.setAtkMod(0.26);
+        atkAmodDU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 0.25);
+    }
+
+    @Test
+    public void testAtkDmodUUp() {
+        p1.setDefMod(3.99);
+        atkDmodU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 4.00);
+    }
+
+    @Test
+    public void testAtkDmodUDown() {
+        p1.setDefMod(0.26);
+        atkDmodDU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 0.25);
     }
 
 
@@ -193,6 +263,31 @@ public class AttackSkillTest {
         assertEquals(p1.getDefMod(), 1.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
         assertTrue(p1.getDead());
+    }
+
+    @Test
+    public void testInflictStatusSelf() {
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+        atkBU.takeUserEffect(p1);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.BURNED);
+    }
+
+    @Test
+    public void testAtkSecurityDrone() {
+        assertFalse(gordon.isDroneDead());
+        assertEquals(gordon.getHp(), gordon.getMaxhp());
+        assertEquals(gordon.getCurrentStatus(), StatusEffect.NONE);
+        atkS.takeEffect(gordon);
+        assertEquals(gordon.getHp(), gordon.getMaxhp());
+        atkP.takeEffect(gordon);
+        assertEquals(gordon.getCurrentStatus(), StatusEffect.NONE);
+        gordon.turnDroneDead();
+        atkS.takeEffect(gordon);
+        assertEquals(gordon.getHp(), gordon.getMaxhp() - atkS.getDamage());
+        gordon.healDamage(atkS.getDamage() * 2);
+        System.out.println(gordon.getDead());
+        atkP.takeEffect(gordon);
+        assertEquals(gordon.getCurrentStatus(), StatusEffect.POISONED);
     }
 
 

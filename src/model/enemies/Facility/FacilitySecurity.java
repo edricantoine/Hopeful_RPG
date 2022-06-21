@@ -11,7 +11,7 @@ import java.util.Arrays;
 //A class for the "Agent Dealer, Head of Security" boss.
 
 public class FacilitySecurity extends Enemy {
-    private boolean isDroneDead;
+    private boolean isDroneDead; //is the drone enemy dead
     public FacilitySecurity() {
         super("Agent Dealer, Head of Security", 10, 100, new ArrayList<>(Arrays.asList(
                         new AttackSkill("Taunt", "said something nasty!", 0, "all",
@@ -32,14 +32,17 @@ public class FacilitySecurity extends Enemy {
                 0.0, 0, 1.0, -0.38, 0, false, StatusEffect.NONE, 1, "one");
     }
 
+    // kills drone enemy
     public void turnDroneDead() {
         isDroneDead = true;
     }
 
+    //getter for this variable
     public boolean isDroneDead() {
         return isDroneDead;
     }
 
+    //when drone dead, switches moveset
     public void switchMoveset() {
         setSkills(new ArrayList<>(Arrays.asList(
                 new AttackSkill("Cower", "cowered in fear!", 0, "all",
@@ -49,9 +52,10 @@ public class FacilitySecurity extends Enemy {
                         StatusEffect.NONE, 1.0, 1.0, 2, 0, 0, 1.0, 1.0, 0, 0, StatusEffect.NONE))));
     }
 
+    //can't be inflicted with status while drone is alive
     @Override
     public void setCurrentStatus(StatusEffect currentStatus) {
-        if(!this.getDead() && !this.isDroneDead) {
+        if(!this.getDead() && this.isDroneDead) {
             this.currentStatus = currentStatus;
             if (currentStatus.equals(StatusEffect.BURNED)) {
                 timeSinceStatusApplied = W_BURNED;

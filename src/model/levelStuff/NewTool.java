@@ -7,6 +7,8 @@ import model.enemies.Enemy;
 import java.util.List;
 import java.util.Random;
 
+// Parent class for the Tools that help set up the game's various levels.
+
 public abstract class NewTool {
     protected List<Item> inventory; //inventory of level
     protected List<PlayerCharacter> party; //the party that will go through the level

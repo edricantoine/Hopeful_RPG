@@ -17,9 +17,16 @@ public class SupportSkillTest {
     private SupportSkill supS;
     private SupportSkill supA;
     private SupportSkill supAtk;
+    private SupportSkill supAtkDwn;
     private SupportSkill supDef;
+    private SupportSkill supDefDwn;
+    private SupportSkill supAtkU;
+    private SupportSkill supAtkDwnU;
+    private SupportSkill supDefU;
+    private SupportSkill supDefDwnU;
     private SupportSkill supCure;
     private SupportSkill supUser;
+    private SupportSkill supStatusOpp;
 
 
     @BeforeEach
@@ -36,9 +43,33 @@ public class SupportSkillTest {
                 0.0, 0, 0.1, 1.0, false, 0, 0, 0, StatusEffect.NONE,
                 0, 0, 1.0, 1.0, StatusEffect.NONE);
 
+        supAtkDwn = new SupportSkill("Attack Down", "Increases attack", 0, "one",
+                0.0, 0, -0.1, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
+
         supDef = new SupportSkill("Defense Up", "Increases defense", 0, "one",
                 0.0, 0, 1.0, -0.1, false, 0, 0, 0, StatusEffect.NONE,
                 0, 0, 1.0, 1.0, StatusEffect.NONE);
+
+        supDefDwn = new SupportSkill("Defense Up", "Increases defense", 0, "one",
+                0.0, 0, 1.0, 0.1, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
+
+        supAtkU = new SupportSkill("Attack Up", "Increases attack", 0, "one",
+                0.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 0.1, 1.0, StatusEffect.NONE);
+
+        supAtkDwnU = new SupportSkill("Attack Down", "Increases attack", 0, "one",
+                0.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, -0.1, 1.0, StatusEffect.NONE);
+
+        supDefU = new SupportSkill("Defense Up", "Increases defense", 0, "one",
+                0.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, -0.1, StatusEffect.NONE);
+
+        supDefDwnU = new SupportSkill("Defense Up", "Increases defense", 0, "one",
+                0.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.NONE,
+                0, 0, 1.0, 0.1, StatusEffect.NONE);
 
         supCure = new SupportSkill("Cure", "Cures a status ailment, but resets attack and defense.",
                 0, "one", 0.0, 0, 1.0, 1.0, true, 0, 0, 0, StatusEffect.NONE,
@@ -47,6 +78,11 @@ public class SupportSkillTest {
         supUser = new SupportSkill("BuffNHeal", "Heals target and user for 10 HP, increases user's atk, def, and speed, " +
                 "increases target speed, gives user riposte", 0, "one", 10.0, 0, 1.0, 1.0, false, 0, 1, 1,
                 StatusEffect.NONE, 10, 0, 0.1, -0.1, StatusEffect.RIPOSTE);
+
+        supStatusOpp = new SupportSkill("???", "Inflicts status", 0, "one",
+                0.0, 0, 1.0, 1.0, false, 0, 0, 0, StatusEffect.POISONED,
+                0, 0, 1.0, 1.0, StatusEffect.NONE);
+
 
 
         p1 = new PlayerCharacter("John", 100, 100, new ArrayList<>(), 5,
@@ -123,6 +159,21 @@ public class SupportSkillTest {
     }
 
     @Test
+    public void testAtkModLower() {
+        p1.setAtkMod(0.26);
+        supAtkDwn.takeEffect(p1);
+        assertEquals(p1.getAtkMod(), 0.25);
+
+    }
+
+    @Test
+    public void testAtkModUpper() {
+        p1.setAtkMod(3.99);
+        supAtk.takeEffect(p1);
+        assertEquals(p1.getAtkMod(), 4.00);
+    }
+
+    @Test
     public void testDefModSkill() {
         supDef.takeEffect(p1);
         assertEquals(p1.getDefMod(), 1.0 - 0.1);
@@ -131,6 +182,71 @@ public class SupportSkillTest {
         supDef.takeEffect(p1);
         assertEquals(p1.getDefMod(), 1.0 - 0.1 - 0.1);
         assertEquals(p1.getAtkMod(), 1.0);
+    }
+
+    @Test
+    public void testDefModDown() {
+        p1.setDefMod(0.26);
+        supDef.takeEffect(p1);
+        assertEquals(p1.getDefMod(), 0.25);
+    }
+
+    @Test
+    public void testDefModUp() {
+        p1.setDefMod(3.99);
+        supDefDwn.takeEffect(p1);
+        assertEquals(p1.getDefMod(), 4.00);
+    }
+
+    @Test
+    public void testAtkModSkillU() {
+        supAtkU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 1.0 + 0.1);
+        assertEquals(p1.getDefMod(), 1.0);
+
+        supAtkU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 1.0 + 0.1 + 0.1);
+        assertEquals(p1.getDefMod(), 1.0);
+    }
+
+    @Test
+    public void testAtkModLowerU() {
+        p1.setAtkMod(0.26);
+        supAtkDwnU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 0.25);
+
+    }
+
+    @Test
+    public void testAtkModUpperU() {
+        p1.setAtkMod(3.99);
+        supAtkU.takeUserEffect(p1);
+        assertEquals(p1.getAtkMod(), 4.00);
+    }
+
+    @Test
+    public void testDefModSkillU() {
+        supDefU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 1.0 - 0.1);
+        assertEquals(p1.getAtkMod(), 1.0);
+
+        supDefU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 1.0 - 0.1 - 0.1);
+        assertEquals(p1.getAtkMod(), 1.0);
+    }
+
+    @Test
+    public void testDefModDownU() {
+        p1.setDefMod(0.26);
+        supDefU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 0.25);
+    }
+
+    @Test
+    public void testDefModUpU() {
+        p1.setDefMod(3.99);
+        supDefDwnU.takeUserEffect(p1);
+        assertEquals(p1.getDefMod(), 4.00);
     }
 
     @Test
@@ -143,6 +259,13 @@ public class SupportSkillTest {
         assertEquals(p1.getAtkMod(), 2.0);
         assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
 
+    }
+
+    @Test
+    public void testInflictStatus() {
+        assertEquals(p1.getCurrentStatus(), StatusEffect.NONE);
+        supStatusOpp.takeEffect(p1);
+        assertEquals(p1.getCurrentStatus(), StatusEffect.POISONED);
     }
 
 

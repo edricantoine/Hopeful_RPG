@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// Abstract class for Skills.
+
 public abstract class Skill {
     protected String name; //name
     protected String flavor; //flavor text

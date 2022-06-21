@@ -40,7 +40,7 @@ public class AttackSkill extends Skill {
         this.statUser = statUser;
     }
 
-    //getters, setters
+    //getters, setters, no testing needed
 
     public double getAtkUser() {
         return atkUser;
@@ -112,7 +112,7 @@ public class AttackSkill extends Skill {
         if(atkUser!= 1.0) {
             if(p.getAtkMod() + atkUser <= 0.25) {
                 p.setAtkMod(0.25);
-            } else if (p.getDefMod() + atkUser>= 4.00) {
+            } else if (p.getAtkMod() + atkUser>= 4.00) {
                 p.setAtkMod(4.00);
             } else {
                 p.setAtkMod((p.getAtkMod() + atkUser));

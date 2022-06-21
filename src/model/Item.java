@@ -36,7 +36,7 @@ public class Item {
         setTargets = new ArrayList<>();
     }
 
-    //setters, getters
+    //setters, getters that need no testing
 
     public List<Char> getSetTargets() {
         return setTargets;

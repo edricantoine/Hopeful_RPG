@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+//A tool that helps set up the Wasteland level in the game.
+//No unit tests exist for this class due to the heavy reliance on random numbers and the fact that
+//any bugs can be easily detected by myself when play testing.
+
 public class NewWastelandTool extends NewTool {
 
     public NewWastelandTool(List<Item> inventory, List<PlayerCharacter> party) {
