@@ -41,14 +41,13 @@ public class GameUI {
     }
 
 
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("HOPEFUL");
         frame.setContentPane(new GameUI().titlePanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("Version 0.5 - Battle music added"); //current version of the game
+        System.out.println("Version 0.6 - updated tests"); //current version of the game
     }
 
     {
@@ -77,7 +76,7 @@ public class GameUI {
         Font titleLabelFont = this.$$$getFont$$$("Courier New", Font.PLAIN, 20, titleLabel.getFont());
         if (titleLabelFont != null) titleLabel.setFont(titleLabelFont);
         titleLabel.setHorizontalAlignment(0);
-        titleLabel.setText("HOPEFUL: a simple RPG");
+        titleLabel.setText("HOPEFUL: a simple RPG. (6/21/2022)");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
