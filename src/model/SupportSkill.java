@@ -1,5 +1,7 @@
 package model;
 
+// Class for SUPPORT skills: affect allies
+
 public class SupportSkill extends Skill {
 
     private double hpEffect; //how much target is healed
@@ -39,7 +41,7 @@ public class SupportSkill extends Skill {
 
     }
 
-    //getters, setters
+    //getters, setters, need no testing
 
     @Override
     public void setAtkMod(double atkMod) {
@@ -61,7 +63,7 @@ public class SupportSkill extends Skill {
         if(atkUser!= 1.0) {
             if(p.getAtkMod() + atkUser <= 0.25) {
                 p.setAtkMod(0.25);
-            } else if (p.getDefMod() + atkUser>= 4.00) {
+            } else if (p.getAtkMod() + atkUser>= 4.00) {
                 p.setAtkMod(4.00);
             } else {
                 p.setAtkMod((p.getAtkMod() + atkUser));

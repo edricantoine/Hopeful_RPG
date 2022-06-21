@@ -8,6 +8,8 @@ import model.Skill;
 import java.util.ArrayList;
 import java.util.List;
 
+// A class representing an Enemy. Extends from Char class, so unit tests for that class mostly cover this one.
+
 public class Enemy extends Char {
 
 

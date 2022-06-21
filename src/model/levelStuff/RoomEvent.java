@@ -5,6 +5,7 @@ import model.StatusEffect;
 
 import java.util.List;
 import java.util.Random;
+// Class for all Room Events.
 
 public class RoomEvent {
     private double damage;

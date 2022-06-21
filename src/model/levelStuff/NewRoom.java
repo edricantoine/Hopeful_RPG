@@ -8,6 +8,7 @@ import model.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+// A class representing a room in a level.
 
 public class NewRoom {
     private List<Item> inventory; //current room inventory

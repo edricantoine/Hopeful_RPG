@@ -40,4 +40,48 @@ public class NewLevelTest {
         assertTrue(l1.getComplete());
 
     }
+
+    @Test
+    public void testKill1BossComplete() {
+        assertFalse(l1.getBoss1dead());
+        assertFalse(l1.getBoss2dead());
+        assertFalse(l1.getBoss3dead());
+        l1.kill2Boss();
+        l1.kill3Boss();
+        l1.kill1Boss();
+        assertTrue(l1.getComplete());
+    }
+
+    @Test
+    public void testKill2BossComplete() {
+        assertFalse(l1.getBoss1dead());
+        assertFalse(l1.getBoss2dead());
+        assertFalse(l1.getBoss3dead());
+        l1.kill1Boss();
+        l1.kill3Boss();
+        l1.kill2Boss();
+        assertTrue(l1.getComplete());
+    }
+
+    @Test
+    public void testKill3BossComplete() {
+        assertFalse(l1.getBoss1dead());
+        assertFalse(l1.getBoss2dead());
+        assertFalse(l1.getBoss3dead());
+        l1.kill1Boss();
+        l1.kill2Boss();
+        l1.kill3Boss();
+        assertTrue(l1.getComplete());
+    }
+
+    @Test
+    public void testHowManyBossesDead() {
+        assertEquals(l1.howManyBossesDead(), 0);
+        l1.kill1Boss();
+        assertEquals(l1.howManyBossesDead(), 1);
+        l1.kill2Boss();
+        assertEquals(l1.howManyBossesDead(), 2);
+        l1.kill3Boss();
+        assertEquals(l1.howManyBossesDead(), 3);
+    }
 }

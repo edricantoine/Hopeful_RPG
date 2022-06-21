@@ -62,6 +62,7 @@ public class ItemTest {
         assertEquals(itemDmg.getSetTargets().size(), 0);
         itemDmg.addToSetTargets(p1);
         assertEquals(itemDmg.getSetTargets().size(), 1);
+        assertEquals(itemDmg.getSetTargets().get(0).getName(), "John");
     }
 
     @Test

@@ -1,7 +1,7 @@
 package model;
 
 import java.util.List;
-
+// Abstract class for all Characters: PlayerCharacters and Enemies
 public abstract class Char {
     protected String name; //character name
     protected String flavor; //flavor text
@@ -47,7 +47,7 @@ public abstract class Char {
         this.selectedItem = null;
     }
 
-    //getters and setters
+    //getters and setters, no need for testing
 
 
     public void setName(String name) {
@@ -188,10 +188,6 @@ public abstract class Char {
         }
     }
 
-    //uses item i on character c, like in a battle. Utility function for tests
-    public void useItem(Item i, Char c) {
-        i.takeEffect(c);
-    }
 
     //if this character can use skill s, returns true. Returns false otherwise.
     public Boolean canUseSkill(Skill s) {
@@ -261,12 +257,12 @@ public abstract class Char {
         if (currentStatus.equals(StatusEffect.AFRAID)) {
             if(this.getAtkMod() -0.15 <= 0.25) {
                 this.setAtkMod(0.25);
-            } else if (this.getAtkMod() - 0.15 >= 4.00) {
+            } else if (this.getAtkMod() - 0.15 >= 4.00) { //SHOULD NEVER HAPPEN, BUT HERE JUST IN CASE
                 this.setAtkMod(4.00);
             } else {
                 this.setAtkMod((this.getAtkMod() - 0.15));
             }
-            if(this.getDefMod() + 0.25 <= 0.25) {
+            if(this.getDefMod() + 0.25 <= 0.25) {  //SHOULD NEVER HAPPEN, BUT HERE JUST IN CASE
                 this.setDefMod(0.25);
             } else if (this.getDefMod() + 0.25 >= 4.00) {
                 this.setDefMod(4.00);

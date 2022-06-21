@@ -58,6 +58,12 @@ public class CharTest {
 
     }
 
+    @Test
+    public void testGetSkillAsString() {
+        String temp = p1.getSkillsAsString();
+        assertEquals(temp, "Skill 1: Attack! Skill 2: Heal! ");
+    }
+
 
     @Test
     public void testSetStatus() {
